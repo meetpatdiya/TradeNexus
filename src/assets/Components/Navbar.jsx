@@ -69,7 +69,7 @@ const Navbar = () => {
             <Link to="/">Trade</Link>
           </li>
           <li>
-            <Link to="/">Watchlist</Link>
+            <Link to="/watchlist">Watchlist</Link>
           </li>
           <li>
             <Link to="/">Feedback</Link>

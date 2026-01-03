@@ -3,7 +3,6 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-/* MAIN WRAPPER */
 .wl-link {
   max-width: 420px;
   margin: 40px auto;
@@ -13,7 +12,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* HEADER */
 .wl-header {
   text-align: center;
   margin-bottom: 20px;
@@ -45,7 +43,6 @@
   border-radius: 20px;
 }
 
-/* ACCOUNT DIGITS */
 .wl-id {
   text-align: center;
   font-weight: 500;
@@ -79,7 +76,6 @@
   border-color: #2563eb;
 }
 
-/* SUBMIT BUTTON */
 .wl-submit-btn {
   padding: 10px 20px;
   background: #22c55e;
@@ -94,7 +90,6 @@
   background: #16a34a;
 }
 
-/* TOGGLE */
 .wl-toggle {
   display: flex;
   gap: 10px;
@@ -121,7 +116,6 @@
   border-color: #2563eb;
 }
 
-/* AMOUNT DISPLAY */
 .wl-add-nums {
   margin-top: 10px;
 }

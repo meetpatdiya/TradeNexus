@@ -5,6 +5,15 @@ const CoinsContext = createContext();
 
 export const CoinsProvider = ({ children }) => {
   const [coins, setCoins] = useState([]);
+   const [watchlist, setWatchlist] = useState([]);
+
+  const toggleWatchlist = (id) => {
+    setWatchlist(prev =>
+    prev.includes(id)
+      ? prev.filter(c => c !== id)
+      : [...prev, id]
+  );
+  };
 
   useEffect(() => {
     fetch(
@@ -12,19 +21,23 @@ export const CoinsProvider = ({ children }) => {
     )
       .then(res => res.json())
       .then(data => setCoins(data));
-    //  const getCoinInfo = async () => {
-    //       const data = await getBasicData();
-    //       setCoins(data);
-    //       console.log(data)
-    //     };
-        // getCoinInfo();
+  
   }, []);
-const coinNames = coins.map(c => c.name);
+
+// const coinNames = coins.map(c => c.name);
   return (
-    <CoinsContext.Provider value={{ coins , coinNames}}>
+    <CoinsContext.Provider value={{ coins, watchlist, toggleWatchlist }}>
       {children}
     </CoinsContext.Provider>
   );
 };
 
 export const useCoins = () => useContext(CoinsContext);
+
+
+  //  const getCoinInfo = async () => {
+    //       const data = await getBasicData();
+    //       setCoins(data);
+    //       console.log(data)
+    //     };
+    // getCoinInfo();

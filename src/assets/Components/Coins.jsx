@@ -75,7 +75,6 @@ const Coins = () => {
     </div>
   ))}
 </div>
- {/* {selectedCoin && <CoinDetails coin={selectedCoin} />} */}
 </>
   );
 };

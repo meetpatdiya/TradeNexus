@@ -1,14 +1,18 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Coins from './Coins'
+import HeroSection from './HeroSection'
 import Wallet from './Wallet'
+import Footer from './Footer'
 const MainHomePage = () => {
   return (
     <div>
       <Navbar/>
-      {/* <Coins/> */}
+      <Coins/>
+      {/* <HeroSection/> */}
       {/* <Registration/> */}
-      <Wallet/>
+      {/* <Wallet/> */}
+      {/* <Footer/> */}
     </div>
   )
 }

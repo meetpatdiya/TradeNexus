@@ -258,9 +258,12 @@ const Wallet = () => {
         setWlMessageType("error");
       } else {
         settotal((p) => Number(p) - Number(wlValue));
-setWlMessage(`₹${wlValue} has been successfully withdrawn from your wallet.`);
-setWlMessageType("success");
-setWlValue("");      }
+        setWlMessage(
+          `₹${wlValue} has been successfully withdrawn from your wallet.`
+        );
+        setWlMessageType("success");
+        setWlValue("");
+      }
     } else {
       alert("error");
     }
@@ -277,10 +280,14 @@ setWlValue("");      }
         <span className="wl-badge">Fast • Secure • Reliable</span>
       </div>
       {wlMessage && (
-  <div className={`wl-message ${wlMessageType === "error" ? "wl-error" : "wl-success"}`}>
-    {wlMessage}
-  </div>
-)}
+        <div
+          className={`wl-message ${
+            wlMessageType === "error" ? "wl-error" : "wl-success"
+          }`}
+        >
+          {wlMessage}
+        </div>
+      )}
       {!hasEnteredAccDigits && (
         <>
           <div className="wl-id">Enter Last 4 digits of your Bank Account</div>
@@ -313,7 +320,10 @@ setWlValue("");      }
               className={`wl-toggle-btn ${
                 wlMode === "deposit" ? "wl-active" : ""
               }`}
-              onClick={() => setWlMode("deposit")}
+              onClick={() => {
+                setWlMode("deposit");
+                setWlMessage("");
+              }}
             >
               Deposit
             </button>
@@ -321,7 +331,10 @@ setWlValue("");      }
               className={`wl-toggle-btn ${
                 wlMode === "withdraw" ? "wl-active" : ""
               }`}
-              onClick={() => setWlMode("withdraw")}
+              onClick={() => {
+                setWlMode("withdraw");
+                setWlMessage("");
+              }}
             >
               Withdraw
             </button>

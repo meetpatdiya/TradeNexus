@@ -1,0 +1,218 @@
+/* .footer {
+    width: 100vw;
+  background-color: #0b0e11;
+  color: #ffffff;
+  padding: 40px 20px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  max-width: 400px;
+}
+
+.footer-logo {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.footer-title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.footer-slogan {
+  font-size: 14px;
+  color: #b7bdc6;
+}
+
+.footer-links h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.footer-links ul {
+    display: flex;
+    gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  color: #b7bdc6;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #f0b90b;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1e2329;
+  margin-top: 30px;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #b7bdc6;
+} */
+
+/* ===== Footer Base ===== */
+.footer {
+    width: 100vw;
+  background-color: #ffffff;
+  padding: 50px 80px;
+  color: #070707;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== Main Layout ===== */
+.footer-container {
+  max-width: 1200px;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== LEFT SIDE : Quick Links ===== */
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links a {
+  color: #cfcfcf;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #4da6ff;
+}
+
+/* ===== RIGHT SIDE : Brand ===== */
+
+/* Logo + Title in one row */
+.footer-brand h2,
+.footer-brand img {
+  display: inline-block;
+}
+
+
+/* Wrapper row */
+.footer-brand::before {
+  content: "";
+}
+
+/* Row for Logo & Title */
+
+.footer-logo {
+  width: 50px;
+  vertical-align: middle;
+}
+
+.footer-title {
+  font-size: 24px;
+  font-weight: 700;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+/* Slogan under logo + title */
+.footer-slogan {
+  font-size: 14px;
+  color: #b5b5b5;
+  margin-top: 8px;
+}
+.footer-bottom{
+    color: #b5b5b5;
+}
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+
+/* Tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 40px 40px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .footer-links ul {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+/* Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 20px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .footer-links ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .footer-title {
+    font-size: 20px;
+  }
+
+  .footer-slogan {
+    font-size: 13px;
+    max-width: 280px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .footer-logo {
+    width: 40px;
+  }
+
+  .footer-title {
+    font-size: 18px;
+  }
+
+  .footer-slogan {
+    font-size: 12px;
+  }
+}

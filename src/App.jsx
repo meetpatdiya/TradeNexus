@@ -4,6 +4,7 @@ import { createBrowserRouter , RouterProvider ,  Navigate } from "react-router-d
 import { CoinsProvider } from "./assets/Components/CoinsContext";
 import MainHomePage from "./assets/Components/MainHomePage";
 import CoinDetails from "./assets/Components/CoinDetails";
+import Watchlist from "./assets/Components/Watchlist"
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -17,13 +18,17 @@ const App = () => {
     {
       path:"/trade",
       element:<Navigate to="/coin/bitcoin"/>
+    },
+    {
+      path:"/watchlist",
+      element:<Watchlist/>
     }
   ])
   return (
     <>
     <CoinsProvider>
       <RouterProvider router={router}/>
-      </CoinsProvider>
+    </CoinsProvider>
     </>
   );
 };
