@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* MAIN WRAPPER */
+.wl-link {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* HEADER */
+.wl-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.wl-title {
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.wl-subtitle {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.wl-info {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 6px;
+}
+
+.wl-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 20px;
+}
+
+/* ACCOUNT DIGITS */
+.wl-id {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #334155;
+}
+
+.wl-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.wl-input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.wl-digit-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 22px;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+}
+
+.wl-digit-input:focus {
+  border-color: #2563eb;
+}
+
+/* SUBMIT BUTTON */
+.wl-submit-btn {
+  padding: 10px 20px;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.wl-submit-btn:hover {
+  background: #16a34a;
+}
+
+/* TOGGLE */
+.wl-toggle {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.wl-toggle-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.wl-toggle-btn:hover {
+  background: #e2e8f0;
+}
+
+.wl-active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* AMOUNT DISPLAY */
+.wl-add-nums {
+  margin-top: 10px;
+}
+
+.wl-ds-nums {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #0f172a;
+  min-height: 40px;
+}
+
+.wl-nums {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.wl-total {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 15px 0;
+  color: #0f172a;
+}
+
+.wl-total::before {
+  content: "Wallet Balance";
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.wl-num-btn {
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  background: #e2e8f0;
+  cursor: pointer;
+}
+
+.wl-num-btn:hover {
+  background: #cbd5e1;
+}
+.wl-active:hover{
+  background: #0142ce;
+}
+.wl-clear {
+  background: #ef4444;
+  color: white;
+}
+
+.wl-clear:hover {
+  background: #dc2626;
+}
+
+.wl-back {
+  background: #94a3b8;
+  color: white;
+}
+.wl-message {
+  margin: 12px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.wl-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.wl-success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.wl-nums-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.wl-nums-btn:hover {
+  background: #1d4ed8;
+}

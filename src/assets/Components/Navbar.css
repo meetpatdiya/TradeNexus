@@ -1,0 +1,145 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 70px;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  z-index: 100;
+}
+
+/* LEFT */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu-btn {
+  font-size: 26px;
+  cursor: pointer;
+  display: none; /* hidden on desktop */
+}
+
+.logo {
+  height: 80px;
+}
+
+/* CENTER LINKS (DESKTOP) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-links li a:hover {
+  color: #2563eb;
+}
+.search-box{
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.search-box input{
+  border: none;
+  outline: none;
+  margin: 5px;
+  width:300px ;
+}
+/* PROFILE */
+.profile img {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border: 2px solid #2563eb;
+  cursor: pointer;
+}
+
+/* BACKDROP (MOBILE) */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 150;
+}
+
+.backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* SIDEBAR (MOBILE) */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: #ffffff;
+  padding: 20px;
+  transition: left 0.35s ease;
+  z-index: 200;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.close-btn {
+  font-size: 22px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+/* SIDEBAR LINKS */
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #111827;
+  font-weight: 500;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+
+  /* Show hamburger */
+  .menu-btn {
+    display: block;
+  }
+
+  /* Hide desktop links */
+  .nav-links {
+    display: none;
+  }
+  .search-box input{
+    width: 150px;
+  }
+}
