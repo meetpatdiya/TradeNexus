@@ -11,7 +11,7 @@ const MainHomePage = () => {
       <Coins/>
       {/* <HeroSection/> */}
       {/* <Registration/> */}
-      {/* <Wallet/> */}
+      <Wallet/>
       {/* <Footer/> */}
     </div>
   )

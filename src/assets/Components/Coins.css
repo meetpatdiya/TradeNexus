@@ -81,6 +81,19 @@
 small{
   padding: 0 5px;
 }
+.watchlist-row {
+  display: flex;
+  align-items: center;
+}
+
+.watchlist-row .coin-row {
+  flex: 1; /* keeps full width look */
+}
+
+.remove-btn {
+  margin-left: 12px;
+}
+
 @media (max-width: 768px) {
 
   /* Enable horizontal scroll */

@@ -66,7 +66,7 @@ const Navbar = () => {
             <Link to="/">Market</Link>
           </li>
           <li>
-            <Link to="/">Trade</Link>
+            <Link to="/">Portfolio</Link>
           </li>
           <li>
             <Link to="/watchlist">Watchlist</Link>

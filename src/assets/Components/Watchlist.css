@@ -1,0 +1,80 @@
+.watchlist-title {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 16px 0 24px;
+  color: #111;
+}
+
+.watchlist-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.watchlist-row .coin-row {
+  flex: 1; /* keeps full width look */
+}
+
+.watchlist-btn {
+  margin-left: 12px;
+   width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  background: rgba(255, 0, 0, 0.1);
+}
+.watchlist-btn:hover{
+    background: rgba(255, 0, 0, 0.2);
+}
+.empty-state {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.empty-svg {
+  animation: float 2.5s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+}
+.watch-coins-btn {
+  margin-top: 20px;
+  padding: 5px 15px;
+  background-color: #b1b1b1;
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.watch-coins-btn:hover {
+  background-color: #cfcfcf;
+  transform: translateY(-2px);
+}

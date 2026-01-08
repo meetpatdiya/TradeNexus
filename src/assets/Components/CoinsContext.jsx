@@ -14,7 +14,6 @@ export const CoinsProvider = ({ children }) => {
       : [...prev, id]
   );
   };
-
   useEffect(() => {
     fetch(
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h,24h,7d"
@@ -23,8 +22,6 @@ export const CoinsProvider = ({ children }) => {
       .then(data => setCoins(data));
   
   }, []);
-
-// const coinNames = coins.map(c => c.name);
   return (
     <CoinsContext.Provider value={{ coins, watchlist, toggleWatchlist }}>
       {children}
