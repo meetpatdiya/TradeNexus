@@ -4,7 +4,7 @@ import "./AlertBox.css";
 
 const AlertBox = ({
   message,
-  type = "success", // success | error
+  type = "success", 
   onClose,
   duration = 3000
 }) => {

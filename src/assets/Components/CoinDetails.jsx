@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 import "./CoinDetails.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCoins } from "./CoinsContext";
-import CoinDetailGraph from "./CoinDetailGraph";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
-import { useWallet } from "./WalletContext";
+import { usePortfolio } from "./PortfolioContext";
+import CoinDetailGraph from "./CoinDetailGraph";
 import BuySellModel from "./BuySellModel";
 import AlertBox from "./AlertBox";
+
 const CoinDetails = ({}) => {
   const { id } = useParams();
-  const { balance } = useWallet();
+  const { portfolio } = usePortfolio();
   const { coins, watchlist, toggleWatchlist } = useCoins();
   const [activeCoin, setActiveCoin] = useState(id);
   const [graphTime, setGraphTime] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertData, setAlertData] = useState({});
-  
   const [type, setType] = useState("");
   const navigate = useNavigate();
   const coin = coins.find((c) => c.id === id);
@@ -26,10 +26,10 @@ const CoinDetails = ({}) => {
   const data3D = prices.slice(-72);
   const data7D = prices.slice();
   // console.log(coins);
-    const handleTradeSuccess = (msg, type) => {
-      setAlertData({ message: msg, type });
-      setShowAlert(true);
-    };
+  const handleTradeSuccess = (msg, type) => {
+    setAlertData({ message: msg, type });
+    setShowAlert(true);
+  };
   useEffect(() => {
     if (prices.length) setGraphTime(prices.slice(-24));
   }, [prices]);
@@ -37,10 +37,18 @@ const CoinDetails = ({}) => {
     toggleWatchlist(coin.id);
     console.log(watchlist.includes(coin.id));
   };
+  const ownedQty = portfolio[id]?.quantity || 0;
+
   const handleSell = () => {
+    if (ownedQty <= 0) {
+      setShowAlert(true);
+      setAlertData({ message: "You must buy this coin first", type: "error" });
+      return;
+    }
     setType("sell");
     setShowModal(true);
   };
+
   const handleBuy = () => {
     setType("buy");
     setShowModal(true);
@@ -50,7 +58,7 @@ const CoinDetails = ({}) => {
     <>
       <div className="cd-container">
         <div className="cd-coin-names">
-          {coins.map((item, index) => {
+          {coins.map((item) => {
             return (
               <div
                 key={item.id}
@@ -81,7 +89,6 @@ const CoinDetails = ({}) => {
             >
               24h Change: {coin.price_change_percentage_24h}%
             </p>
-            {/* <p>Change (24h): {coin.price_change_percentage_24h}%</p> */}
             <p>
               <span>Market Cap :</span> {coin.market_cap}
             </p>
@@ -108,7 +115,9 @@ const CoinDetails = ({}) => {
             </p>
             <div className="cd-trade">
               <button onClick={handleBuy}>BUY</button>
-              <button onClick={handleSell}>SELL</button>
+              <button onClick={()=>handleSell()}>
+                SELL
+              </button>
             </div>
             <button onClick={() => addToWatchList(coin)}>
               {" "}
@@ -121,7 +130,6 @@ const CoinDetails = ({}) => {
               )}
             </button>
           </div>
-
           <div className="cd-graph">
             <div className="gp-buttons">
               <ul>
@@ -139,18 +147,17 @@ const CoinDetails = ({}) => {
           coin={coin}
           type={type}
           onClose={() => setShowModal(false)}
-            onSuccess={handleTradeSuccess}
+          onSuccess={handleTradeSuccess}
         />
       )}
       {showAlert && (
         <AlertBox
-          message="Congratulations! Coin bought successfully 🎉"
-          type="success"
+          message={alertData.message}
+          type={alertData.type}
           onClose={() => setShowAlert(false)}
         />
       )}
     </>
   );
 };
-
 export default CoinDetails;

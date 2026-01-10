@@ -5,11 +5,12 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-import { CoinsProvider } from "./assets/Components/CoinsContext";
-import { WalletProvider } from "./assets/Components/WalletContext";
+import AppProvider from "./AppProvider";
+
 import MainHomePage from "./assets/Components/MainHomePage";
 import CoinDetails from "./assets/Components/CoinDetails";
 import Watchlist from "./assets/Components/Watchlist";
+import Portfolio from "./assets/Components/Portfolio";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -28,14 +29,16 @@ const App = () => {
       path: "/watchlist",
       element: <Watchlist />,
     },
+    {
+      path: "/portfolio",
+      element: <Portfolio />,
+    },
   ]);
   return (
     <>
-      <CoinsProvider>
-        <WalletProvider>
+      <AppProvider>
           <RouterProvider router={router} />
-        </WalletProvider>
-      </CoinsProvider>
+      </AppProvider>
     </>
   );
 };

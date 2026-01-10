@@ -5,7 +5,7 @@ const CoinsContext = createContext();
 
 export const CoinsProvider = ({ children }) => {
   const [coins, setCoins] = useState([]);
-   const [watchlist, setWatchlist] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
   const toggleWatchlist = (id) => {
     setWatchlist(prev =>
@@ -20,7 +20,7 @@ export const CoinsProvider = ({ children }) => {
     )
       .then(res => res.json())
       .then(data => setCoins(data));
-  
+   
   }, []);
   return (
     <CoinsContext.Provider value={{ coins, watchlist, toggleWatchlist }}>
