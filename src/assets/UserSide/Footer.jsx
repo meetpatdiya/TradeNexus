@@ -24,7 +24,7 @@ const Footer = () => {
         <div className="footer-links">
           <ul>
             <li><a href="/market">Market</a></li>
-            <li><a href="/news">News</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
             <li><a href="/feedback">Feedback</a></li>
             <li><a href="/watchlist">Watchlist</a></li>
           </ul>

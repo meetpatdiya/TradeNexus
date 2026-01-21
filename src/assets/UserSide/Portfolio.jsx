@@ -3,6 +3,7 @@ import { useCoins } from "./CoinsContext";
 import BuySellModel from "./BuySellModel";
 import { useState } from "react";
 import AlertBox from "./AlertBox";
+import Pfimg from '../Images/Pfimg.svg'
 import "./Portfolio.css";
 const Portfolio = () => {
   const { portfolio } = usePortfolio();
@@ -10,14 +11,19 @@ const Portfolio = () => {
   const [showAlert, setShowAlert] = useState(null);
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [type, setType] = useState("");
-console.log(portfolio)
+  console.log(portfolio);
   const getCoinData = (coinId) => coins.find((c) => c.id === coinId);
 
   return (
     <div className="pf-container">
       <h2 className="pf-title">My Portfolio</h2>
       {Object.keys(portfolio).length === 0 && (
-        <p className="pf-empty">No assets yet. Start trading 🚀</p>
+        <div className="pf-empty-wrapper">
+          <div className="pf-empty">
+            <img src={Pfimg} alt="" srcset="" />
+            <p>No assets yet. Start trading 🚀</p>
+          </div>
+        </div>
       )}
       <div className="pf-grid">
         {Object.entries(portfolio).map(([coinId, data]) => {

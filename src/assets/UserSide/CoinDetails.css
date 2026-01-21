@@ -185,14 +185,11 @@ body {
   color: white;
 }
 
-/*=====graph */
 .cd-graph {
   width: 50vw;
   height: 100vh;
   border: #e5e7eb;
-
 }
-
 /* ===== GRAPH BUTTONS ===== */
 .gp-buttons {
   display: flex;

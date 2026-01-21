@@ -8,7 +8,8 @@ import { usePortfolio } from "./PortfolioContext";
 import CoinDetailGraph from "./CoinDetailGraph";
 import BuySellModel from "./BuySellModel";
 import AlertBox from "./AlertBox";
-
+import axios from 'axios'
+axios.defaults.withCredentials = true;
 const CoinDetails = ({}) => {
   const { id } = useParams();
   const { portfolio } = usePortfolio();
@@ -25,7 +26,7 @@ const CoinDetails = ({}) => {
   const data1D = prices.slice(-24);
   const data3D = prices.slice(-72);
   const data7D = prices.slice();
-  // console.log(coins);
+  // console.log(id);
   const handleTradeSuccess = (msg, type) => {
     setAlertData({ message: msg, type });
     setShowAlert(true);
@@ -33,10 +34,17 @@ const CoinDetails = ({}) => {
   useEffect(() => {
     if (prices.length) setGraphTime(prices.slice(-24));
   }, [prices]);
-  const addToWatchList = () => {
-    toggleWatchlist(coin.id);
-    console.log(watchlist.includes(coin.id));
-  };
+  const addToWatchList = async (coinId) => {
+  try {
+    const res = await axios.post("http://localhost:5000/watchlist", {
+      coin_gecko_id: coinId});
+    // console.log("Watchlist response:", res.data);
+     toggleWatchlist(coin.id);
+  } catch (err) {
+    console.error("Watchlist error:", err.response?.data || err.message);
+  }
+};
+
   const ownedQty = portfolio[id]?.quantity || 0;
 
   const handleSell = () => {
@@ -119,7 +127,7 @@ const CoinDetails = ({}) => {
                 SELL
               </button>
             </div>
-            <button onClick={() => addToWatchList(coin)}>
+            <button onClick={()=>addToWatchList(coin.id)}>
               {" "}
               {watchlist.includes(coin.id) ? (
                 <>

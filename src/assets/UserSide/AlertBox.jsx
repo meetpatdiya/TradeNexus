@@ -2,17 +2,12 @@ import { useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import "./AlertBox.css";
 
-const AlertBox = ({
-  message,
-  type = "success", 
-  onClose,
-  duration = 3000
-}) => {
+const AlertBox = ({ message, type = "success", onClose, duration = 3000 }) => {
   useEffect(() => {
     const timer = setTimeout(onClose, duration);
     return () => clearTimeout(timer);
   }, [onClose, duration]);
-console.log('alertbox called')
+  console.log("alertbox called");
   return (
     <div className={`ra-alert ra-${type}`}>
       <span>{message}</span>

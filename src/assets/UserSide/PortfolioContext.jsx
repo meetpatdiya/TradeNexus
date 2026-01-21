@@ -8,18 +8,15 @@ export const PortfolioProvider = ({ children }) => {
   const buyCoin = (coinId, buyQty, buyPrice) => {
     setPortfolio(prev => {
       const coin = prev[coinId];
-
       if (!coin) {
         return {
           ...prev,
           [coinId]: { quantity: buyQty, avgBuyPrice: buyPrice }
         };
       }
-
-      const totalCost =
-        coin.quantity * coin.avgBuyPrice + buyQty * buyPrice;
+      
+      const totalCost = coin.quantity * coin.avgBuyPrice + buyQty * buyPrice;
       const newQty = coin.quantity + buyQty;
-
       return {
         ...prev,
         [coinId]: {

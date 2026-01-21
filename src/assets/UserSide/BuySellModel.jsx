@@ -6,22 +6,14 @@ import { usePortfolio } from "./PortfolioContext";
 const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
   const price = coin.current_price;
   const { balance, setBalance } = useWallet();
-  const { portfolio, setPortfolio, buyCoin, sellCoin } = usePortfolio();
-  const feePercent = 0.2;
+  const { portfolio, buyCoin, sellCoin } = usePortfolio();
   const [mode, setMode] = useState("amount");
   const [value, setValue] = useState("");
+  const feePercent = 0.2;
   const amount = mode === "amount" ? Number(value) : Number(value) * price;
-
   const quantity = mode === "quantity" ? Number(value) : amount / price;
-
   const fee = (amount * feePercent) / 100;
-  let total;
-  if (type == "buy") {
-    total = amount + fee;
-  } else {
-    total = amount - fee;
-  }
-
+  const total = amount + (type === "buy" ? fee : -fee);
   const ownedQty = portfolio[coin.id]?.quantity || 0;
   const isBuyInvalid = amount <= 0 || total > balance;
   const isSellInvalid = amount <= 0 || quantity > ownedQty;
@@ -51,7 +43,6 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
     <div className="bs-overlay">
       <div className="bs-modal">
         <IoClose size={22} className="bs-close" onClick={onClose} />
-
         <h2>
           {type.toUpperCase()} {coin.symbol.toUpperCase()}
         </h2>

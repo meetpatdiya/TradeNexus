@@ -1,43 +1,3 @@
-// import "./Navbar.css";
-// import { Link } from 'react-router-dom'
-// import logo from "../Images/logo.png";
-// import ProfileImg from "../Images/profile.svg";
-// import { useEffect } from 'react';
-
-// const Navbar = () => {
-//   return (
-//     <nav className="navbar">
-//         <div className="logo">
-//        <img src={logo} alt="" srcset=""/>
-//       </div>
-
-//       <ul className="nav-links">
-//         <li><Link to="/">Market</Link></li>
-//         <li><Link to="/">Trade</Link></li>
-//         {/* <li><Link to="/">News</Link></li> */}
-//         <li><Link to="/">Watchlist</Link></li>
-//         <li><Link to="/">Feedback</Link></li>
-//       </ul>
-
-//       <div className="search-box">
-//         <input
-//           type="text"
-//           placeholder="Search coins "
-//         />
-//       </div>
-
-//       <div className="profile">
-//         <img
-//           src={ProfileImg}
-//           alt="Profile"
-//         />
-//       </div>
-
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
@@ -63,16 +23,16 @@ const Navbar = () => {
         {/* CENTER LINKS (DESKTOP) */}
         <ul className="nav-links">
           <li>
-            <Link to="/">Market</Link>
+            <Link to="market">Market</Link>
           </li>
           <li>
-            <Link to="/portfolio">Portfolio</Link>
+            <Link to="portfolio">Portfolio</Link>
           </li>
           <li>
-            <Link to="/watchlist">Watchlist</Link>
+            <Link to="watchlist">Watchlist</Link>
           </li>
           <li>
-            <Link to="/">Feedback</Link>
+            <Link to="feedback">Feedback</Link>
           </li>
         </ul>
         <div className="search-box">

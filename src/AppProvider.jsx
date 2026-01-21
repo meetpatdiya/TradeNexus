@@ -1,7 +1,7 @@
 import React from 'react'
-import { CoinsProvider } from "./assets/Components/CoinsContext";
-import { WalletProvider } from "./assets/Components/WalletContext";
-import {PortfolioProvider} from "./assets/Components/PortfolioContext"
+import { CoinsProvider } from "./assets/UserSide/CoinsContext";
+import { WalletProvider } from "./assets/UserSide/WalletContext";
+import {PortfolioProvider} from "./assets/UserSide/PortfolioContext"
 const AppProvider = ({children}) => {
   return (
     <>
