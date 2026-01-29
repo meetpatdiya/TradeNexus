@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Registration = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,6 +21,7 @@ const Registration = () => {
   const [eye, setEye] = useState(true);
   const [eye2, setEye2] = useState(true);
   const { role } = useParams();
+  const navigate = useNavigate();
   const handleRegister = async (e) => {
     e.preventDefault();
     let isValid = true;
@@ -57,7 +59,7 @@ const Registration = () => {
         password: formData.password,
         role: role,
       });
-      // alert("Posted successfully");
+      navigate("/login")
       setFormData({ name: "", email: "", password: "", confirm: "" });
     } catch (err) {
       if (err.response?.status === 409) {

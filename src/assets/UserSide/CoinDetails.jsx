@@ -6,6 +6,7 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { usePortfolio } from "./PortfolioContext";
 import CoinDetailGraph from "./CoinDetailGraph";
+import Navbar from "./Navbar"
 import BuySellModel from "./BuySellModel";
 import AlertBox from "./AlertBox";
 import axios from 'axios'
@@ -31,14 +32,15 @@ const CoinDetails = ({}) => {
     setAlertData({ message: msg, type });
     setShowAlert(true);
   };
+
   useEffect(() => {
     if (prices.length) setGraphTime(prices.slice(-24));
   }, [prices]);
+
   const addToWatchList = async (coinId) => {
   try {
     const res = await axios.post("http://localhost:5000/watchlist", {
       coin_gecko_id: coinId});
-    // console.log("Watchlist response:", res.data);
      toggleWatchlist(coin.id);
   } catch (err) {
     console.error("Watchlist error:", err.response?.data || err.message);
@@ -64,6 +66,7 @@ const CoinDetails = ({}) => {
   if (!coin) return <p>coin not avaiable...</p>;
   return (
     <>
+    <Navbar/>
       <div className="cd-container">
         <div className="cd-coin-names">
           {coins.map((item) => {

@@ -13,7 +13,6 @@ const Portfolio = () => {
   const [type, setType] = useState("");
   console.log(portfolio);
   const getCoinData = (coinId) => coins.find((c) => c.id === coinId);
-
   return (
     <div className="pf-container">
       <h2 className="pf-title">My Portfolio</h2>

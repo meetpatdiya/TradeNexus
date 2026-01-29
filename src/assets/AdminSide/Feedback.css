@@ -1,0 +1,65 @@
+.fd-card-container {
+  padding: 10px;
+  display: flex;
+  min-height: 40px ;
+  gap: 70px;
+}
+
+
+.fd-card-container > .fd-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.fd-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.fd-card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.fd-card p {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.fd-card:nth-child(1) p {
+  color: #2563eb;   
+}
+
+.fd-card:nth-child(2) p {
+  color: #d97706; 
+}
+
+.fd-card:nth-child(3) p {
+  color: #7c3aed; 
+}
+
+.fd-card:nth-child(4) p {
+  color: #16a34a; 
+}
+
+@media (max-width: 600px) {
+.fd-card-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 40px ;
+  gap: 5px;
+}
+  .fd-card p {
+    font-size: 26px;
+  }
+}

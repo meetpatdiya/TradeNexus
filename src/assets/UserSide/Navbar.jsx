@@ -23,13 +23,16 @@ const Navbar = () => {
         {/* CENTER LINKS (DESKTOP) */}
         <ul className="nav-links">
           <li>
-            <Link to="market">Market</Link>
+            <Link to="">Home</Link>
           </li>
           <li>
             <Link to="portfolio">Portfolio</Link>
           </li>
           <li>
             <Link to="watchlist">Watchlist</Link>
+          </li>
+          <li>
+            <Link to="wallet">Wallet</Link>
           </li>
           <li>
             <Link to="feedback">Feedback</Link>

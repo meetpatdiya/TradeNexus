@@ -78,7 +78,7 @@ return (
         <option value="">Select type</option>
         <option value="Bug">Bug</option>
         <option value="Suggestion">Suggestion</option>
-        <option value="Complaint">Complaint</option>
+        <option value="Complain">Complaint</option>
         <option value="Other">Other</option>
       </select>
       {errors.type && <p className="error">{errors.type}</p>}

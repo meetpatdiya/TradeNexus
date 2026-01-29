@@ -1,0 +1,50 @@
+.ad-navbar{
+    height: 60px;
+    min-height: 60px;
+    border-bottom: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.nav-left{
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+
+.nav-img {
+  height:50px;
+  
+}
+.nav-title{
+    font-size: 15px;
+    font-weight : 600;
+}
+
+.nav-center{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-search{
+    width: 40%;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #cfcfcf;
+    outline: none;
+}
+
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.profile-avtar{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}

@@ -1,0 +1,91 @@
+/* PAGE LAYOUT */
+.mk-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* CARD */
+.mk-card {
+  background: #0b1220;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* TITLES */
+.mk-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-bottom: 12px;
+}
+
+/* LIST */
+.mk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ROW */
+.mk-row {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #020617;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.mk-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* TEXT */
+.mk-rank {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.mk-name {
+  color: #f1f5f9;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.mk-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* COLOR THEMES */
+.mk-gainers .mk-value {
+  color: #22c55e;
+}
+
+.mk-losers .mk-value {
+  color: #ef4444;
+}
+
+.mk-volume .mk-value {
+  color: #38bdf8;
+}
+
+.mk-volatile .mk-value {
+  color: #facc15;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .mk-container {
+    grid-template-columns: 1fr;
+  }
+}

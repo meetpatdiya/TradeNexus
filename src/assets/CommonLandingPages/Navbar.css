@@ -1,0 +1,91 @@
+.cl-n-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cl-n-logo a {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.cl-n-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.cl-n-links a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+.cl-n-links a:hover {
+  color: #2563eb;
+}
+
+.cl-n-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.cl-n-login {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+.cl-n-login:hover {
+  color: #2563eb;
+}
+
+.cl-n-register {
+  position: relative;
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+  padding-bottom: 10px; /* 🔥 hover bridge */
+}
+
+.cl-n-register span {
+  padding: 6px 10px;
+  display: inline-block;
+}
+
+.cl-n-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0; /* no gap */
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  min-width: 150px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.cl-n-register:hover .cl-n-dropdown {
+  display: flex;
+}
+
+.cl-n-dropdown a {
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 14px;
+}
+
+.cl-n-dropdown a:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}

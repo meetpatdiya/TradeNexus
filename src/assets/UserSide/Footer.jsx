@@ -1,7 +1,7 @@
 import logo from '../Images/logo.png';
 import React from "react";
 import "./Footer.css";
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="footer">
@@ -23,10 +23,10 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="footer-links">
           <ul>
-            <li><a href="/market">Market</a></li>
-            <li><a href="/portfolio">Portfolio</a></li>
-            <li><a href="/feedback">Feedback</a></li>
-            <li><a href="/watchlist">Watchlist</a></li>
+            <li><Link to="/userdashboard/portfolio">Portfolio</Link></li>
+            <li><Link to="/userdashboard/watchlist">Watchlist</Link></li>
+            <li><Link to="/userdashboard/market">Wallet</Link></li>
+            <li><Link to="/userdashboard/feedback">Feedback</Link></li>
           </ul>
         </div>
 

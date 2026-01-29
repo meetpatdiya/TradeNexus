@@ -1,0 +1,36 @@
+/* WHOLE PAGE */
+.admin-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR HEIGHT RESERVED */
+.ad-navbar {
+  height: 60px;
+  min-height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 10;
+}
+
+/* BELOW NAVBAR */
+.admin-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* RIGHT CONTENT */
+.main-container {
+  flex: 1;
+  overflow: hidden;
+  background-color: #f9fafb;
+}
+
+/* PAGE CONTENT */
+.page-content {
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}

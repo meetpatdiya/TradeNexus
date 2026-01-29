@@ -39,10 +39,21 @@ const Registration = () => {
       const roles = res.data.role;
       // console.log(res.data);
       // console.log(res.data.role);
-  
+
       if (roles === "user") {
+        try {
+          const data = await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
+          console.log(data);
+          navigate("/userdashboard");
+        } catch (err) {
+          console.log("Wallet creation failed", err);
+        }
         navigate("/userdashboard");
-      } else if (roles === "investor") {
+      } 
+      else if (roles === "admin"){
+        navigate("/admindashboard")
+      }
+      else if (roles === "investor") {
         navigate("/investordashboard");
       } else {
         alert("role not defined" + res.data);

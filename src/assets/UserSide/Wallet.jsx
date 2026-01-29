@@ -3,22 +3,45 @@ import { useState, useEffect, useRef } from "react";
 import "./Wallet.css";
 import { useWallet } from "./WalletContext";
 import { TiBackspace } from "react-icons/ti";
-
+import axios from "axios";
 const Wallet = () => {
   // add 20Rupees withdrawal fees on every withdrawal
-  const { balance, deposit, withdraw } = useWallet();
+  const { balance, setBalance } = useWallet();
   const [accNumberDigits, setAccNumberDigits] = useState(["", "", "", ""]);
   const accNumberRefs = useRef([]);
   const [wlMode, setWlMode] = useState("deposit");
   const [wlValue, setWlValue] = useState("");
-  const [hasEnteredAccDigits, setHasEnteredAccDigits] = useState(false);
+  const [hasEnteredAccDigits, setHasEnteredAccDigits] = useState(true);
   const [wlMessage, setWlMessage] = useState("");
-  const [wlMessageType, setWlMessageType] = useState(""); // "error" | "success"
-
+  const [wlMessageType, setWlMessageType] = useState("");
+  const [transactions, setTransactions] = useState([])
   // Check localStorage on load
   useEffect(() => {
-    const saved = localStorage.getItem("wlHasAccDigits");
-    if (saved === "true") setHasEnteredAccDigits(true);
+    const getwalletData = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:5000/wallet", {
+          withCredentials: true,
+        });
+        console.log(data);
+        setBalance(data.balance);
+        if (data.bank_last_4 === null) setHasEnteredAccDigits(false);
+      } catch (err) {
+        console.log("Error fetching wallet:", err);
+      }
+    };
+    getwalletData();
+    const getallTransaction = async()=>{
+      try {
+        const {data} = await axios.get("http://localhost:5000/wallet/transactions", {
+          withCredentials: true,
+        })
+        console.log(data);
+        setTransactions(data)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getallTransaction()
     const handleKey = (e) => {
       if (e.target.tagName === "INPUT") return;
 
@@ -58,39 +81,62 @@ const Wallet = () => {
 
   const accNumberGetValue = () => accNumberDigits.join("");
 
-  const accNumberHandleSubmit = () => {
-    alert("Entered last 4 digits: " + accNumberGetValue());
+  const accNumberHandleSubmit = async () => {
+    // alert("Entered last 4 digits: " + Number(accNumberGetValue()));
+    try {
+      const data = await axios.post(
+        "http://localhost:5000/wallet/bank",
+        { bank_last_4: Number(accNumberDigits.join("")) },
+        { withCredentials: true },
+      );
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
     setAccNumberDigits(["", "", "", ""]);
     setHasEnteredAccDigits(true);
-    localStorage.setItem("wlHasAccDigits", "true");
   };
 
   const addDigit = (d) => setWlValue((p) => p + d);
   const removeLast = () => setWlValue((p) => p.slice(0, -1));
-  const submit = () => {
+  const submit = async () => {
     if (wlMode == "deposit") {
       if (wlValue < 10 || wlValue > 10_00_000) {
         setWlMessage("Deposit amount must be between $10 and $10,00,000.");
         setWlMessageType("error");
       } else {
-        deposit(Number(wlValue));
+        const { data } = await axios.post(
+          "http://localhost:5000/wallet/deposit",
+          { wlValue: Number(wlValue) },
+          { withCredentials: true },
+        );
+        setBalance(Number(data.balance));
+        // console.log(data, typeof data.balance);
+        // deposit(Number(wlValue));
         setWlMessage(
-          `$${wlValue} has been successfully deposited to your wallet.`
+          `$${wlValue} has been successfully deposited to your wallet.`,
         );
         setWlMessageType("success");
-        setWlValue(""); 
+        setWlValue("");
       }
     } else if (wlMode == "withdraw") {
       if (wlValue < 100) {
         setWlMessage("Minimum withdraw limit is 100$");
         setWlMessageType("error");
-      } else if (wlValue > balance) {
+      } else if (Number(wlValue) > Number(balance)) {
         setWlMessage("Insufficient wallet balance for this withdrawal.");
         setWlMessageType("error");
       } else {
-        withdraw(Number(wlValue));
+        const { data } = await axios.post(
+          "http://localhost:5000/wallet/withdraw",
+          { wlValue: Number(wlValue) },
+          { withCredentials: true },
+        );
+        console.log(data);
+        // setBalance(Number(data.balance));
+        // withdraw(Number(wlValue));
         setWlMessage(
-          `$${wlValue} has been successfully withdrawn from your wallet.`
+          `₹${wlValue} withdrawal request submitted. Awaiting admin approval.`,
         );
         setWlMessageType("success");
         setWlValue("");
@@ -99,8 +145,9 @@ const Wallet = () => {
       alert("error");
     }
   };
-
   return (
+    <>
+    
     <div className="wl-link">
       <div className="wl-header">
         <h2 className="wl-title">Welcome to Your Wallet</h2>
@@ -143,9 +190,9 @@ const Wallet = () => {
           </div>
         </>
       )}
-      <div className="wl-total">{balance}</div>
       {hasEnteredAccDigits && (
         <>
+          <div className="wl-total">{Number(balance)}</div>
           <div className="wl-toggle">
             <button
               className={`wl-toggle-btn ${
@@ -206,6 +253,16 @@ const Wallet = () => {
         </>
       )}
     </div>
+            <div className="wl-trns">
+              {transactions.map((item)=>(
+                <>
+                <div className="show">{item.type}</div>
+                <div className="show">{item.amount}</div>
+                <div className="show">{item.status}</div>
+                </>
+              ))}
+            </div>
+    </>
   );
 };
 

@@ -1,0 +1,64 @@
+.sd-container {
+  width: 270px;
+  min-width: 240px;
+  height: 100vh;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 18px 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+}
+
+.sd-container a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: #374151;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 15px 14px;
+  border-radius: 8px;
+
+  transition: 
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.sd-container a svg {
+  font-size: 20px;
+  color: #6b7280;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.sd-container a:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+  transform: translateX(2px);
+}
+
+.sd-container a:hover svg {
+  color: #2563eb;
+}
+
+.sd-container a.active {
+  background-color: #eef2ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.sd-container a.active svg {
+  color: #2563eb;
+}
+
+.sd-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 10px 8px;
+}
