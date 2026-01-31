@@ -5,6 +5,9 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
+import AdminUsers from "./assets/AdminSide/AdminUsers";
+import AdminWalletTransaction from "./assets/AdminSide/AdminWalletTransaction";
+import AdminInvestor from "./assets/AdminSide/AdminInvestor";
 import AdminDashboard from "./assets/AdminSide/AdminDashboard"
 import AppProvider from "./AppProvider";
 import Login from "./assets/CommonLandingPages/Login";
@@ -20,6 +23,7 @@ import Registration from "./assets/CommonLandingPages/Registration";
 import UserDashboard from "./assets/UserSide/UserDashboard";
 import InvestorDashboard from "./assets/InvestorSide/InvestorDashboard";
 import HomePage from "./assets/AdminSide/HomePage";
+import AdminFiatWallet from "./assets/AdminSide/AdminFiatWallet";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -45,22 +49,22 @@ const App = () => {
             index: true,
           element: <HomePage />,
         },
-        // {
-        //   path: "users",
-        //   element: <Users />,
-        // },
-        // {
-        //   path: "invester",
-        //   element: <Invester />,
-        // },
-        // {
-        //   path: "Wallet",
-        //   element: <Wallet />,
-        // },
-        // {
-        //   path: "WalletTransaction",
-        //   element: <WalletTransaction />,
-        // },
+        {
+          path: "users",
+          element: <AdminUsers />,
+        },
+        {
+          path: "invester",
+          element: <AdminInvestor />,
+        },
+        {
+          path: "wallet",
+          element: <AdminFiatWallet />,
+        },
+        {
+          path: "wallettransaction",
+          element: <AdminWalletTransaction />,
+        },
         // {
         //   path: "Trade",
         //   element: <Trade />,

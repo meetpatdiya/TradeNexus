@@ -39,11 +39,3 @@ const toggleWatchlist = (coinId) => {
 };
 
 export const useCoins = () => useContext(CoinsContext);
-
-
-  //  const getCoinInfo = async () => {
-    //       const data = await getBasicData();
-    //       setCoins(data);
-    //       console.log(data)
-    //     };
-    // getCoinInfo();
