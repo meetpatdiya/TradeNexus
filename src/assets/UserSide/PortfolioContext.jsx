@@ -5,7 +5,7 @@ const PortfolioContext = createContext();
 
 export const PortfolioProvider = ({ children }) => {
   const [portfolio, setPortfolio] = useState({});
-
+ 
   const fetchPortfolio = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/portfolio", {
@@ -19,7 +19,7 @@ export const PortfolioProvider = ({ children }) => {
 
   useEffect(() => {
     fetchPortfolio();
-  }, []);
+  }, []); 
 
   return (
     <PortfolioContext.Provider value={{ portfolio, fetchPortfolio }}>

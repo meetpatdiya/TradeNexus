@@ -1,0 +1,42 @@
+.in-pl-container {
+  padding: 20px;
+}
+
+.in-pl-title {
+  margin-bottom: 20px;
+}
+
+.in-pl-card {
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.in-pl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.in-pl-coin-name {
+  text-transform: capitalize;
+}
+
+.in-pl-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.in-pl-highlight {
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.in-pl-profit {
+  color: #2ecc71;
+}
+
+.in-pl-loss {
+  color: #e74c3c;
+}

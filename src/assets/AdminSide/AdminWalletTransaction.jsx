@@ -16,14 +16,11 @@ const AdminWalletTransaction = () => {
       if (type) params.type = type
       if (status) params.status = status
       if (userId) params.user_id = userId
-
       setSearchParams(params)
-
       const { data } = await axios.get(
         "http://localhost:5000/admin/wallettransaction",
         { params }
       )
-
       setWlTransData(data)
     } catch (error) {
       console.log(error)

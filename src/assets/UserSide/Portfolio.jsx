@@ -7,6 +7,7 @@ import Pfimg from '../Images/Pfimg.svg'
 import "./Portfolio.css";
 const Portfolio = () => {
   const { portfolio } = usePortfolio();
+  // console.log(portfolio);
   const { coins } = useCoins();
   const [showAlert, setShowAlert] = useState(null);
   const [selectedCoin, setSelectedCoin] = useState(null);

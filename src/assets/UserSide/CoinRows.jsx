@@ -6,7 +6,7 @@ const CoinRows = ({coin}) => {
     // console.log(coin)
   return (
     <div>
-       <div className="coin-row" onClick={() =>{ navigate(`/coin/${coin.id}`)}} key={coin.id}>
+       <div className="coin-row" onClick={() =>{ navigate(`/userdashboard/coin/${coin.id}`)}} key={coin.id}>
       
             <div className="coin-rank">{coin.market_cap_rank}</div>
       

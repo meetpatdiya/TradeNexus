@@ -54,6 +54,13 @@ const Registration = () => {
         navigate("/admindashboard")
       }
       else if (roles === "investor") {
+        try {
+          const data = await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
+          console.log(data);
+          navigate("/investordashboard");
+        } catch (err) {
+          console.log("Wallet creation failed", err);
+        }
         navigate("/investordashboard");
       } else {
         alert("role not defined" + res.data);

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 const AdminFiatWallet = () => {
   const [fiatWalletData, setfiatWalletData] = useState([]);
+  const [userId, setUserId] = useState("")
+  const [type, setType] = useState("")
+  const [amount, setAmount] = useState("")
   useEffect(() => {
     const getWalletData = async () => {
       try {
@@ -17,9 +20,43 @@ const AdminFiatWallet = () => {
     };
     getWalletData();
   }, []);
-
+  const adminAdjustment = async (e) => {
+    e.preventDefault()
+    console.log(userId , amount , type);
+    
+  };
+  adminAdjustment();
   return (
     <>
+      <form onSubmit={adminAdjustment}>
+        <input
+          type="text"
+          placeholder="Enter User ID"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          required
+        />
+        <select value={type} onChange={(e) => setType(e.target.value)} required>
+          <option value="">Select Type</option>
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+        {/* <input
+          type="text"
+          placeholder="Reason (optional)"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+        /> */}
+        <button type="submit">Submit Adjustment</button>
+      </form>
+
       {fiatWalletData.map((item, index) => (
         <div key={index}>
           <p>Id: {item.id}</p>

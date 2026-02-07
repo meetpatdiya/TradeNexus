@@ -6,7 +6,6 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 import { usePortfolio } from "./PortfolioContext";
 import CoinDetailGraph from "./CoinDetailGraph";
-import Navbar from "./Navbar"
 import BuySellModel from "./BuySellModel";
 import AlertBox from "./AlertBox";
 import axios from 'axios'
@@ -27,7 +26,6 @@ const CoinDetails = ({}) => {
   const data1D = prices.slice(-24);
   const data3D = prices.slice(-72);
   const data7D = prices.slice();
-  // console.log(id);
   const handleTradeSuccess = (msg, type) => {
     setAlertData({ message: msg, type });
     setShowAlert(true);
@@ -66,7 +64,6 @@ const CoinDetails = ({}) => {
   if (!coin) return <p>coin not avaiable...</p>;
   return (
     <>
-    <Navbar/>
       <div className="cd-container">
         <div className="cd-coin-names">
           {coins.map((item) => {
@@ -78,7 +75,7 @@ const CoinDetails = ({}) => {
                 }
                 onClick={() => {
                   setActiveCoin(item.id);
-                  navigate(`/coin/${item.id}`);
+                  navigate(`/userdashboard/coin/${item.id}`);
                 }}
               >
                 {item.name}
