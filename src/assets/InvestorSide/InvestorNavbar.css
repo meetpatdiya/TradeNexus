@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.in-navbar {
+  height: 70px;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.in-nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 55px;
+}
+
+.in-navbar a {
+  text-decoration: none;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 14px;
+  transition: 0.3s ease;
+}
+
+.in-navbar a:hover {
+  color: #2563eb;
+}
+
+.profile img {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  border: 2px solid #2563eb;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+
+  .in-navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 16px;
+    gap: 10px;
+  }
+
+  .search-box input {
+    width: 150px;
+  }
+
+  .in-navbar a {
+    font-size: 14px;
+    margin: 0 8px;
+  }
+}

@@ -91,3 +91,9 @@
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(79, 70, 229, 0.35);
 }
+.in-cn-card-highlight {
+  border: 2px solid #00ff99;
+  box-shadow: 0 0 10px #00ff99;
+  transform: scale(1.03);
+}
+

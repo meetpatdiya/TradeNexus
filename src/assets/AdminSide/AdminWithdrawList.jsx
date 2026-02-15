@@ -5,16 +5,11 @@ const AdminWithdrawList = () => {
   const [withdraws, setWithdraws] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [approving, setApproving] = useState([]); 
-
+  const [commission, setcommission] = useState([])
   const fetchWithdraws = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/wallet/trans/pending", { withCredentials: true } );
       console.log(data);      
-      // if (!Array.isArray(data)) {
-      //   // If backend returned object, take first property that is an array
-      //   const firstArray = Object.values(data).find((v) => Array.isArray(v));
-      //   data = firstArray || [];
-      // }
       setWithdraws(data);
       setLoading(false);
     } catch (err) {
@@ -23,9 +18,18 @@ const AdminWithdrawList = () => {
       setLoading(false);
     }
   };
-
+  const fetchCommissionWithdraws = async()=>{
+    try {
+      const { data } = await axios.get("http://localhost:5000/admin/getcommissionpending", { withCredentials: true } );
+      console.log(data);  
+      setcommission(data)
+    } catch (error) {
+      console.log(error.response.message);
+    }
+  }
   useEffect(() => {
     fetchWithdraws();
+    fetchCommissionWithdraws();
   }, []);
 
   const approveWithdraw = async (transactionId) => {
@@ -41,10 +45,19 @@ const AdminWithdrawList = () => {
       setApproving((prev) => prev.filter((id) => id !== transactionId));
     }
   };
-
+  const approveCommission = async(id)=>{
+    try {
+      const {data} = await axios.put("http://localhost:5000/admin/approvecommission",{transactionId:id},{withCredentials:true})
+      console.log(data);
+      fetchCommissionWithdraws()
+    } catch (error) {
+      console.log(error);
+    }
+  }
   if (loading) return <p>Loading...</p>;
 
   return (
+    <>
     <div className="admin-withdraws">
       <h2>Pending Withdraws</h2>
       {withdraws.length === 0 ? (
@@ -79,6 +92,19 @@ const AdminWithdrawList = () => {
         </table>
       )}
     </div>
+    {commission.length == 0 ?(<p>No Investor Commission to approve</p>) : (
+      <div>
+        {commission.map((item,index)=>(
+          <div key={index}>
+            <p> {item.id} </p>
+            <p>{item.user_id}</p>
+            <p>{item.amount}</p>
+            <button onClick={()=>approveCommission(item.id)}>Approve</button>
+          </div>
+        ))}
+      </div>
+    )}
+    </>
   );
 };
 

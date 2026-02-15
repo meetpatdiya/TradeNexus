@@ -9,7 +9,8 @@ import AdminUsers from "./assets/AdminSide/AdminUsers";
 import AdminWalletTransaction from "./assets/AdminSide/AdminWalletTransaction";
 import AdminInvestor from "./assets/AdminSide/AdminInvestor";
 import AdminDashboard from "./assets/AdminSide/AdminDashboard";
-import AppProvider from "./AppProvider";
+import { WalletProvider } from "./assets/UserSide/WalletContext";
+import { PortfolioProvider } from "./assets/UserSide/PortfolioContext";
 import AdminTrades from "./assets/AdminSide/AdminTrades";
 import Login from "./assets/CommonLandingPages/Login";
 import CoinDetails from "./assets/UserSide/CoinDetails";
@@ -25,9 +26,11 @@ import UserDashboard from "./assets/UserSide/UserDashboard";
 import InvestorDashboard from "./assets/InvestorSide/InvestorDashboard";
 import HomePage from "./assets/AdminSide/HomePage";
 import AdminFiatWallet from "./assets/AdminSide/AdminFiatWallet";
+import InvestorCommission from "./assets/InvestorSide/InvestorCommission"
 import InvestorTransaction from "./assets/InvestorSide/InvestorTransaction";
 import InvestorCoinDetail from "./assets/InvestorSide/InvestorCoinDetail";
 import InvestorPortfolio from "./assets/InvestorSide/InvestorPortfolio";
+import { CoinsProvider } from "./assets/UserSide/CoinsContext";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -36,7 +39,13 @@ const App = () => {
     },
     {
       path: "/userdashboard",
-      element: <UserDashboard />,
+      element: (
+    <WalletProvider>
+      <PortfolioProvider>
+        <UserDashboard />
+      </PortfolioProvider>
+    </WalletProvider>
+  ),
       children: [
         { path: "portfolio", element: <Portfolio /> },
         { path: "watchlist", element: <Watchlist /> },
@@ -85,12 +94,19 @@ const App = () => {
     },
     {
       path: "/investordashboard",
-      element: <InvestorDashboard />,
+      element: (
+    <WalletProvider>
+      <PortfolioProvider>
+        <InvestorDashboard />
+      </PortfolioProvider>
+    </WalletProvider>
+  ),
       children: [
         { path: "portfolio", element: <InvestorPortfolio /> },
         { path: "transactions", element: <InvestorTransaction /> },
         { path: "wallet", element: <Wallet /> },
         { path: "coin/:id", element: <InvestorCoinDetail />,},
+        { path: "commission", element: <InvestorCommission />,},
       ],
     },
     {
@@ -108,9 +124,9 @@ const App = () => {
   ]);
   return (
     <>
-      <AppProvider>
+      <CoinsProvider>
         <RouterProvider router={router} />
-      </AppProvider>
+      </CoinsProvider>
     </>
   );
 };

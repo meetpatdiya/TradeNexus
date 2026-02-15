@@ -1,30 +1,39 @@
 import React,{useState,useEffect} from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import { useCoins } from "../UserSide/CoinsContext";
-import InvestWithdraw from './InvestWithdraw';
+import InvestPage from './InvestPage';
+import WithdrawPage from './WithdrawPage';
 import "./InvestorCoinDetail.css"
 import axios from 'axios';
 const InvestorCoinDetail = () => {
   const [showModel, setshowModel] = useState(false)
-  const [withdrawcheck, setwithdrawcheck] = useState([])
+  const [withdrawcheck, setwithdrawcheck] = useState(false)
   const [type, settype] = useState("")
-    const { id } = useParams();
-    const { coins } = useCoins();
-   const coin = coins.find(c => c.id === id);
+  const { id } = useParams();
+  const { coins } = useCoins();
+  const coin = coins.find(c => c.id === id);
 useEffect(() => {
   if (!coin) return;
   const withdrawCheck = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/invest/withdrawcheck",
-      {
-        withCredentials: true,
-        params: { crypto_name: coin.id }
-      }
-    );
-    console.log(data);
-    setwithdrawcheck(data);
-  };
-
+    try {
+      const { data } = await axios.get(
+        "http://localhost:5000/invest/withdrawcoincheck",
+        {
+          withCredentials: true,
+          params: {gecko_id: coin.id }
+        }
+      );
+      console.log(data);
+        
+    if (data.length === 0) {
+      setwithdrawcheck(true);
+    } else {
+      setwithdrawcheck(false);
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   withdrawCheck();
 }, [coin]);
 
@@ -33,8 +42,8 @@ useEffect(() => {
       settype("invest")
     }
     const handleWithdraw = async()=>{
-      settype("withdraw")
       setshowModel(true)
+      settype("withdraw")
     }
   return (  
     <>
@@ -42,8 +51,9 @@ useEffect(() => {
     <h3>Minimum Investment = 100$</h3>
     <h3>Lock In Period = 30Days</h3>
     <button onClick={()=>handleInvest()}>Invest now</button>
-    <button onClick={()=>handleWithdraw()}>Withdraw Investment</button>
-    {showModel && <InvestWithdraw onClose={()=>setshowModel(false)} type={type} coin={coin} /> }
+    <button onClick={()=>handleWithdraw()} disabled={withdrawcheck}>Withdraw Investment</button>
+    {showModel && type=="invest" &&<InvestPage onClose={()=>setshowModel(false)} type={type} coin={coin} /> }
+    {showModel && type=="withdraw" &&<WithdrawPage onClose={()=>setshowModel(false)} type={type} coin={coin} /> }
     </> 
   )
 }

@@ -126,3 +126,9 @@ small{
     min-width: 1100px;
   }
 }
+.highlight-row {
+  background-color: #e4e9f0;
+}
+.highlight-row:hover {
+  background-color: #304d75;
+}

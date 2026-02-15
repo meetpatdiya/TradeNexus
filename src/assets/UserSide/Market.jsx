@@ -80,7 +80,7 @@ import { useNavigate } from "react-router-dom";
 const MarketCard = ({ title, data, type }) => {
   const navigate = useNavigate();
 
-  return (
+  return ( 
     <div className={`mk-card mk-${type}`}>
       <h3 className="mk-card-title">{title}</h3>
 
@@ -89,7 +89,7 @@ const MarketCard = ({ title, data, type }) => {
           <div
             key={coin.id}
             className="mk-row"
-            onClick={() => navigate(`/coin/${coin.id}`)}
+            onClick={() => navigate(`/userdashboard/coin/${coin.id}`)}
           >
             <span className="mk-rank">#{index + 1}</span>
             <span className="mk-name">{coin.name}</span>

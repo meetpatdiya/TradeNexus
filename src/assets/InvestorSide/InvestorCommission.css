@@ -1,0 +1,78 @@
+.inv-cms-container {
+  padding: 40px;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+}
+
+.inv-cms-title {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.inv-cms-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.inv-cms-summary {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.inv-cms-card {
+  flex: 1;
+  min-width: 220px;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.inv-cms-card:hover {
+  transform: translateY(-5px);
+}
+
+.inv-cms-card h3 {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.inv-cms-card p {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.inv-cms-table-section {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.inv-cms-table-section h2 {
+  margin-bottom: 20px;
+}
+
+.inv-cms-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inv-cms-table th {
+  background-color: #eef1f7;
+  padding: 12px;
+  text-align: left;
+}
+
+.inv-cms-table td {
+  padding: 12px;
+  border-top: 1px solid #eee;
+}
+
+.inv-cms-table tr:hover {
+  background-color: #f5f7fb;
+}

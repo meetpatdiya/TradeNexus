@@ -20,7 +20,6 @@ const Navbar = () => {
           <img src={logo} alt="Logo" className="logo" />
         </div>
 
-        {/* CENTER LINKS (DESKTOP) */}
         <ul className="nav-links">
           <li>
             <Link to="">Home</Link>
@@ -38,9 +37,9 @@ const Navbar = () => {
             <Link to="feedback">Feedback</Link>
           </li>
         </ul>
-        <div className="search-box">
+        {/* <div className="search-box">
           <input type="text" placeholder="Search coins " />
-        </div>
+        </div> */}
         <div className="profile">
           <img src={ProfileImg} alt="Profile" />
         </div>

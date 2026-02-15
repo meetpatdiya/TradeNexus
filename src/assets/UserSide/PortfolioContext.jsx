@@ -11,6 +11,7 @@ export const PortfolioProvider = ({ children }) => {
       const { data } = await axios.get("http://localhost:5000/portfolio", {
         withCredentials: true,
       });
+      console.log(data);
       setPortfolio(data);
     } catch (err) {
       console.error("Portfolio fetch failed");
@@ -18,6 +19,7 @@ export const PortfolioProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // if(!user) return;
     fetchPortfolio();
   }, []); 
 

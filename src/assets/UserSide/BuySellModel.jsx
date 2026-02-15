@@ -65,6 +65,7 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
       onClose();
     } catch (err) {
       console.log(err);
+         console.log(err.response.data);
       onSuccess(err.response?.data?.message || "Something went wrong", "error");
     }
   };
@@ -77,7 +78,7 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
           {type.toUpperCase()} {coin.symbol.toUpperCase()}
         </h2>
         <p>Price: ${price}</p>
-        <p>Balance: ${balance.toFixed(2)}</p>
+        <p>Balance: ${balance}</p>
         <p>Available Quantity: {ownedQty}</p>
 
         <div className="bs-toggle">

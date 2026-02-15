@@ -1,12 +1,15 @@
-import React from 'react'
+import React,{useMemo} from 'react'
 import CoinCharts from './CoinCharts'
 import { useNavigate } from 'react-router-dom'
-const CoinRows = ({coin}) => {
+const CoinRows = ({coin , search}) => {
     const navigate = useNavigate()
+    const isMatched =
+    search &&
+    coin.name.toLowerCase().includes(search.toLowerCase());
     // console.log(coin)
   return (
     <div>
-       <div className="coin-row" onClick={() =>{ navigate(`/userdashboard/coin/${coin.id}`)}} key={coin.id}>
+       <div  className={`coin-row ${isMatched ? "highlight-row" : ""}`} onClick={() =>{ navigate(`/userdashboard/coin/${coin.id}`)}} key={coin.id}>
       
             <div className="coin-rank">{coin.market_cap_rank}</div>
       
@@ -53,4 +56,4 @@ const CoinRows = ({coin}) => {
   )
 }
 
-export default CoinRows
+export default React.memo(CoinRows)
