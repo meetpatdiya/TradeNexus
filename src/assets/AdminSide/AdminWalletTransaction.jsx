@@ -36,6 +36,7 @@ const AdminWalletTransaction = () => {
         <option value="">All</option>
         <option value="deposit">Deposit</option>
         <option value="withdraw">Withdraw</option>
+        <option value="commission_withdraw">Commission</option>
       </select>
       <select onChange={(e) => setStatus(e.target.value)}>
         <option value="">All</option>

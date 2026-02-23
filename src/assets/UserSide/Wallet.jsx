@@ -253,15 +253,25 @@ const Wallet = () => {
         </>
       )}
     </div>
-            <div className="wl-trns">
-              {transactions.map((item)=>(
-                <>
-                <div className="show">{item.type}</div>
-                <div className="show">{item.amount}</div>
-                <div className="show">{item.status}</div>
-                </>
-              ))}
-            </div>
+    <div className="wl-trsns-titl">Your Transactions</div>
+              <div className="wl-trns">
+  {transactions.map((item, index) => (
+    <div className="wl-row" key={index}>
+      <div className={`wl-stype ${item.type.toLowerCase()}`}>
+        {item.type}
+      </div>
+
+      <div className="wl-samount">
+        {item.amount}
+      </div>
+
+      <div className={`wl-sstatus ${item.status.toLowerCase()}`}>
+        {item.status}
+      </div>
+    </div>
+  ))}
+</div>
+
     </>
   );
 };

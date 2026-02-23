@@ -6,7 +6,6 @@ import { useState } from "react";
 import { fetchNews } from "../ApiServices/CryptoApiCalls";
 const News = () => {
   const [data, setData] = useState([]);
-  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const getNews = async () => {
       const data = await fetchNews();
@@ -14,17 +13,18 @@ const News = () => {
     };
     getNews();
   }, []);
+  if (!data.length) return <div className="news-loader"></div>;
   return (
     <div className="news-grid">
       {data &&
+        data.length &&
         data.map((item, index) => {
           return (
             <div key={index} className={`news-card layout-${index % 10}`}>
               <img
                 src={item.thumbnail}
-                alt=""
-                onLoad={() => setLoaded(true)}
-                style={{ display: loaded ? "block" : "none" }}
+                alt="Image not availbel"
+                loading="lazy"
               />
               <div className="news-text">
                 <h2>{item.category}</h2>

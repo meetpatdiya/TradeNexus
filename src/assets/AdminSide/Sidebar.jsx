@@ -11,7 +11,7 @@ import { TbMessageReportFilled } from "react-icons/tb";
 const Sidebar = () => {
   return (
     <div className="sd-container">
-      <NavLink to="/admindashboard/homepage" replace className="sd-link">
+      <NavLink to="/admindashboard" end className="sd-link">
         <MdSpaceDashboard className="sd-icon" />
         <span>Dashboard</span>
       </NavLink>
@@ -28,13 +28,13 @@ const Sidebar = () => {
 
       <NavLink to="/admindashboard/wallet" className="sd-link">
         <GiWallet className="sd-icon" />
-        <span>Wallets</span>
+        <span>Wallet and Transactions</span>
       </NavLink>
 
-      <NavLink to="/admindashboard/wallettransaction" className="sd-link">
+      {/* <NavLink to="/admindashboard/wallettransaction" className="sd-link">
         <TbTransactionDollar className="sd-icon" />
         <span>Wallet Transactions</span>
-      </NavLink>
+      </NavLink> */}
 
       <NavLink to="/admindashboard/trade" className="sd-link">
         <FaChartLine className="sd-icon" />

@@ -3,16 +3,17 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../Images/logo.png";
 import ProfileImg from "../Images/profile.svg";
-
+import Settings from "./Settings"
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-
+  const [settings, setsettings] = useState(false)
+  const handleSettings = ()=>{
+    setsettings(prev=>!prev)
+  }
   return (
     <>  
       <nav className="navbar">
-        {/* LEFT */}
         <div className="left">
-          {/* Hamburger (mobile only) */}
           <div className="menu-btn" onClick={() => setOpen(true)}>
             ☰
           </div>
@@ -41,7 +42,7 @@ const Navbar = () => {
           <input type="text" placeholder="Search coins " />
         </div> */}
         <div className="profile">
-          <img src={ProfileImg} alt="Profile" />
+          <img src={ProfileImg} onClick={()=>handleSettings()} alt="Profile" />
         </div>
       </nav>
 
@@ -71,6 +72,9 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      {
+        settings && <Settings/>
+      }
     </>
   );
 };

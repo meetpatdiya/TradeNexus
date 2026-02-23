@@ -1,0 +1,92 @@
+.ad-wlt-container {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
+.ad-wlt-heading {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.ad-wlt-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+.ad-wlt-table th,
+.ad-wlt-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.ad-wlt-table th {
+  background-color: #f4f6f9;
+}
+
+.ad-wlt-btn {
+  padding: 6px 12px;
+  margin: 4px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ad-wlt-view-btn {
+  background-color: #3498db;
+}
+
+.ad-wlt-adjust-btn {
+  background-color: #2ecc71;
+}
+
+.ad-wlt-submit-btn {
+  background-color: #27ae60;
+}
+
+.ad-wlt-cancel-btn {
+  background-color: #e74c3c;
+}
+
+.ad-wlt-close-btn {
+  background-color: #555;
+  margin-bottom: 10px;
+}
+
+.ad-wlt-adjust-box {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  width: 400px;
+}
+
+.ad-wlt-input,
+.ad-wlt-select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.ad-wlt-error {
+  color: red;
+  font-size: 13px;
+}
+
+.ad-wlt-adjust-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.ad-wlt-transaction-box {
+  margin-top: 30px;
+}

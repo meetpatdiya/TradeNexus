@@ -1,19 +1,37 @@
 import { usePortfolio } from "./PortfolioContext";
 import { useCoins } from "./CoinsContext";
 import BuySellModel from "./BuySellModel";
-import { useState } from "react";
+import { useState,useMemo } from "react";
 import AlertBox from "./AlertBox";
 import Pfimg from '../Images/Pfimg.svg'
 import "./Portfolio.css";
 const Portfolio = () => {
   const { portfolio } = usePortfolio();
-  console.log(portfolio);
   const { coins } = useCoins();
   const [showAlert, setShowAlert] = useState(null);
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [type, setType] = useState("");
   console.log(portfolio);
-  const getCoinData = (coinId) => coins.find((c) => c.id === coinId);
+  const coinMap = useMemo(() => {
+  const map = {};
+  coins.forEach(c => {
+    map[c.id] = c;
+  });
+  return map;
+}, [coins]);
+
+ const totalValue = useMemo(() => {
+  return Object.entries(portfolio).reduce((total, [coinId, data]) => {
+    const coin = coinMap[coinId];
+    if (!coin) return total;
+
+    const currentValue = data.quantity * coin.current_price;
+    const invested = data.quantity * data.avgBuyPrice;
+    return total + (currentValue - invested);
+  }, 0);
+}, [portfolio, coinMap]);
+
+
   return (
     <div className="pf-container">
       <h2 className="pf-title">My Portfolio</h2>
@@ -25,15 +43,14 @@ const Portfolio = () => {
           </div>
         </div>
       )}
+        <p className="pf-hey">Total Profit: ${totalValue.toFixed(2)}</p>
       <div className="pf-grid">
         {Object.entries(portfolio).map(([coinId, data]) => {
-          const coin = getCoinData(coinId);
+            const coin = coinMap[coinId];
           if (!coin) return null;
-
           const currentValue = data.quantity * coin.current_price;
           const invested = data.quantity * data.avgBuyPrice;
           const pnl = currentValue - invested;
-
           return (
             <div key={coinId} className="pf-card">
               <div className="pf-header">

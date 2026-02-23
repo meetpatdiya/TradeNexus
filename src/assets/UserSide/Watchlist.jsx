@@ -33,7 +33,7 @@ const Watchlist = () => {
         <p>Add coins to track the market 📈</p>
         <button
           className="watch-coins-btn"
-          onClick={() => navigate("/coin/bitcoin")}
+          onClick={() => navigate("/userdashboard/coin/bitcoin")}
         >
           ➕ Add Coins
         </button>

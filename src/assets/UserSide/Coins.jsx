@@ -1,18 +1,11 @@
 import "./Coins.css";
 import React, { useEffect, useState, useMemo } from "react";
-import { getBasicData } from "../ApiServices/CryptoApiCalls";
+import { useCoins } from "./CoinsContext";
 import CoinRows from "./CoinRows";
 const Coins = () => {
-  const [coins, setCoins] = useState([]);
   const [search, setsearch] = useState("");
+  const { coins } = useCoins();
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  useEffect(() => {
-    const getCoinInfo = async () => {
-      const data = await getBasicData();
-      setCoins(data);
-    };
-    getCoinInfo();
-  }, []);
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -40,6 +33,7 @@ const sortedCoins = useMemo(() => {
 
   return (
     <>
+    Search a coin
       <input
         type="text"
         value={search}

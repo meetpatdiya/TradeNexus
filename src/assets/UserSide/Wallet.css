@@ -89,7 +89,7 @@
 .wl-submit-btn:hover {
   background: #16a34a;
 }
-
+ 
 .wl-toggle {
   display: flex;
   gap: 10px;
@@ -213,4 +213,44 @@
 
 .wl-nums-btn:hover {
   background: #1d4ed8;
+}
+.wl-trns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wl-row {
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;  
+}
+
+.wl-stype,
+.wl-samount,
+.wl-sstatus {
+  font-weight: 500;
+}
+
+.deposit {
+  color: #1E90FF;
+}
+.commission_withdraw{
+  color: rgb(179, 8, 127);
+}
+.withdraw {
+  color: #8A2BE2;
+}
+.approved {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+.rejected {
+  color: red;
 }

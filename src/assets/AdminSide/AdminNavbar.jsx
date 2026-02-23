@@ -17,7 +17,7 @@ const AdminNavbar = () => {
 
         <div className="nav-right">
           <img src={profile} alt="" className="profile-avatar"/>
-          <span>Jatin Prajapati</span>
+          <span>Admin</span>
         </div>
       </header>
     </>

@@ -62,7 +62,6 @@ const App = () => {
       element: <AdminDashboard />,
       children: [
         {
-          path: "homepage",
           index: true,
           element: <HomePage />,
         },

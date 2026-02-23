@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ChartsInvestorPortfolio from "./ChartsInvestorPortfolio";
 const AdminInvestor = () => {
   const [investorsData, setinvestorsData] = useState([]);
-  useEffect(() => {
+  const [investorPortfolio, setinvestorPortfolio] = useState([])
+    const getInvestorPortfolioData = async()=>{
+        const {data} = await axios.get("http://localhost:5000/charts/investorportfolio",{withCredentials:true})
+        console.log(data);
+        setinvestorPortfolio(data)
+    }    
     const handledata = async () => {
       try {
         const { data } = await axios.get(
@@ -14,7 +20,9 @@ const AdminInvestor = () => {
         console.log(err);
       }
     };
+  useEffect(() => {
     handledata();
+    getInvestorPortfolioData()
   }, []);
   return (
     <>
@@ -30,6 +38,7 @@ const AdminInvestor = () => {
           </div>
         );
       })}
+      <ChartsInvestorPortfolio data={investorPortfolio}/>
     </>
   );
 };

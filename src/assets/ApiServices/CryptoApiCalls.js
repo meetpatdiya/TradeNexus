@@ -22,26 +22,6 @@ export  async function getBasicData() {
         return []
     }   
   }
-//   export async function getSingleCoin(id) {
-//     try {
-//         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
-//         const data = await response.json();
-//         return data
-//     } catch (error) {
-//         console.log(error)
-//         return []
-//     }
-//   }
-// export  async function getMainData(id,days) { 
-//     try {
-//         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}`);
-//         const data = await response.json();
-//         return data
-//     } catch (error) {
-//         console.log(error)
-//         return []
-//     }   
-//   }
 export  async function getMainData() { 
     try {
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&sparkline=true`);

@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import logo from "../Images/logo.png";
 import ProfileImg from "../Images/profile.svg";
 import "./InvestorNavbar.css"
-
+import { useState } from "react";
+import Settings from "../UserSide/Settings";
 const InvestorNavbar = () => {
+  const [settings, setsettings] = useState(false)
   return (
     <>
     <div className="in-navbar">
@@ -16,12 +18,12 @@ const InvestorNavbar = () => {
         <Link to={'portfolio'}>Portfolio</Link>
         <Link to={'transactions'}>Transactions</Link>
         <Link to={'commission'}>Commission</Link>
-        {/* <Link to={''}>Invest / Withdraw</Link> */}
       </div>
         <div className="profile">
-          <img src={ProfileImg} alt="Profile" />
+          <img src={ProfileImg} alt="Profile" onClick={()=>setsettings(p=>!p)}  />
         </div>
     </div>
+    {settings && <Settings/>}
     </>
   );
 };
