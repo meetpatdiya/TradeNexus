@@ -21,7 +21,7 @@
 
 .transaction-header {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 1.5fr;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1.5fr;
   padding: 14px 20px;
   background: #f1f5f9;
   font-size: 14px;
@@ -31,7 +31,7 @@
 
 .transaction-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 1.5fr;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1.5fr;
   padding: 16px 20px;
   font-size: 14px;
   color: #111827;

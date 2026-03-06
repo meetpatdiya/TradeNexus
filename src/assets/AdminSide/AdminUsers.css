@@ -1,0 +1,50 @@
+.ad-u-container {
+  padding: 20px;
+}
+
+.ad-u-title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.ad-u-search-input {
+  width: 300px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.ad-u-search-input:focus {
+  border-color: #4b6cb7;
+  box-shadow: 0 0 5px rgba(75, 108, 183, 0.3);
+}
+.ad-u-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.ad-u-table th,
+.ad-u-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.ad-u-table th {
+  background-color: #1e293b;
+  color: white;
+}
+
+.ad-u-row {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ad-u-row:hover {
+  background-color: #f1f5f9;
+}

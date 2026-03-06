@@ -37,7 +37,7 @@ const WithdrawPage = ({ onClose, type, coin }) => {
     try {
       const { data } = await axios.post(
         "http://localhost:5000/withdrawcoin",
-        { coin: coin.id, quantity: amount / coin.current_price, amount: amount },
+        { coin: coin.id, quantity: amount / coin.current_price, amount: amount , price:coin.current_price},
         { withCredentials: true },
       );
       console.log(data);

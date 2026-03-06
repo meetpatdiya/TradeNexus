@@ -1,67 +1,81 @@
-import { Treemap, ResponsiveContainer, Tooltip } from "recharts";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 const ChartsInvestorPortfolio = ({ data }) => {
-  const formattedData = data.map((item) => ({
-    name: item.crypto_name,
-    size: Number(item.net_invested_amount),
-  }));
-  const COLORS = [
-    "#6366F1", // indigo
-    "#22C55E", // green
-    "#F59E0B", // amber
-    "#EF4444", // red
-    "#3B82F6", // blue
-    "#A855F7", // purple
-    "#14B8A6", // teal
-    "#F43F5E", // rose
-    "#8B5CF6", // violet
-    "#10B981", // emerald
-  ];
-  const CustomizedContent = (props) => {
-    const { x, y, width, height, name, size, index } = props;
-    return (
-      <g>
-        <rect
-          x={x}
-          y={y}
-          width={width}
-          height={height}
-          style={{
-            fill: COLORS[index % COLORS.length],
-            stroke: "#fff",
-            strokeWidth: 2,
-          }}
-        />
-        {width > 80 && height > 40 && (
-          <text
-            x={x + width / 2}
-            y={y + height / 2}
-            textAnchor="middle"
-            fill="#fff"
-            fontSize={18}
-            fontWeight="normal"
-          >
-            {name}
-          </text>
-        )}
-      </g>
-    );
-  };
+  // Sort + take top 10
+  const formattedData = data
+    .map((item) => ({
+      name: item.crypto_name,
+      value: Number(item.net_invested_amount),
+    }))
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 10);
 
   return (
-    <div style={{ width: "100%", height: 400 }}>
-      <h2 style={{ textAlign: "center" }}>Total Investment Distribution</h2>
+    <div
+      style={{
+        width: "100%",
+        height: 500,
+        padding: 25,
+        borderRadius: 20,
+        background: "#ffffff",
+        boxShadow: "0 8px 20px rgba(0,0,0,0.06)",
+        border: "1px solid #e5e7eb",
+        boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+      }}
+    >
+      <h2
+        style={{
+          textAlign: "center",
+          marginBottom: 25,
+          color: "#111827",
+          fontWeight: 600,
+          fontSize: 22,
+        }}
+      >
+        Top 10 Coins by Total Investment
+      </h2>
 
-      <ResponsiveContainer>
-        <Treemap
+      <ResponsiveContainer width="100%" height="85%">
+        <BarChart
           data={formattedData}
-          dataKey="size"
-          stroke="#fff"
-          fill="#8884d8"
-          content={<CustomizedContent />}
+          layout="vertical"
+          margin={{ top: 10, right: 30, left: 40, bottom: 10 }}
         >
-          <Tooltip />
-        </Treemap>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+
+          <XAxis
+            type="number"
+            tick={{ fill: "#6b7280", fontSize: 12 }}
+            tickFormatter={(value) => `$${value.toLocaleString()}`}
+          />
+
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fill: "#374151", fontSize: 13 }}
+            width={120}
+          />
+
+          <Tooltip
+            formatter={(value) => `$${value.toLocaleString()}`}
+            contentStyle={{
+              borderRadius: 10,
+              backgroundColor: "#ffffff",
+              border: "1px solid #e5e7eb",
+              color: "#111827",
+            }}
+          />
+
+          <Bar dataKey="value" fill="#2563EB" radius={[0, 10, 10, 0]} />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );

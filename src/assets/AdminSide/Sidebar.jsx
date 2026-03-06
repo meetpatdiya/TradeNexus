@@ -38,7 +38,7 @@ const Sidebar = () => {
 
       <NavLink to="/admindashboard/trade" className="sd-link">
         <FaChartLine className="sd-icon" />
-        <span>Trades</span>
+        <span>Trade Monitering</span>
       </NavLink>
 
       <NavLink to="/admindashboard/feedback" className="sd-link">

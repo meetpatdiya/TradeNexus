@@ -7,15 +7,18 @@ const AdminFiatWallet = () => {
   const [type, setType] = useState("");
   const [amount, setAmount] = useState("");
   const [userId, setuserId] = useState(0);
+  const [transactiontype, setTransactionType] = useState("");
+  const [status, setStatus] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [amountMessage, setamountMessage] = useState("");
   const [typeMessage, settypeMessage] = useState("");
-  const [walletTransactionsData, setwalletTransactionsData] = useState([]);
+  const [walletTransactionsData, setwalletTransactionsData] = useState(null);
   const [showAdjustment, setshowAdjustment] = useState(false);
 
   const getWalletData = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/admin/getfiatwallet"
+        "http://localhost:5000/admin/getfiatwallet",
       );
       setfiatWalletData(data);
     } catch (error) {
@@ -26,13 +29,22 @@ const AdminFiatWallet = () => {
   useEffect(() => {
     getWalletData();
   }, []);
+  const handleViewTransactions = async (uId, tType, stat) => {
+    if (!uId) return;
 
-  const handleViewTransactions = async (userId) => {
     try {
       const { data } = await axios.get(
         "http://localhost:5000/admin/wallettransaction",
-        { params: { user_id: userId }, withCredentials: true }
+        {
+          params: {
+            user_id: uId,
+            type: tType || "",
+            status: stat || "",
+          },
+          withCredentials: true,
+        },
       );
+
       setwalletTransactionsData(data);
     } catch (error) {
       setwalletTransactionsData([]);
@@ -76,7 +88,7 @@ const AdminFiatWallet = () => {
       await axios.post(
         "http://localhost:5000/admin/adjustwallet",
         { userId, type, amount },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       handleAdjustmentCancel();
       getWalletData();
@@ -88,7 +100,6 @@ const AdminFiatWallet = () => {
   return (
     <div className="ad-wlt-container">
       <h1 className="ad-wlt-heading">Wallet Management</h1>
-
       <table className="ad-wlt-table">
         <thead>
           <tr>
@@ -105,17 +116,21 @@ const AdminFiatWallet = () => {
               <td>{item.user_id}</td>
               <td>{item.balance}</td>
               <td>
-                {item.bank_last_4
-                  ? `********${item.bank_last_4}`
-                  : "Not Added"}
+                {item.bank_last_4 ? `********${item.bank_last_4}` : "Not Added"}
               </td>
-              <td>
-                {new Date(item.updated_at).toLocaleString("en-IN")}
-              </td>
+              <td>{new Date(item.updated_at).toLocaleString("en-IN")}</td>
               <td>
                 <button
                   className="ad-wlt-btn ad-wlt-view-btn"
-                  onClick={() => handleViewTransactions(item.user_id)}
+                  onClick={() => {
+                    const uId = item.user_id;
+
+                    setSelectedUserId(uId);
+                    setTransactionType("");
+                    setStatus("");
+
+                    handleViewTransactions(uId, "", "");
+                  }}
                 >
                   View
                 </button>
@@ -172,7 +187,7 @@ const AdminFiatWallet = () => {
         </div>
       )}
 
-      {walletTransactionsData.length > 0 && (
+      {walletTransactionsData?.length > 0 && (
         <div className="ad-wlt-transaction-box">
           <h2>Transactions</h2>
           <button
@@ -181,7 +196,40 @@ const AdminFiatWallet = () => {
           >
             Close
           </button>
+          <select
+            value={transactiontype}
+            onChange={(e) => {
+              const newType = e.target.value;
+              const uId = selectedUserId;
 
+              setTransactionType(newType);
+
+              handleViewTransactions(uId, newType, status);
+            }}
+          >
+            {" "}
+            <option value="">All</option>
+            <option value="deposit">Deposit</option>
+            <option value="withdraw">Withdraw</option>
+            <option value="commission_withdraw">Commission</option>
+          </select>
+          <select
+            value={status}
+            onChange={(e) => {
+              const newStatus = e.target.value;
+              const uId = selectedUserId;
+
+              setStatus(newStatus);
+
+              handleViewTransactions(uId, transactiontype, newStatus);
+            }}
+          >
+            {" "}
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
           <table className="ad-wlt-table">
             <thead>
               <tr>
@@ -201,13 +249,16 @@ const AdminFiatWallet = () => {
                   <td>{item.amount}</td>
                   <td>{item.status}</td>
                   <td>{item.balance_after}</td>
-                  <td>
-                    {new Date(item.created_at).toLocaleString("en-IN")}
-                  </td>
+                  <td>{new Date(item.created_at).toLocaleString("en-IN")}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+      {walletTransactionsData?.length === 0 && (
+        <div className="ad-wlt-transaction-box">
+          <h2>No transactions Available for this user</h2>
         </div>
       )}
     </div>

@@ -6,8 +6,9 @@ import {
   Navigate,
 } from "react-router-dom";
 import AdminUsers from "./assets/AdminSide/AdminUsers";
-import AdminWalletTransaction from "./assets/AdminSide/AdminWalletTransaction";
+import AdminUserDetail from "./assets/AdminSide/AdminUserDetail";
 import AdminInvestor from "./assets/AdminSide/AdminInvestor";
+import AdminInvestorDetail from "./assets/AdminSide/AdminInvestorDetail";
 import AdminDashboard from "./assets/AdminSide/AdminDashboard";
 import { WalletProvider } from "./assets/UserSide/WalletContext";
 import { PortfolioProvider } from "./assets/UserSide/PortfolioContext";
@@ -26,7 +27,7 @@ import UserDashboard from "./assets/UserSide/UserDashboard";
 import InvestorDashboard from "./assets/InvestorSide/InvestorDashboard";
 import HomePage from "./assets/AdminSide/HomePage";
 import AdminFiatWallet from "./assets/AdminSide/AdminFiatWallet";
-import InvestorCommission from "./assets/InvestorSide/InvestorCommission"
+import InvestorCommission from "./assets/InvestorSide/InvestorCommission";
 import InvestorTransaction from "./assets/InvestorSide/InvestorTransaction";
 import InvestorCoinDetail from "./assets/InvestorSide/InvestorCoinDetail";
 import InvestorPortfolio from "./assets/InvestorSide/InvestorPortfolio";
@@ -40,12 +41,12 @@ const App = () => {
     {
       path: "/userdashboard",
       element: (
-    <WalletProvider>
-      <PortfolioProvider>
-        <UserDashboard />
-      </PortfolioProvider>
-    </WalletProvider>
-  ),
+        <WalletProvider>
+          <PortfolioProvider>
+            <UserDashboard />
+          </PortfolioProvider>
+        </WalletProvider>
+      ),
       children: [
         { path: "portfolio", element: <Portfolio /> },
         { path: "watchlist", element: <Watchlist /> },
@@ -68,18 +69,26 @@ const App = () => {
         {
           path: "users",
           element: <AdminUsers />,
+          children: [
+            {
+              path: ":id",
+              element: <AdminUserDetail />,
+            },
+          ],
         },
         {
           path: "invester",
           element: <AdminInvestor />,
+          children: [
+            {
+              path: ":id",
+              element: <AdminInvestorDetail />,
+            },
+          ],
         },
         {
           path: "wallet",
           element: <AdminFiatWallet />,
-        },
-        {
-          path: "wallettransaction",
-          element: <AdminWalletTransaction />,
         },
         {
           path: "Trade",
@@ -94,18 +103,18 @@ const App = () => {
     {
       path: "/investordashboard",
       element: (
-    <WalletProvider>
-      <PortfolioProvider>
-        <InvestorDashboard />
-      </PortfolioProvider>
-    </WalletProvider>
-  ),
+        <WalletProvider>
+          <PortfolioProvider>
+            <InvestorDashboard />
+          </PortfolioProvider>
+        </WalletProvider>
+      ),
       children: [
         { path: "portfolio", element: <InvestorPortfolio /> },
         { path: "transactions", element: <InvestorTransaction /> },
         { path: "wallet", element: <Wallet /> },
-        { path: "coin/:id", element: <InvestorCoinDetail />,},
-        { path: "commission", element: <InvestorCommission />,},
+        { path: "coin/:id", element: <InvestorCoinDetail /> },
+        { path: "commission", element: <InvestorCommission /> },
       ],
     },
     {

@@ -1,0 +1,92 @@
+.ad-ud-container {
+  padding: 30px;
+  background: #f1f5f9;
+  min-height: 100vh;
+}
+
+.ad-ud-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.ad-ud-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.ad-ud-backbtn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.ad-ud-backbtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+}
+
+.ad-ud-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.ad-ud-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.ad-ud-section-title {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2563eb;
+  border-left: 4px solid #2563eb;
+  padding-left: 10px;
+}
+
+.ad-ud-card {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: 0.3s;
+  border: 1px solid #e2e8f0;
+}
+
+.ad-ud-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.ad-ud-card p {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.ad-ud-card span {
+  font-weight: 600;
+  color: #475569;
+}
+
+.ad-ud-card.watch {
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border: 1px solid #fdba74;
+}
+
+.ad-ud-empty {
+  color: #64748b;
+  font-style: italic;
+}

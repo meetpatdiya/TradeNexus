@@ -1,0 +1,119 @@
+.ad-id-container {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+  color: #1e293b;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.ad-id-heading {
+  margin-bottom: 15px;
+  color: #2563eb;
+  font-size: 20px;
+  border-left: 4px solid #2563eb;
+  padding-left: 10px;
+}
+
+.ad-id-back-btn {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: 0.3s;
+}
+.ad-id-back-btn:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.ad-id-section,
+.ad-id-basic-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+td {
+  padding: 10px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+/* SUMMARY TABLE */
+.ad-id-sm-table td:first-child {
+  color: #64748b;
+  font-weight: 500;
+}
+.ad-id-sm-table tr:hover {
+  background: #f1f5f9;
+}
+
+/* HOLDINGS TABLE */
+.ad-id-hd-table th {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+.ad-id-hd-table tr:hover {
+  background: #eff6ff;
+}
+
+/* TRANSACTION TABLE */
+.ad-id-tr-table th {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+.ad-id-tr-table tr:hover {
+  background: #faf5ff;
+}
+
+/* COMMISSION TABLE */
+.ad-id-cm-table th {
+  background: #dcfce7;
+  color: #059669;
+}
+.ad-id-cm-table tr:hover {
+  background: #f0fdf4;
+}
+
+/* WITHDRAW TABLE */
+.ad-id-wd-table th {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.ad-id-wd-table tr:hover {
+  background: #fff7ed;
+}
+
+.ad-id-profit {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.ad-id-loss {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.ad-id-empty {
+  text-align: center;
+  padding: 20px;
+  color: #94a3b8;
+}
