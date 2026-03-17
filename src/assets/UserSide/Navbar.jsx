@@ -20,13 +20,15 @@ const Navbar = () => {
 
           <img src={logo} alt="Logo" className="logo" />
         </div>
-
         <ul className="nav-links">
           <li>
             <Link to="">Home</Link>
           </li>
           <li>
             <Link to="portfolio">Portfolio</Link>
+          </li>
+          <li>
+            <Link to="analytics">Analytics</Link>
           </li>
           <li>
             <Link to="watchlist">Watchlist</Link>
@@ -38,21 +40,16 @@ const Navbar = () => {
             <Link to="feedback">Feedback</Link>
           </li>
         </ul>
-        {/* <div className="search-box">
-          <input type="text" placeholder="Search coins " />
-        </div> */}
         <div className="profile">
           <img src={ProfileImg} onClick={()=>handleSettings()} alt="Profile" />
         </div>
       </nav>
 
-      {/* BACKDROP (MOBILE) */}
       <div
         className={`backdrop ${open ? "show" : ""}`}
         onClick={() => setOpen(false)}
       ></div>
 
-      {/* SIDEBAR (MOBILE) */}
       <div className={`sidebar ${open ? "open" : ""}`}>
         <div className="close-btn" onClick={() => setOpen(false)}>
           ✖
@@ -73,7 +70,7 @@ const Navbar = () => {
         </ul>
       </div>
       {
-        settings && <Settings/>
+        settings && <Settings onClose={()=>setsettings(p=>!p)}/>
       }
     </>
   );

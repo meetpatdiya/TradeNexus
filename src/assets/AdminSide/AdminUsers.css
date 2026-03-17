@@ -48,3 +48,26 @@
 .ad-u-row:hover {
   background-color: #f1f5f9;
 }
+.ad-u-action-btn {
+  min-width: 95px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.ad-u-action-btn.suspend {
+  background-color: #ef4444;
+}
+
+.ad-u-action-btn.activate {
+  background-color: #22c55e;
+}
+
+.ad-u-action-btn:hover {
+  opacity: 0.9;
+}

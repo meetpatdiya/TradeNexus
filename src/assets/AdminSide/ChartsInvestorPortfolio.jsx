@@ -28,10 +28,9 @@ const ChartsInvestorPortfolio = ({ data }) => {
         background: "#ffffff",
         boxShadow: "0 8px 20px rgba(0,0,0,0.06)",
         border: "1px solid #e5e7eb",
-        boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
       }}
     >
-      <h2
+      <h3
         style={{
           textAlign: "center",
           marginBottom: 25,
@@ -41,7 +40,7 @@ const ChartsInvestorPortfolio = ({ data }) => {
         }}
       >
         Top 10 Coins by Total Investment
-      </h2>
+      </h3>
 
       <ResponsiveContainer width="100%" height="85%">
         <BarChart

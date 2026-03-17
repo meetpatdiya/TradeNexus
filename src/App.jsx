@@ -5,11 +5,15 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
+
 import AdminUsers from "./assets/AdminSide/AdminUsers";
 import AdminUserDetail from "./assets/AdminSide/AdminUserDetail";
 import AdminInvestor from "./assets/AdminSide/AdminInvestor";
 import AdminInvestorDetail from "./assets/AdminSide/AdminInvestorDetail";
 import AdminDashboard from "./assets/AdminSide/AdminDashboard";
+import AdminRevenue from "./assets/AdminSide/AdminRevenue";
+import AdminCryptocurrencies from "./assets/AdminSide/AdminCryptocurrencies";
+import AdminCryptoDetail from "./assets/AdminSide/AdminCryptoDetail";
 import { WalletProvider } from "./assets/UserSide/WalletContext";
 import { PortfolioProvider } from "./assets/UserSide/PortfolioContext";
 import AdminTrades from "./assets/AdminSide/AdminTrades";
@@ -26,6 +30,7 @@ import Registration from "./assets/CommonLandingPages/Registration";
 import UserDashboard from "./assets/UserSide/UserDashboard";
 import InvestorDashboard from "./assets/InvestorSide/InvestorDashboard";
 import HomePage from "./assets/AdminSide/HomePage";
+import Anaylytics from "./assets/UserSide/Analytics"
 import AdminFiatWallet from "./assets/AdminSide/AdminFiatWallet";
 import InvestorCommission from "./assets/InvestorSide/InvestorCommission";
 import InvestorTransaction from "./assets/InvestorSide/InvestorTransaction";
@@ -52,6 +57,7 @@ const App = () => {
         { path: "watchlist", element: <Watchlist /> },
         { path: "wallet", element: <Wallet /> },
         { path: "feedback", element: <Feedback /> },
+        { path: "analytics", element: <Anaylytics /> },
         {
           path: "coin/:id",
           element: <CoinDetails />,
@@ -60,7 +66,11 @@ const App = () => {
     },
     {
       path: "/admindashboard",
-      element: <AdminDashboard />,
+      element: (
+        <WalletProvider>
+          <AdminDashboard />
+        </WalletProvider>
+      ),
       children: [
         {
           index: true,
@@ -93,6 +103,20 @@ const App = () => {
         {
           path: "Trade",
           element: <AdminTrades />,
+        },
+        {
+          path: "Revenue",
+          element: <AdminRevenue />,
+        },
+        {
+          path: "Cryptocurrencies",
+          element: <AdminCryptocurrencies />,
+          children: [
+            {
+              path: ":id",
+              element: <AdminCryptoDetail />,
+            },
+          ],
         },
         {
           path: "Feedback",

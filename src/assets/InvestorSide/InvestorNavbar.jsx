@@ -23,7 +23,7 @@ const InvestorNavbar = () => {
           <img src={ProfileImg} alt="Profile" onClick={()=>setsettings(p=>!p)}  />
         </div>
     </div>
-    {settings && <Settings/>}
+    {settings && <Settings onClose={()=>setsettings(p=>!p)}/>}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { usePortfolio } from "./PortfolioContext";
 import { useCoins } from "./CoinsContext";
 import BuySellModel from "./BuySellModel";
-import { useState,useMemo } from "react";
+import { useState,useMemo,useEffect } from "react";
 import AlertBox from "./AlertBox";
 import Pfimg from '../Images/Pfimg.svg'
 import "./Portfolio.css";
@@ -11,15 +11,13 @@ const Portfolio = () => {
   const [showAlert, setShowAlert] = useState(null);
   const [selectedCoin, setSelectedCoin] = useState(null);
   const [type, setType] = useState("");
-  console.log(portfolio);
   const coinMap = useMemo(() => {
   const map = {};
   coins.forEach(c => {
     map[c.id] = c;
   });
   return map;
-}, [coins]);
-
+}, [coins,portfolio]);
  const totalValue = useMemo(() => {
   return Object.entries(portfolio).reduce((total, [coinId, data]) => {
     const coin = coinMap[coinId];
@@ -30,8 +28,6 @@ const Portfolio = () => {
     return total + (currentValue - invested);
   }, 0);
 }, [portfolio, coinMap]);
-
-
   return (
     <div className="pf-container">
       <h2 className="pf-title">My Portfolio</h2>

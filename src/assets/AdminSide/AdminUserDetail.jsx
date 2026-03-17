@@ -7,7 +7,6 @@ const AdminUserDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [userData, setuserData] = useState({});
-
   const getusersData = async (id) => {
     try {
       const { data } = await axios.get(

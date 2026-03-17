@@ -37,13 +37,9 @@ const Registration = () => {
     try {
       const res = await axios.post("http://localhost:5000/login", formCheck);
       const roles = res.data.role;
-      // console.log(res.data);
-      // console.log(res.data.role);
-
       if (roles === "user") {
         try {
-          const data = await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
-          console.log(data);
+           await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
           navigate("/userdashboard");
         } catch (err) {
           console.log("Wallet creation failed", err);
@@ -51,12 +47,17 @@ const Registration = () => {
         navigate("/userdashboard");
       } 
       else if (roles === "admin"){
-        navigate("/admindashboard")
+         navigate("/admindashboard")
+        //  try {
+        //    await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
+        //   navigate("/admindashboard");
+        // } catch (err) {
+        //   console.log("Wallet creation failed", err);
+        // }
       }
       else if (roles === "investor") {
         try {
-          const data = await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
-          console.log(data);
+           await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
           navigate("/investordashboard");
         } catch (err) {
           console.log("Wallet creation failed", err);
@@ -74,6 +75,9 @@ const Registration = () => {
         if (error.response.status === 404) {
           setEmailError(error.response.data.message);
         } else if (error.response.status === 401) {
+          setPasswordError(error.response.data.message);
+        }
+        else if(error.response.status === 403){
           setPasswordError(error.response.data.message);
         }
       } else {

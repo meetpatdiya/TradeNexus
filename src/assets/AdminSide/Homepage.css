@@ -1,0 +1,89 @@
+.ah-gc{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.ah-gd{
+    flex: 1;
+}
+.ah-recentTrades{
+  background: linear-gradient(135deg,#ffffff,#f9fbff);
+  border-radius:14px;
+  padding:18px 20px;
+  border:1px solid #e6ecf5;
+}
+
+.ah-recentTrades-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.ah-recentTrades-header h3{
+  font-size:18px;
+  font-weight:600;
+  color:#1e293b;
+}
+
+.ah-recentTrades-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0 8px;
+  font-size:13px;
+}
+
+.ah-recentTrades-table th{
+  text-align:left;
+  font-weight:600;
+  color:#64748b;
+  padding:6px 10px;
+}
+
+.ah-recentTrades-table td{
+  background:#ffffff;
+  padding:10px;
+  border-top:1px solid #f1f5f9;
+  border-bottom:1px solid #f1f5f9;
+}
+
+.ah-recentTrades-table tr td:first-child{
+  border-left:1px solid #f1f5f9;
+  border-radius:8px 0 0 8px;
+}
+
+.ah-recentTrades-table tr td:last-child{
+  border-right:1px solid #f1f5f9;
+  border-radius:0 8px 8px 0;
+}
+
+.ah-recentTrades-table tr:hover td{
+  background:#f8fafc;
+}
+
+.ah-coin{
+  font-weight:600;
+  color:#2563eb;
+}
+
+.ah-time{
+  color:#64748b;
+  font-size:12px;
+}
+
+.ah-badge{
+  padding:3px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+}
+
+.ah-buy{
+  background:#dcfce7;
+  color:#16a34a;
+}
+
+.ah-sell{
+  background:#fee2e2;
+  color:#dc2626;
+}

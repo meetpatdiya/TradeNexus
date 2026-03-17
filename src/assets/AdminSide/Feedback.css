@@ -1,65 +1,93 @@
-.fd-card-container {
-  padding: 10px;
-  display: flex;
-  min-height: 40px ;
-  gap: 70px;
+.af-container {
+  padding: 25px;
+  background: #f7f9fc;
+  min-height: 100vh;
 }
 
-
-.fd-card-container > .fd-card {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-}
-
-.fd-card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-}
-
-.fd-card h2 {
-  font-size: 16px;
+.af-title {
+  font-size: 22px;
   font-weight: 600;
-  color: #555;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+  color: #1f2937;
 }
 
-.fd-card p {
-  font-size: 32px;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
+.af-table-wrapper {
+  background: white;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
-.fd-card:nth-child(1) p {
-  color: #2563eb;   
+.af-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
 }
 
-.fd-card:nth-child(2) p {
-  color: #d97706; 
+.af-table thead {
+  background: linear-gradient(90deg,#4f46e5,#6366f1);
+  color: white;
 }
 
-.fd-card:nth-child(3) p {
-  color: #7c3aed; 
+.af-table th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 500;
 }
 
-.fd-card:nth-child(4) p {
-  color: #16a34a; 
+.af-table td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
 }
 
-@media (max-width: 600px) {
-.fd-card-container {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  min-height: 40px ;
-  gap: 5px;
+.af-table tbody tr:hover {
+  background: #f1f5f9;
 }
-  .fd-card p {
-    font-size: 26px;
-  }
+
+.af-title-cell {
+  font-weight: 500;
+  color: #111827;
+}
+
+.af-message {
+  max-width: 300px;
+  word-break: break-word;
+}
+
+.af-type {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.af-bug {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.af-suggestion {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.af-other {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.af-resolve-btn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.af-resolve-btn:hover {
+  background: #059669;
 }

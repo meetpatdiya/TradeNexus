@@ -20,7 +20,7 @@ const AdminFiatWallet = () => {
       const { data } = await axios.get(
         "http://localhost:5000/admin/getfiatwallet",
       );
-      setfiatWalletData(data);
+      setfiatWalletData(data);      
     } catch (error) {
       console.log(error);
     }
@@ -104,6 +104,7 @@ const AdminFiatWallet = () => {
         <thead>
           <tr>
             <th>User ID</th>
+            <th>Role</th>
             <th>Balance</th>
             <th>Bank</th>
             <th>Updated At</th>
@@ -114,6 +115,7 @@ const AdminFiatWallet = () => {
           {fiatWalletData.map((item) => (
             <tr key={item.user_id}>
               <td>{item.user_id}</td>
+              <td>{item.role}</td>
               <td>{item.balance}</td>
               <td>
                 {item.bank_last_4 ? `********${item.bank_last_4}` : "Not Added"}

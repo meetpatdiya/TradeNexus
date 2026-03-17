@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const AdminWithdrawList = () => {
-  const [withdraws, setWithdraws] = useState([]); 
+  const [withdraws, setWithdraws] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [approving, setApproving] = useState([]); 
-  const [commission, setcommission] = useState([])
+  const [approving, setApproving] = useState([]);
+  const [commission, setcommission] = useState([]);
   const fetchWithdraws = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/wallet/trans/pending", { withCredentials: true } );
-      console.log(data);      
+      const { data } = await axios.get(
+        "http://localhost:5000/wallet/trans/pending",
+        { withCredentials: true },
+      );
+      console.log(data);
       setWithdraws(data);
       setLoading(false);
     } catch (err) {
@@ -18,15 +21,18 @@ const AdminWithdrawList = () => {
       setLoading(false);
     }
   };
-  const fetchCommissionWithdraws = async()=>{
+  const fetchCommissionWithdraws = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/admin/getcommissionpending", { withCredentials: true } );
-      console.log(data);  
-      setcommission(data)
+      const { data } = await axios.get(
+        "http://localhost:5000/admin/getcommissionpending",
+        { withCredentials: true },
+      );
+      console.log(data);
+      setcommission(data);
     } catch (error) {
       console.log(error.response.message);
     }
-  }
+  };
   useEffect(() => {
     fetchWithdraws();
     fetchCommissionWithdraws();
@@ -34,9 +40,15 @@ const AdminWithdrawList = () => {
 
   const approveWithdraw = async (transactionId) => {
     try {
-      setApproving((prev) => [...prev, transactionId]); 
-      const res = await axios.post("http://localhost:5000/admin/withdraw/approve", { transactionId });
-      alert(`Approved: ${res.data.withdraw_amount}, commission: ${res.data.commission}`);
+      setApproving((prev) => [...prev, transactionId]);
+      const res = await axios.post(
+        "http://localhost:5000/admin/withdraw/approve",
+        { transactionId },
+        { withCredentials: true },
+      );
+      alert(
+        `Approved: ${res.data.withdraw_amount}, commission: ${res.data.commission}`,
+      );
       fetchWithdraws();
     } catch (err) {
       console.error(err);
@@ -45,65 +57,90 @@ const AdminWithdrawList = () => {
       setApproving((prev) => prev.filter((id) => id !== transactionId));
     }
   };
-  const approveCommission = async(id)=>{
+  const approveCommission = async (id) => {
     try {
-      const {data} = await axios.put("http://localhost:5000/admin/approvecommission",{transactionId:id},{withCredentials:true})
+      const { data } = await axios.put(
+        "http://localhost:5000/admin/approvecommission",
+        { transactionId: id },
+        { withCredentials: true },
+      );
       console.log(data);
-      fetchCommissionWithdraws()
+      fetchCommissionWithdraws();
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+  const rejectWithdraw = async (id) => {
+    try {
+      await axios.post(
+        "http://localhost:5000/admin/withdraw/reject",
+        { transactionId: id },
+        { withCredentials: true },
+      );
+      fetchWithdraws();
+    } catch (err) {
+      console.error(err);
+      alert("Approval failed");
+    }
+  };
   if (loading) return <p>Loading...</p>;
 
   return (
     <>
-    <div className="admin-withdraws">
-      <h2>Pending Withdraws</h2>
-      {withdraws.length === 0 ? (
-        <p>No pending withdraws</p>
-      ) : (
-        <table border="1" cellPadding="8">
-          <thead>
-            <tr>
-              <th>Transaction ID</th>
-              <th>User ID</th>
-              <th>Withdraw Amount</th>
-              <th>Approve</th>
-            </tr>
-          </thead>
-          <tbody>
-            {withdraws.map((w) => (
-              <tr key={w.id}>
-                <td>{w.id}</td>
-                <td>{w.user_id}</td>
-                <td>{w.amount}</td>
-                <td>
-                  <button
-                    onClick={() => approveWithdraw(w.id)}
-                    disabled={approving.includes(w.id)}
-                  >
-                    {approving.includes(w.id) ? "Approving..." : "Approve"}
-                  </button>
-                </td>
+      <div className="admin-withdraws">
+        <h2>Pending Withdraws</h2>
+        {withdraws.length === 0 ? (
+          <p>No pending withdraws</p>
+        ) : (
+          <table border="1" cellPadding="8">
+            <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>User ID</th>
+                <th>Withdraw Amount</th>
+                <th>Approve</th>
+                <th>Reject</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-    {commission.length == 0 ?(<p>No Investor Commission to approve</p>) : (
-      <div>
-        {commission.map((item,index)=>(
-          <div key={index}>
-            <p> {item.id} </p>
-            <p>{item.user_id}</p>
-            <p>{item.amount}</p>
-            <button onClick={()=>approveCommission(item.id)}>Approve</button>
-          </div>
-        ))}
+            </thead>
+            <tbody>
+              {withdraws.map((w) => (
+                <tr key={w.id}>
+                  <td>{w.id}</td>
+                  <td>{w.user_id}</td>
+                  <td>{w.amount}</td>
+                  <td>
+                    <button
+                      onClick={() => approveWithdraw(w.id)}
+                      disabled={approving.includes(w.id)}
+                    >
+                      {approving.includes(w.id) ? "Approving..." : "Approve"}
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => rejectWithdraw(w.id)}>Reject</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
-    )}
+      {commission.length == 0 ? (
+        <p>No Investor Commission to approve</p>
+      ) : (
+        <div>
+          {commission.map((item, index) => (
+            <div key={index}>
+              <p> {item.id} </p>
+              <p>{item.user_id}</p>
+              <p>{item.amount}</p>
+              <button onClick={() => approveCommission(item.id)}>
+                Approve
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

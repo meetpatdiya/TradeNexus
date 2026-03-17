@@ -2,10 +2,13 @@ export async function fetchNews() {
     //  just in case if this api don't work 
     //  "https://newsdata.io/api/1/crypto?apikey=pub_48c8ba3dc91b46e2b3d10aa2fe4868dc&q=crypto"
     //  setData(result.results); and change all things based on results
+            // const response  = await fetch('https://api.thenewsapi.net/crypto?apikey=7337F7A4A0B2F85F30D93CD4716666B8')
+            // https://cryptocurrency.cv/api/news?limit=20&category=bitcoin
+
     try {      
-        const response  = await fetch('https://api.thenewsapi.net/crypto?apikey=7337F7A4A0B2F85F30D93CD4716666B8')
+        const response  = await fetch('https://newsdata.io/api/1/crypto?apikey=pub_48c8ba3dc91b46e2b3d10aa2fe4868dc&q=crypto')
         const result = await response.json() 
-        return result.data.results;
+        return result.results;
     } catch (error) {
         console.log(error);
         return []

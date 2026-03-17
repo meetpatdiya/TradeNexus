@@ -1,0 +1,273 @@
+.in-cd-container{
+display:flex;
+gap:25px;
+padding:25px;
+background:#f5f7fb;
+min-height:100vh;
+}
+
+.in-cd-main{
+flex:1;
+background:white;
+border-radius:12px;
+padding:25px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+
+.in-cd-header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:25px;
+}
+
+.in-cd-header img{
+width:50px;
+height:50px;
+}
+
+.in-cd-stats{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:15px;
+margin-bottom:25px;
+}
+
+.in-cd-stats div{
+background:#eef2ff;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+.in-cd-stats p{
+font-size:13px;
+color:#666;
+margin-bottom:5px;
+}
+
+.in-cd-stats h3{
+color:#2d3a8c;
+}
+
+.in-cd-actions{
+display:flex;
+gap:15px;
+margin-bottom:25px;
+}
+
+.in-cd-invest{
+background:#22c55e;
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+}
+
+.in-cd-withdraw{
+background:#ef4444;
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+}
+
+.in-cd-withdraw:disabled{
+background:#bdbdbd;
+cursor:not-allowed;
+}
+
+.in-cd-graph-box{
+background:#f9fafc;
+padding:20px;
+border-radius:10px;
+}
+
+.in-cd-graph-buttons{
+margin-bottom:15px;
+}
+
+.in-cd-graph-buttons button{
+margin-right:10px;
+padding:6px 12px;
+border:none;
+background:#6366f1;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-size:12px;
+}
+
+
+.in-cd-sidebar{
+width:220px;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.08);
+height:770px;      
+overflow-y:auto;   
+}
+.in-cd-sidebar::-webkit-scrollbar{
+width:6px;
+}
+
+.in-cd-sidebar::-webkit-scrollbar-thumb{
+background:#6366f1;
+border-radius:10px;
+}
+.in-cd-sidebar h3{
+margin-bottom:15px;
+color:#374151;
+}
+
+
+.in-cd-coin-item{
+padding:10px;
+border-radius:6px;
+cursor:pointer;
+font-size:14px;
+margin-bottom:8px;
+background:#f3f4f6;
+transition:0.2s;
+}
+
+.in-cd-coin-item:hover{
+background:#6366f1;
+color:white;
+}
+
+/* THIS CSS IS OF INVEST WITHDRAW PAGE COMBINED */
+
+.in-invst-overlay,
+.in-withd-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:1000;
+}
+
+.in-invst-card,
+.in-withd-card{
+width:420px;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.in-invst-header,
+.in-withd-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.in-invst-header button,
+.in-withd-header button{
+border:none;
+background:#eee;
+padding:6px 10px;
+cursor:pointer;
+border-radius:6px;
+}
+
+.in-invst-info,
+.in-withd-info{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-bottom:20px;
+}
+
+.in-invst-info div,
+.in-withd-info div{
+background:#f5f7ff;
+padding:10px;
+border-radius:8px;
+text-align:center;
+}
+
+.in-invst-info p,
+.in-withd-info p{
+font-size:12px;
+color:#666;
+}
+
+.in-invst-info span,
+.in-withd-info span{
+font-weight:600;
+}
+
+.in-invst-input,
+.in-withd-input{
+margin-bottom:15px;
+}
+
+.in-invst-input label,
+.in-withd-input label{
+font-size:13px;
+display:block;
+margin-bottom:5px;
+}
+
+.in-invst-input input,
+.in-withd-input input{
+width:100%;
+padding:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.in-invst-result,
+.in-withd-result{
+text-align:center;
+margin-bottom:10px;
+}
+
+.in-invst-btn{
+width:100%;
+padding:12px;
+background:#22c55e;
+color:white;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+}
+
+.in-withd-btn{
+width:100%;
+padding:12px;
+background:#ef4444;
+color:white;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+}
+
+.in-invst-error,
+.in-withd-error{
+color:#ef4444;
+font-size:13px;
+margin-bottom:10px;
+}
+
+
+.in-withd-lock{
+font-size:12px;
+color:#777;
+margin-bottom:10px;
+}

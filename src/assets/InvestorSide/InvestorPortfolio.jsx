@@ -16,18 +16,18 @@ const InvestorPortfolio = () => {
 
       const result = data.map((d) => {
         const coin = coins.find((c) => c.id === d.crypto_name);
-        console.log(coin);
-        
+
         const currentValue = coin ? d.quantity * coin.current_price : 0;
         const profitLoss = currentValue - d.net_invested;
-        const profitLossPercent = d.net_invested > 0 ? (profitLoss / d.net_invested) * 100 : 0;
+        const profitLossPercent =
+          d.net_invested > 0 ? (profitLoss / d.net_invested) * 100 : 0;
+
         return {
           ...d,
           coin,
           currentValue,
           profitLoss,
           profitLossPercent,
-          avg_price: d.avg_price, 
         };
       });
 
@@ -50,56 +50,77 @@ const InvestorPortfolio = () => {
 
   return (
     <div className="in-pl-container">
-      <div className="in-pl-title">
-        Total Invested: ${totalInvestment.toFixed(2)}
-        <br />
-        Total Earnings: ${totalEarnings.toFixed(2)}
-      </div>
 
-      <h2 className="in-pl-title">Investor Profit & Loss</h2>
+      <div className="in-pl-header">
+        <h2>Investor Portfolio</h2>
 
-      {investedCoins.map((item, index) => (
-        <div className="in-pl-card" key={index}>
-          <div className="in-pl-header">
-            <h3 className="in-pl-coin-name">{item.crypto_name}</h3>
-            <span className={item.profitLoss >= 0 ? "in-pl-profit" : "in-pl-loss"}>
-              {item.profitLoss >= 0 ? "Profit" : "Loss"}
-            </span>
+        <div className="in-pl-summary">
+          <div>
+            <p>Total Invested</p>
+            <h3>${totalInvestment.toFixed(2)}</h3>
           </div>
 
-          <div className="in-pl-row">
-            <span>Quantity</span>
-            <span>{item.quantity}</span>
-          </div>
-
-          <div className="in-pl-row">
-            <span>Avg Buy Price</span>
-            <span>${item.avg_price}</span>
-          </div>
-
-          <div className="in-pl-row">
-            <span>Net Invested</span>
-            <span>${Number(item.net_invested).toFixed(2)}</span>
-          </div>
-
-          <div className="in-pl-row">
-            <span>Current Price</span>
-            <span>${item.coin?.current_price}</span>
-          </div>
-
-          <div className="in-pl-row">
-            <span>Current Value</span>
-            <span>${item.currentValue.toFixed(2)}</span>
-          </div>
-
-          <div className="in-pl-row in-pl-highlight">
-            <span>P/L</span>
-            <span className={item.profitLoss >= 0 ? "in-pl-profit" : "in-pl-loss"}>
-              ${item.profitLoss.toFixed(2)} ({item.profitLossPercent.toFixed(2)}%)
-            </span>
+          <div>
+            <p>Total Earnings</p>
+            <h3 className={totalEarnings >= 0 ? "in-pl-profit" : "in-pl-loss"}>
+              ${totalEarnings.toFixed(2)}
+            </h3>
           </div>
         </div>
-      ))}
+      </div>
+
+      <div className="in-pl-grid">
+        {investedCoins.map((item, index) => (
+          <div className="in-pl-card" key={index}>
+
+            <div className="in-pl-card-top">
+              <img src={item.coin?.image} alt="" />
+              <h3>{item.crypto_name}</h3>
+            </div>
+
+            <div className="in-pl-card-body">
+
+              <div className="in-pl-row">
+                <span>Quantity</span>
+                <span>{item.quantity}</span>
+              </div>
+
+              <div className="in-pl-row">
+                <span>Avg Price</span>
+                <span>${item.avg_price}</span>
+              </div>
+
+              <div className="in-pl-row">
+                <span>Invested</span>
+                <span>${Number(item.net_invested).toFixed(2)}</span>
+              </div>
+
+              <div className="in-pl-row">
+                <span>Current Price</span>
+                <span>${item.coin?.current_price}</span>
+              </div>
+
+              <div className="in-pl-row">
+                <span>Current Value</span>
+                <span>${item.currentValue.toFixed(2)}</span>
+              </div>
+
+              <div className="in-pl-pl">
+                <p>P/L</p>
+                <span
+                  className={
+                    item.profitLoss >= 0 ? "in-pl-profit" : "in-pl-loss"
+                  }
+                >
+                  ${item.profitLoss.toFixed(2)} ({item.profitLossPercent.toFixed(2)}%)
+                </span>
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 };

@@ -3,6 +3,7 @@ import axios from "axios";
 import ChartsInvestorPortfolio from "./ChartsInvestorPortfolio";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 import ChartInvestorComm from "./ChartInvestorComm";
+import "./AdminInvestor.css"
 const AdminInvestor = () => {
   const [investorsData, setinvestorsData] = useState([]);
   const [investorPortfolio, setinvestorPortfolio] = useState([])
@@ -32,6 +33,18 @@ const AdminInvestor = () => {
     const handleshowInvestor = (id)=>{
       navigate(`/admindashboard/invester/${id}`)
     }
+    const toggleFreeze = async (userId, status) => {
+    try {
+      const { data } = await axios.put(
+        "http://localhost:5000/admin/suspenduser",
+        { userId, status },
+        { withCredentials: true },
+      );
+      handledata()
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     handledata();
     getInvestorPortfolioData()
@@ -45,11 +58,23 @@ const AdminInvestor = () => {
         <ChartInvestorComm data={investorComm}/> <br /> <br />
       {investorsData.map((item, index) => {
         return (
-          <div className="ad-invs" onClick={()=>handleshowInvestor(item.user_id)}>
+          <div className="ad-i" onClick={()=>handleshowInvestor(item.user_id)}>
             <p>Id: {item.user_id}</p>
             <p>Name: {item.name}</p>
             <p>Email: {item.email}</p>
             <p>Joined: {new Date(item.joined).toLocaleString("en-IN")}</p>
+            <p>Action:  <button
+                     className={`ad-i-action-btn ${item.account_status === 1 ? "i-suspend" : "i-activate"}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFreeze(
+                          item.user_id,
+                          item.account_status === 1 ? 0 : 1,
+                        );
+                      }}
+                    > 
+                      {item.account_status === 1 ? "Suspend" : "Activate"}
+                    </button></p>
             <p>
             </p>
           </div>

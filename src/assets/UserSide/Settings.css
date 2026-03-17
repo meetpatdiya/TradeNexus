@@ -1,0 +1,164 @@
+/* Overlay blur background */
+
+.sts-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 1000;
+}
+
+
+/* Right side panel */
+
+.sts-panel {
+  width: 20%;
+  min-width: 320px;
+  height: 100vh;
+  background: white;
+  padding: 30px 25px;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  animation: sts-slide 0.3s ease;
+}
+
+
+/* Slide animation */
+
+@keyframes sts-slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+/* Header */
+
+.sts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sts-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sts-close {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+/* Buttons */
+
+.sts-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.sts-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sts-btn:hover {
+  background: #ececec;
+}
+
+
+/* Form */
+
+.sts-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+/* Inputs */
+
+.sts-input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.sts-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+
+/* Submit button */
+
+.sts-submit {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #4f46e5;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sts-submit:hover {
+  background: #4338ca;
+}
+
+.sts-message {
+  font-size: 13px;
+  color: #e11d48;
+}
+
+.sts-divider {
+  margin: 25px 0;
+  height: 1px;
+  background: #eee;
+}
+
+.sts-logout {
+  margin-top: auto;
+}
+.sts-logout-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #ef4444;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sts-logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.sts-logout-btn:active {
+  transform: translateY(0);
+}

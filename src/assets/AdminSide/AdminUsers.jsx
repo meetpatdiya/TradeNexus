@@ -8,7 +8,6 @@ const AdminUsers = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
-
   const handledata = async () => {
     try {
       const { data } = await axios.get("http://localhost:5000/admin/getusers");
@@ -17,7 +16,6 @@ const AdminUsers = () => {
       console.log(err);
     }
   };
-
   const handleShowDetail = (id) => {
     navigate(`/admindashboard/users/${id}`);
   };
@@ -26,7 +24,18 @@ const AdminUsers = () => {
       user.email.toLowerCase().includes(search.toLowerCase()) ||
       user.user_id.toString().includes(search),
   );
-
+  const toggleFreeze = async (userId, status) => {
+    try {
+      const { data } = await axios.put(
+        "http://localhost:5000/admin/suspenduser",
+        { userId, status },
+        { withCredentials: true },
+      );
+      handledata()
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     handledata();
   }, []);
@@ -51,6 +60,7 @@ const AdminUsers = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Created</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -64,6 +74,20 @@ const AdminUsers = () => {
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{new Date(item.created_at).toLocaleString("en-IN")}</td>
+                  <td>
+                    <button
+                     className={`ad-u-action-btn ${item.account_status === 1 ? "suspend" : "activate"}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleFreeze(
+                          item.user_id,
+                          item.account_status === 1 ? 0 : 1,
+                        );
+                      }}
+                    >
+                      {item.account_status === 1 ? "Suspend" : "Activate"}
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

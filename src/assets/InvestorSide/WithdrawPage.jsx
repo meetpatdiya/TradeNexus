@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./InvestorCoinDetail.css";
 
-const WithdrawPage = ({ onClose, type, coin }) => {
+const WithdrawPage = ({ onClose, coin, onSuccess }) => {
   const [avlblqnty, setavlblqnty] = useState({});
   const [amount, setAmount] = useState("");
-
   useEffect(() => {
     const coinCheck = async () => {
       try {
@@ -29,48 +29,92 @@ const WithdrawPage = ({ onClose, type, coin }) => {
   let errorMsg = "";
 
   if (withdrawQty > avlblqnty.investor_quantity) {
-    errorMsg = "Entered amount exceeds your invested quantity";
+    errorMsg = "Amount exceeds your investment";
   } else if (withdrawQty > avlblqnty.platform_quantity) {
-    errorMsg = "Entered amount exceeds platform available quantity";
+    errorMsg = "Platform liquidity too low";
   }
+
   const handleWithdraw = async () => {
     try {
       const { data } = await axios.post(
         "http://localhost:5000/withdrawcoin",
-        { coin: coin.id, quantity: amount / coin.current_price, amount: amount , price:coin.current_price},
+        {
+          coin: coin.id,
+          quantity: withdrawQty,
+          amount,
+          price: coin.current_price,
+        },
         { withCredentials: true },
       );
-      console.log(data);
-      
+      onSuccess(data.message, "success");
+      onClose();
     } catch (error) {
+        onSuccess(
+          error.response?.data?.message || "Something went wrong",
+          "error",
+        );
+        onClose();
       console.log(error);
     }
   };
   const isDisabled = !amount || withdrawQty <= 0 || errorMsg !== "";
-
   return (
-    <div>
-      <p>You can withdraw only after 30 days of investment</p>
+    <div className="in-withd-overlay">
+      <div className="in-withd-card">
+        <div className="in-withd-header">
+          <h2>Withdraw {coin.name}</h2>
+          <button onClick={onClose}>✕</button>
+        </div>
 
-      <p>Coin price: {coin.current_price}</p>
-      <p>You have invested: {avlblqnty.investor_quantity}</p>
-      <p>Platform pool: {avlblqnty.platform_quantity}</p>
+        <div className="in-withd-info">
+          <div>
+            <p>Coin Price</p>
+            <span>${coin.current_price}</span>
+          </div>
 
-      <input
-        type="number"
-        placeholder="Enter amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-      />
+          <div>
+            <p>Your Holdings</p>
+            <span>{avlblqnty.investor_quantity}</span>
+          </div>
 
-      <p>Quantity you withdraw: {withdrawQty}</p>
+          <div>
+            <p>Platform Pool</p>
+            <span>{avlblqnty.platform_quantity}</span>
+          </div>
+        </div>
 
-      {errorMsg && <p style={{ color: "red" }}>{errorMsg}</p>}
+        <p className="in-withd-lock">
+          Withdraw allowed after 30 day lock period
+        </p>
 
-      <button disabled={isDisabled} onClick={() => handleWithdraw()}>
-        Withdraw
-      </button>
-      <button onClick={onClose}>Close</button>
+        <div className="in-withd-input">
+          <label>Withdraw Amount ($)</label>
+
+          <input
+            type="number"
+            placeholder="Enter amount"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
+
+        <div className="in-withd-result">
+          <p>You will withdraw</p>
+          <h3>
+            {withdrawQty.toFixed(8)} {coin.symbol.toUpperCase()}
+          </h3>
+        </div>
+
+        {errorMsg && <p className="in-withd-error">{errorMsg}</p>}
+
+        <button
+          className="in-withd-btn"
+          disabled={isDisabled}
+          onClick={handleWithdraw}
+        >
+          Withdraw
+        </button>
+      </div>
     </div>
   );
 };

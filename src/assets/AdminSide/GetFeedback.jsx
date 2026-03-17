@@ -3,14 +3,6 @@ import "./Feedback.css";
 import axios from "axios";
 
 function Feedback() {
-  const [data, setData] = useState({
-    summary: {
-      totalFeedback: 0,
-      totalPendingFeedback: 0,
-      totalReviewedFeedback: 0,
-      totalResolvedFeedback: 0,
-    },
-  });
   const [Feedbackdata, setFeedbackdata] = useState([]);
   useEffect(() => {
     const getFeedbackData = async () => {
@@ -28,7 +20,7 @@ function Feedback() {
   }, []);
   const deleteFeedback = async (id) => {
     try {
-      const res = await axios.put(
+      await axios.put(
         "http://localhost:5000/admin/resolvefeedback",
         { feedback_id: id },
         { withCredentials: true },
@@ -39,22 +31,52 @@ function Feedback() {
     }
   };
   return (
-    <div className="fd-card-container">
-      {Feedbackdata.map((item, index) => (
-        <div>
-          <p>{item.feedback_id}</p>
-          <p>{item.user_id}</p>
-          <p>{item.type}</p>
-          <p>{item.title}</p>
-          <p>{item.message}</p>
-          <p>{item.created_at}</p>
-          <p>Created at: {new Date(item.created_at).toLocaleString("en-IN")}</p>
-          <button onClick={() => deleteFeedback(item.feedback_id)}>
-            Resolve Feedback
-          </button>
-        </div>
-      ))}
-    </div>
+     <div className="af-container">
+  <h2 className="af-title">User Feedback</h2>
+
+  <div className="af-table-wrapper">
+    <table className="af-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Type</th>
+          <th>Title</th>
+          <th>Message</th>
+          <th>Created</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {Feedbackdata.map((item) => (
+          <tr key={item.feedback_id}>
+            <td>{item.feedback_id}</td>
+            <td>{item.user_id}</td>
+            <td>
+              <span className={`af-type af-${item.type}`}>
+                {item.type}
+              </span>
+            </td>
+            <td className="af-title-cell">{item.title}</td>
+            <td className="af-message">{item.message}</td>
+            <td>
+              {new Date(item.created_at).toLocaleString("en-IN")}
+            </td>
+            <td>
+              <button
+                className="af-resolve-btn"
+                onClick={() => deleteFeedback(item.feedback_id)}
+              >
+                Resolve
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
   );
 }
 

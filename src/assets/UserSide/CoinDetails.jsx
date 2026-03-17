@@ -37,7 +37,7 @@ const CoinDetails = ({}) => {
 
   const addToWatchList = async (coinId) => {
   try {
-    const res = await axios.post("http://localhost:5000/watchlist", {
+     await axios.post("http://localhost:5000/watchlist", {
       coin_gecko_id: coinId});
      toggleWatchlist(coin.id);
   } catch (err) {
@@ -158,7 +158,7 @@ const CoinDetails = ({}) => {
           onSuccess={handleTradeSuccess}
         />
       )}
-      {showAlert && (
+      {showAlert && (  
         <AlertBox
           message={alertData.message}
           type={alertData.type}

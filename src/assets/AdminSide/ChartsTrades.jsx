@@ -16,10 +16,10 @@ const chartData = trades.map((item) => ({
 }));
 
   return (
-    <div style={{ width: "40%", height: 400 }}>
-         <h2>
+    <div style={{ width: "100%", height: 250 }}>
+         <h3>
       Trades Data
-    </h2>
+    </h3>
       <ResponsiveContainer>
         <LineChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />

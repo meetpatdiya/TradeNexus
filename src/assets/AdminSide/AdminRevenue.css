@@ -1,0 +1,167 @@
+.ad-r-container{
+padding:45px;
+background:#f6f8fc;
+min-height:100vh;
+font-family:Segoe UI, Helvetica, Arial, sans-serif;
+color:#1e293b;
+}
+
+.ad-r-title{
+font-size:36px;
+font-weight:700;
+margin-bottom:40px;
+color:#0f172a;
+}
+
+/* ===== STATS GRID ===== */
+
+.ad-r-stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:28px;
+margin-bottom:45px;
+}
+
+.ad-r-stat{
+background:white;
+padding:24px 26px;
+border-radius:10px;
+display:flex;
+flex-direction:column;
+gap:10px;
+border:1px solid #e5e7eb;
+transition:0.2s;
+}
+
+.ad-r-stat:hover{
+box-shadow:0 6px 20px rgba(0,0,0,0.05);
+transform:translateY(-3px);
+}
+
+/* label */
+
+.ad-r-label{
+font-size:14px;
+font-weight:600;
+color:#64748b;
+letter-spacing:0.5px;
+}
+
+/* value */
+
+.ad-r-value{
+font-size:30px;
+font-weight:700;
+color:#111827;
+}
+
+/* highlight major numbers */
+
+.ad-r-stat:nth-child(1) .ad-r-value{
+color:#2563eb;
+}
+
+.ad-r-stat:nth-child(9) .ad-r-value{
+color:#059669;
+}
+
+.ad-r-stat:nth-child(10) .ad-r-value{
+color:#7c3aed;
+}
+
+/* ===== ACTION BUTTONS ===== */
+
+.ad-r-actions{
+display:flex;
+gap:18px;
+margin-bottom:45px;
+}
+
+.ad-r-btn{
+padding:14px 28px;
+font-size:16px;
+font-weight:600;
+border-radius:8px;
+border:none;
+cursor:pointer;
+transition:0.2s;
+}
+
+.ad-r-btn.collect{
+background:#2563eb;
+color:white;
+}
+
+.ad-r-btn.withdraw{
+background:#16a34a;
+color:white;
+}
+
+.ad-r-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===== INVESTOR SECTION ===== */
+
+.ad-r-subtitle{
+font-size:24px;
+font-weight:700;
+margin-bottom:20px;
+color:#0f172a;
+}
+
+/* compact list */
+
+.ad-r-investor-list{
+max-height:300px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:10px;
+padding-right:6px;
+}
+
+/* row */
+
+.ad-r-investor-row{
+display:grid;
+grid-template-columns:80px 1fr 150px;
+align-items:center;
+background:white;
+padding:10px 14px;
+border-radius:6px;
+border:1px solid #e5e7eb;
+font-size:15px;
+}
+
+.ad-r-investor-row:hover{
+background:#f1f5f9;
+}
+
+/* investor fields */
+
+.ad-r-investor-id{
+font-weight:600;
+color:#64748b;
+}
+
+.ad-r-investor-name{
+font-weight:600;
+}
+
+.ad-r-investor-amount{
+font-weight:700;
+color:#16a34a;
+text-align:right;
+}
+
+
+.ad-r-investor-list::-webkit-scrollbar{
+width:6px;
+}
+
+.ad-r-investor-list::-webkit-scrollbar-thumb{
+background:#cbd5f5;
+border-radius:10px;
+}

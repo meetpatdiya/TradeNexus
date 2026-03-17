@@ -1,0 +1,173 @@
+.ad-coindetail-container {
+  background: #f5f7fb;
+  padding: 30px 40px;
+  font-family: Inter, sans-serif;
+  min-height: 100vh;
+}
+
+.ad-coindetail-back {
+  background: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.ad-coindetail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.ad-coindetail-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ad-coindetail-title img {
+  width: 42px;
+  height: 42px;
+}
+
+.ad-coindetail-title h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.ad-coindetail-title span {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.ad-coindetail-price {
+  text-align: right;
+}
+
+.ad-coindetail-price h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.ad-coindetail-green {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.ad-coindetail-red {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.ad-coindetail-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 24px;
+  align-items: start;
+  align-items: stretch;
+}
+
+.ad-coindetail-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.ad-coindetail-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.ad-coindetail-card {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.ad-coindetail-card h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.ad-coindetail-left .ad-coindetail-card {
+  flex: 1;
+}
+.ad-coindetail-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ad-coindetail-stats div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ad-coindetail-stats p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.ad-coindetail-stats h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.ad-coindetail-stats p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.ad-coindetail-stats h4 {
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ad-coindetail-right .ad-coindetail-card:first-child {
+  flex: 1;
+  /* height:360px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.ad-coindetail-chart-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.ad-coindetail-chart-buttons button {
+  border: none;
+  background: #eef2ff;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.ad-coindetail-chart-buttons button:hover {
+  background: #dbe3ff;
+}
+
+.ad-coindetail-right canvas {
+  flex: 1;
+  max-height: none;
+}
+
+@media (max-width: 1100px) {
+  .ad-coindetail-grid {
+    grid-template-columns: 1fr;
+  }
+}

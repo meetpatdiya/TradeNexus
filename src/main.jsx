@@ -1,7 +1,16 @@
 import { StrictMode } from 'react'
+import axios from "axios"
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 403) {
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
     <App />

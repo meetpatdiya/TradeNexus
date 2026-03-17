@@ -20,13 +20,15 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
   const isBuyInvalid = amount <= 0 || total > balance;
   const isSellInvalid = amount <= 0 || quantity > ownedQty;
   const { fetchPortfolio } = usePortfolio();
+  console.log(coin);
+  
   useEffect(() => {
     const getwalletData = async () => {
       try {
         const { data } = await axios.get("http://localhost:5000/wallet", {
           withCredentials: true,
         });
-        console.log(data);
+        // console.log(data);
         setBalance(Number(data.balance));
         if (data.bank_last_4 === null) setHasEnteredAccDigits(false);
       } catch (err) {
@@ -57,15 +59,12 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
         { withCredentials: true },
       );
       setBalance(data.newBalance);
-      onSuccess((msg, status) => {
-        fetchPortfolio(); 
-        setShowAlert({ msg, status });
-        setSelectedCoin(null);
-      });
+      await fetchPortfolio();
+      onSuccess(data.message, "success");
       onClose();
     } catch (err) {
       console.log(err);
-         console.log(err.response.data);
+      console.log(err.response.data);
       onSuccess(err.response?.data?.message || "Something went wrong", "error");
     }
   };

@@ -1,0 +1,137 @@
+.ad-coin-container{
+background:#f5f7fb;
+padding:30px;
+border-radius:12px;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.ad-coin-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.ad-coin-header h2{
+font-size:24px;
+font-weight:600;
+color:#1a1a1a;
+}
+
+.ad-coin-search{
+padding:10px 14px;
+border-radius:8px;
+border:1px solid #dcdcdc;
+width:220px;
+font-size:14px;
+outline:none;
+transition:0.2s;
+}
+
+.ad-coin-search:focus{
+border-color:#4f7cff;
+box-shadow:0 0 4px rgba(79,124,255,0.3);
+}
+
+.ad-coin-table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:12px;
+overflow:hidden;
+}
+
+.ad-coin-table thead{
+background:#f1f3f7;
+}
+
+.ad-coin-table th{
+text-align:left;
+padding:14px;
+font-size:14px;
+color:#555;
+font-weight:600;
+}
+
+.ad-coin-table td{
+padding:14px;
+border-top:1px solid #eee;
+font-size:14px;
+color:#333;
+}
+
+.ad-coin-table tbody tr{
+cursor:pointer;
+transition:0.15s;
+}
+
+.ad-coin-table tbody tr:hover{
+background:#f8faff;
+}
+
+.ad-coin-name{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:500;
+}
+
+.ad-coin-name img{
+width:26px;
+height:26px;
+}
+
+.ad-coin-positive{
+color:#17b26a;
+font-weight:500;
+}
+
+.ad-coin-negative{
+color:#e5484d;
+font-weight:500;
+}
+
+.ad-coin-status{
+padding:5px 12px;
+border-radius:20px;
+font-size:13px;
+font-weight:500;
+}
+
+.ad-coin-status.active{
+background:#e6f7ef;
+color:#1e9e61;
+}
+
+.ad-coin-status.disabled{
+background:#fdeaea;
+color:#d64545;
+}
+
+.ad-coin-btn-disable{
+background:#e5484d;
+border:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+font-size:13px;
+}
+
+.ad-coin-btn-enable{
+background:#17b26a;
+border:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+font-size:13px;
+}
+
+.ad-coin-btn-disable:hover{
+background:#cc3c40;
+}
+
+.ad-coin-btn-enable:hover{
+background:#13995b;
+}
