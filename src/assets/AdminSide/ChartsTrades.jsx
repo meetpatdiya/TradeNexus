@@ -16,16 +16,28 @@ const chartData = trades.map((item) => ({
 }));
 
   return (
-    <div style={{ width: "100%", height: 250 }}>
+    <div style={{ background:"#fff" }}>
          <h3>
       Trades Data
     </h3>
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" height={250}>
         <LineChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+          <XAxis dataKey="date"  
+            tickFormatter={(value) =>
+              new Date(value).toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+              })
+            } />
           <YAxis />
-          <Tooltip />
+          <Tooltip labelFormatter={(value) =>
+              new Date(value).toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })
+            } />
           <Line type="monotone" dataKey="total" stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>

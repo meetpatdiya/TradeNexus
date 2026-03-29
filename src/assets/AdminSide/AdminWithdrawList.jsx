@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import LoaderToast from "../UserSide/LoaderToast";
 const AdminWithdrawList = () => {
   const [withdraws, setWithdraws] = useState([]);
   const [loading, setLoading] = useState(true);
   const [approving, setApproving] = useState([]);
   const [commission, setcommission] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
+  const [loaderMessage, setloaderMessage] = useState("")
   const fetchWithdraws = async () => {
     try {
       const { data } = await axios.get(
@@ -46,9 +48,8 @@ const AdminWithdrawList = () => {
         { transactionId },
         { withCredentials: true },
       );
-      alert(
-        `Approved: ${res.data.withdraw_amount}, commission: ${res.data.commission}`,
-      );
+      setloaderMessage("Withdrawal request approved successfully.")
+      setisLoading(true);
       fetchWithdraws();
     } catch (err) {
       console.error(err);
@@ -65,6 +66,8 @@ const AdminWithdrawList = () => {
         { withCredentials: true },
       );
       console.log(data);
+       setloaderMessage("Investor commission withdrawal approved successfully.")
+      setisLoading(true);
       fetchCommissionWithdraws();
     } catch (error) {
       console.log(error);
@@ -77,6 +80,8 @@ const AdminWithdrawList = () => {
         { transactionId: id },
         { withCredentials: true },
       );
+      setloaderMessage("Withdrawal request rejected successfully.")
+      setisLoading(true);
       fetchWithdraws();
     } catch (err) {
       console.error(err);
@@ -86,62 +91,111 @@ const AdminWithdrawList = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <>
-      <div className="admin-withdraws">
-        <h2>Pending Withdraws</h2>
+    <div className="ad-wtl-container">
+      <div className="ad-wtl-card">
+        <div className="ad-wtl-header">
+          <h2>Pending Withdraw Requests</h2>
+        </div>
+
         {withdraws.length === 0 ? (
-          <p>No pending withdraws</p>
+          <div className="ad-wtl-empty">No pending withdraws</div>
         ) : (
-          <table border="1" cellPadding="8">
-            <thead>
-              <tr>
-                <th>Transaction ID</th>
-                <th>User ID</th>
-                <th>Withdraw Amount</th>
-                <th>Approve</th>
-                <th>Reject</th>
-              </tr>
-            </thead>
-            <tbody>
-              {withdraws.map((w) => (
-                <tr key={w.id}>
-                  <td>{w.id}</td>
-                  <td>{w.user_id}</td>
-                  <td>{w.amount}</td>
-                  <td>
-                    <button
-                      onClick={() => approveWithdraw(w.id)}
-                      disabled={approving.includes(w.id)}
-                    >
-                      {approving.includes(w.id) ? "Approving..." : "Approve"}
-                    </button>
-                  </td>
-                  <td>
-                    <button onClick={() => rejectWithdraw(w.id)}>Reject</button>
-                  </td>
+          <div className="ad-wtl-table-wrapper">
+            <table className="ad-wtl-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>User</th>
+                  <th>Name</th>
+                  <th>Amount</th>
+                  <th>Approve</th>
+                  <th>Reject</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {withdraws.map((w) => (
+                  <tr key={w.id}>
+                    <td>#{w.id}</td>
+                    <td>{w.user_id}</td>
+                    <td>{w.name}</td>
+                    <td className="ad-wtl-amount">${w.amount}</td>
+                    <td>
+                      <button
+                        className="ad-wtl-btn ad-wtl-approve"
+                        onClick={() => approveWithdraw(w.id)}
+                        disabled={approving.includes(w.id)}
+                      >
+                        {approving.includes(w.id) ? "Processing..." : "Approve"}
+                      </button>
+                    </td>
+
+                    <td>
+                      <button
+                        className="ad-wtl-btn ad-wtl-reject"
+                        onClick={() => rejectWithdraw(w.id)}
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
-      {commission.length == 0 ? (
-        <p>No Investor Commission to approve</p>
-      ) : (
-        <div>
-          {commission.map((item, index) => (
-            <div key={index}>
-              <p> {item.id} </p>
-              <p>{item.user_id}</p>
-              <p>{item.amount}</p>
-              <button onClick={() => approveCommission(item.id)}>
-                Approve
-              </button>
-            </div>
-          ))}
+
+      <div className="ad-wtl-card">
+        <div className="ad-wtl-header">
+          <h2>Investor Commission Requests</h2>
         </div>
+
+        {commission.length === 0 ? (
+          <div className="ad-wtl-empty">No commission requests</div>
+        ) : (
+          <div className="ad-wtl-table-wrapper">
+            <table className="ad-wtl-table">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Investor ID</th>
+                  <th>Name</th>
+                  <th>Amount</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {commission.map((item) => (
+                  <tr key={item.id}>
+                    <td>#{item.id}</td>
+                    <td>{item.investor_id}</td>
+                    <td>{item.name}</td>
+                    <td className="ad-wtl-amount">${item.amount}</td>
+                    <td>
+                      <button
+                        className="ad-wtl-btn ad-wtl-approve"
+                        onClick={() => approveCommission(item.id)}
+                      >
+                        Approve
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+      {isLoading && (
+        <LoaderToast
+          message={loaderMessage}
+          type={"success"}
+          onClose={() => setisLoading(false)}
+          shape={"dots"}
+        />
       )}
-    </>
+    </div>
   );
 };
 

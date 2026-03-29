@@ -1,11 +1,9 @@
 .inv-cms-container {
   padding: 40px;
-  background: #f6f8fc;
+  background: #F4fbf6;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* HEADER */
 
 .inv-cms-header h1 {
   font-size: 30px;

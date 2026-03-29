@@ -13,10 +13,8 @@ const InvestorPortfolio = () => {
         "http://localhost:5000/investor/viewprofitloss",
         { withCredentials: true }
       );
-
       const result = data.map((d) => {
         const coin = coins.find((c) => c.id === d.crypto_name);
-
         const currentValue = coin ? d.quantity * coin.current_price : 0;
         const profitLoss = currentValue - d.net_invested;
         const profitLossPercent =
@@ -30,7 +28,6 @@ const InvestorPortfolio = () => {
           profitLossPercent,
         };
       });
-
       setInvestedCoins(result);
     };
 

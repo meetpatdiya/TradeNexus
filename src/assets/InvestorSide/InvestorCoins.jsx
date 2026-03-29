@@ -27,7 +27,7 @@ const InvestorCoins = () => {
     return [...matched, ...others];
   }, [coins, search]);
 
-  const visibleCoins = showAll ? filteredCoins : filteredCoins.slice(0, 16);
+  const visibleCoins = showAll ? filteredCoins : filteredCoins.slice(0, 20);
 
   return (
     <div className="in-cn-wrapper">
@@ -59,7 +59,7 @@ const InvestorCoins = () => {
         })}
       </div>
 
-      {coins.length > 16 && (
+      {coins.length > 20 && (
         <button className="in-cn-btn" onClick={() => setShowAll(!showAll)}>
           {showAll ? "View Less" : "View More"}
         </button>

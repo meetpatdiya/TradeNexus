@@ -3,10 +3,13 @@
   text-align: center;
   font-size: 22px;
   font-weight: 600;
-  margin: 16px 0 24px;
+  /* margin: 16px 0 24px; */
+  padding: 20px 0;
   color: #111;
 }
-
+.watchlist-container{
+  background-color: #f8f9fb;
+}
 .watchlist-row {
   display: flex;
   justify-content: center;

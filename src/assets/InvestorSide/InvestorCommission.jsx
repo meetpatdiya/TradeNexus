@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import "./InvestorCommission.css";
-
+import LoaderToast from "../UserSide/LoaderToast";
 const InvestorCommission = () => {
   const [history, setHistory] = useState([]);
   const [summary, setSummary] = useState({
@@ -9,25 +9,25 @@ const InvestorCommission = () => {
     withdrawn_commission: 0,
     available_commission: 0,
   });
-
+  const [showAlert, setShowAlert] = useState(false)
+  const [alertMessage, setalertMessage] = useState("")
+  const fetchCommission = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:5000/investor/getcommission",
+        { withCredentials: true }
+      );
+      setHistory(res.data.history);
+      setSummary({
+        total_commission: res.data.total_commission,
+        withdrawn_commission: res.data.withdrawn_commission,
+        available_commission: res.data.available_commission,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const fetchCommission = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:5000/investor/getcommission",
-          { withCredentials: true }
-        );
-        setHistory(res.data.history);
-        setSummary({
-          total_commission: res.data.total_commission,
-          withdrawn_commission: res.data.withdrawn_commission,
-          available_commission: res.data.available_commission,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     fetchCommission();
   }, []);
 
@@ -40,14 +40,14 @@ const InvestorCommission = () => {
         { amount: summary.available_commission },
         { withCredentials: true }
       );
-      console.log(data);
+      setalertMessage(data.message);
     } catch (error) {
-      console.log(error.response.message);
+      console.log(error.response);
     }
+    fetchCommission()
+    setShowAlert(true)
   };
-
   const btndis = summary.available_commission < 10;
-
   const lastCommissionDate = useMemo(() => {
     if (!history.length) return "N/A";
     const sorted = [...history].sort(
@@ -86,7 +86,7 @@ const InvestorCommission = () => {
 
       <div className="inv-cms-summary">
 
-        <div className="inv-cms-card inc- blue">
+        <div className="inv-cms-card inc-blue">
           <h3>Total Commission</h3>
           <p>$ {Number(summary.total_commission).toFixed(2)}</p>
         </div>
@@ -111,7 +111,7 @@ const InvestorCommission = () => {
           <p>{lastCommissionDate}</p>
         </div>
 
-        <div className="inv-cms-card teal">
+        <div className="inv-cms-card inc-teal">
           <h3>Top Earning Crypto</h3>
           <p>{topCrypto}</p>
         </div>
@@ -146,6 +146,14 @@ const InvestorCommission = () => {
         </div>
 
       </div>
+      {showAlert && (
+              <LoaderToast
+                message={alertMessage}
+                type={"success"}
+                onClose={() => setShowAlert(false)}
+                shape={'circle'}
+              />
+            )}
     </div>
   );
 };

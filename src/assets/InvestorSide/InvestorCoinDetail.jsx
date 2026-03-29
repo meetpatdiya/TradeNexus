@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCoins } from "../UserSide/CoinsContext";
 import { useWallet } from "../UserSide/WalletContext";
-import AlertBox from "../UserSide/AlertBox";
 import InvestPage from "./InvestPage";
 import WithdrawPage from "./WithdrawPage";
 import "./InvestorCoinDetail.css";
 import CoinDetailGraph from "../UserSide/CoinDetailGraph";
 import axios from "axios";
-
+import LoaderToast from "../UserSide/LoaderToast";
+  
 const InvestorCoinDetail = () => {
   const [coinQuantity, setcoinQuantity] = useState({
     investor_quantity: "",
     platform_quantity: "",
+    lockin_period:""
   });
   const [showModel, setshowModel] = useState(false);
   const [withdrawcheck, setwithdrawcheck] = useState(false);
@@ -46,13 +47,13 @@ const InvestorCoinDetail = () => {
             withCredentials: true,
             params: { gecko_id: coin.id },
           },
-        );
+        ); 
         setcoinQuantity({
           investor_quantity: data.investor_quantity,
           platform_quantity: data.platform_quantity,
+          lockin_period:data.lock_time
         });
         console.log(data);
-
         if (Number(data.investor_quantity) === 0) setwithdrawcheck(true);
         else setwithdrawcheck(false);
       } catch (error) {
@@ -104,12 +105,18 @@ const InvestorCoinDetail = () => {
 
           <div>
             <p>Your Coins</p>
-            <h3>{coinQuantity.investor_quantity}</h3>
+            <h3>{Number(coinQuantity.investor_quantity).toFixed(4)}</h3>
           </div>
 
           <div>
             <p>Platform Coins</p>
-            <h3>{coinQuantity.platform_quantity}</h3>
+            <h3>{Number(coinQuantity.platform_quantity).toFixed(4)}</h3>
+          </div>
+          <div>
+            <p>Lock Period</p>
+            <h3> {coinQuantity.investor_quantity > 0
+    ? coinQuantity.lockin_period.replace("days", "d").replace("hours", "h") + " left"
+    : "Not Applicable"}</h3>
           </div>
 
           <div>
@@ -117,10 +124,7 @@ const InvestorCoinDetail = () => {
             <h3>$100</h3>
           </div>
 
-          <div>
-            <p>Lock Period</p>
-            <h3>30 Days</h3>
-          </div>
+
         </div>
 
         <div className="in-cd-actions">
@@ -177,10 +181,11 @@ const InvestorCoinDetail = () => {
         />
       )}  
       {showAlert && (
-        <AlertBox
+        <LoaderToast
           message={alertData.message}
           type={alertData.type}
           onClose={() => setShowAlert(false)}
+          shape={'lines'}
         />
       )}
     </div>

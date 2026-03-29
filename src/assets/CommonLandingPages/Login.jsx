@@ -48,12 +48,6 @@ const Registration = () => {
       } 
       else if (roles === "admin"){
          navigate("/admindashboard")
-        //  try {
-        //    await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
-        //   navigate("/admindashboard");
-        // } catch (err) {
-        //   console.log("Wallet creation failed", err);
-        // }
       }
       else if (roles === "investor") {
         try {
@@ -88,7 +82,7 @@ const Registration = () => {
   };
   return (
     <>
-      <div className="login">
+      <div className="login"> 
         <div class="login-content">
           <div class="card">
             <h1>Welcome Back</h1>
@@ -119,13 +113,6 @@ const Registration = () => {
                 </span>
               </div>
               <p className="login-error">{passwordError}</p>
-              <div class="options">
-                <label class="remember">
-                  <input type="checkbox" />{" "}
-                  <span className="r">Remember me</span>
-                </label>
-                <a href="#">Forgot Password</a>
-              </div>
               <button
                 type="submit"
                 className="sign-in"

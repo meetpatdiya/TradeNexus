@@ -6,9 +6,9 @@ export const WalletProvider = ({ children }) => {
   useEffect(() => {
     const fetchWallet = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/wallet", { withCredentials: true });
-        console.log(res);
-        setBalance(res.data.balance);
+        const {data} = await axios.get("http://localhost:5000/wallet", { withCredentials: true });
+        console.log(data);
+        setBalance(data.balance[0].balance);
       } catch (err) {
         console.error(err);
       }  

@@ -12,7 +12,7 @@ const Registration = () => {
     name: "",
     email: "",
     password: "",
-    confirm: "",
+    confirm: "",  
   });
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");

@@ -24,7 +24,10 @@
 }
 
 .ad-wlt-table th {
-  background-color: #f4f6f9;
+  background-color: #ffffff;
+}
+.ad-wlt-table tbody {
+  background-color: #ffffff;
 }
 
 .ad-wlt-btn {
@@ -59,7 +62,6 @@
 }
 
 .ad-wlt-adjust-box {
-  background: #f9f9f9;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 25px;

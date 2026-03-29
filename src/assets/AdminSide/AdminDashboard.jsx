@@ -2,8 +2,10 @@ import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
 import AdminNavbar from "./AdminNavbar";
 import "./Dashboard.css";
+import AdminFooter from "./AdminFooter";
 const HomePage = () => {
   return (
+    <>
     <div className="admin-wrapper">
       <AdminNavbar/>
       <div className="admin-container">
@@ -15,6 +17,8 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+            <AdminFooter/>
+            </>
   );
 };
 

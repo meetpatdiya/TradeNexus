@@ -1,4 +1,3 @@
-/* WHOLE PAGE */
 .admin-wrapper {
   height: 100vh;
   display: flex;
@@ -9,7 +8,7 @@
 .ad-navbar {
   height: 60px;
   min-height: 60px;
-  background-color: #ffffff;
+  background-color: #fffdf5;
   border-bottom: 1px solid #e5e7eb;
   z-index: 10;
 }

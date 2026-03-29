@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./Feedback.css";
 import axios from 'axios'
+import LoaderToast from "./LoaderToast"
 const Feedback = () => {
   const [formData, setFormData] = useState({
     title: "",
     type: "",
     description: "",
   });
-
+  const [showAlert, setshowAlert] = useState(false)
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -41,9 +42,6 @@ const handleSubmit = async(e) => {
   e.preventDefault();
 
   if (!validate()) return;
-
-  console.log("Feedback Submitted:", formData);
-
 await axios.post("http://localhost:5000/feedback",formData,{ withCredentials: true })
   setFormData({
     title: "",
@@ -51,9 +49,8 @@ await axios.post("http://localhost:5000/feedback",formData,{ withCredentials: tr
     description: "",
   });
   setErrors({});
+  setshowAlert(true)
 };
-
-
 return (
   <div className="feedback-container">
     <form className="feedback-form" onSubmit={handleSubmit}>
@@ -96,6 +93,11 @@ return (
 
       <button type="submit" >Submit Feedback</button>
     </form>
+    {
+showAlert && (
+  <LoaderToast message={"Feedback submitted successfully"} shape={'circle'} type={"success"} onClose={()=>setshowAlert(false)}/>
+)
+    }
   </div>
 );
 };

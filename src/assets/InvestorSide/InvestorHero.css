@@ -1,0 +1,100 @@
+.in-cn-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px;
+  background: #f4fbf6;
+  border-radius: 16px;
+}
+
+.in-cn-hero-left {
+  flex: 1;
+}
+
+.in-cn-hero-left h1 {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.in-cn-hero-left p {
+  font-size: 15px;
+  color: #555;
+  max-width: 500px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* STATS */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+}
+
+.hero-stats div h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #111;
+}
+
+.hero-stats div p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* RIGHT IMAGE */
+/* .in-cn-hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.in-cn-hero-right img {
+  width: 100%;
+  max-width: 420px;
+  object-fit: contain;
+} */
+ /* RIGHT IMAGE CONTAINER */
+.in-cn-hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* IMAGE STYLE */
+.in-cn-hero-right img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  object-fit: contain;
+
+  /* Smooth feel */
+  transition: transform 0.3s ease;
+
+  /* Soft shadow for depth */
+  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.08));
+}
+
+.in-cn-hero-right img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .in-cn-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .in-cn-hero-left p {
+    margin: 0 auto 20px;
+  }
+}

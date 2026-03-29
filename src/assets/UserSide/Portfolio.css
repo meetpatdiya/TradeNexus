@@ -1,4 +1,4 @@
-.pf-container {
+/* .pf-container {
   padding: 24px;
   max-width: 1200px;
   margin: auto;
@@ -113,7 +113,7 @@
   cursor: not-allowed;
 }
 .pf-empty-wrapper {
-  min-height: calc(100vh - 120px); /* adjust for header */
+  min-height: calc(100vh - 120px); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,7 +144,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #6b7280;
-}
+} */
 @keyframes fadeFloat {
   from {
     opacity: 0;
@@ -166,4 +166,133 @@
   100% {
     transform: translateY(0px);
   }
+}
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 1024px) {
+  .pf-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .pf-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* CARD */
+.pf-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  /* KEY PART */
+  height: 240px; /* 👈 makes it look square-ish but clean */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pf-container{
+  background-color: #f8f9fb;
+}
+/* HEADER */
+.pf-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pf-coin-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+}
+
+.pf-coin-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.pf-coin-symbol {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* STATS (VERTICAL LIKE IMAGE) */
+.pf-stats {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.pf-stats div {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0;
+  color: #6b7280;
+}
+
+.pf-stats strong {
+  color: #111827;
+  font-weight: 500;
+}
+
+/* VALUE */
+.pf-value {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* PNL BOX (LIKE IMAGE TAG STYLE) */
+.pf-pnl {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.pf-pnl.profit {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.pf-pnl.loss {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* BUTTONS */
+.pf-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pf-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pf-buy {
+  background: #22c55e;
+  color: #fff;
+}
+
+.pf-sell {
+  background: #ef4444;
+  color: #fff;
 }

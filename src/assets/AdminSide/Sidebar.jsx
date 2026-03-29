@@ -12,38 +12,38 @@ const Sidebar = () => {
     <div className="sd-container">
       <NavLink to="/admindashboard" end className="sd-link">
         <MdSpaceDashboard className="sd-icon" />
-        <span>Dashboard</span>
+        <span>Overview  </span>
       </NavLink>
 
       <NavLink to="/admindashboard/users" className="sd-link">
         <FaUsers className="sd-icon" />
-        <span>Users</span>
+        <span>User Management</span>
       </NavLink>
 
       <NavLink to="/admindashboard/invester" className="sd-link">
         <FaUserSecret className="sd-icon" />
-        <span>Investor</span>
+        <span>Investor Management</span>
       </NavLink>
       <NavLink to="/admindashboard/cryptocurrencies" className="sd-link">
         <FaBitcoin className="sd-icon" />
-        <span>Cryptocurrencies </span>
+        <span>Assets Management </span>
       </NavLink>
       <NavLink to="/admindashboard/wallet" className="sd-link">
         <GiWallet className="sd-icon" />
-        <span>Wallet and Transactions</span>
+        <span>Wallets & Transactions</span>
       </NavLink>
 
       <NavLink to="/admindashboard/trade" className="sd-link">
         <FaChartLine className="sd-icon" />
-        <span>Trade Monitering</span>
+        <span>Trade Activity</span>
       </NavLink>
       <NavLink to="/admindashboard/revenue" className="sd-link">
         <MdOutlineAttachMoney className="sd-icon" />
-        <span>Revenue Generation</span>
+        <span>Revenue & Commission</span>
       </NavLink>
       <NavLink to="/admindashboard/feedback" className="sd-link">
         <TbMessageReportFilled className="sd-icon" />
-        <span>Feedback</span>
+        <span>Feedback & Support</span>
       </NavLink>
     </div>
   );

@@ -7,7 +7,7 @@ const Home = () => {
     <>
     <Navbar/>
     <Hero/>
-    <LoaderToast/>
+    <LoaderToast message={"Deposited Successfully?"} type={'error'}/>
     <Extra/>
     </>
   )

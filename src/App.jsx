@@ -36,6 +36,7 @@ import InvestorCommission from "./assets/InvestorSide/InvestorCommission";
 import InvestorTransaction from "./assets/InvestorSide/InvestorTransaction";
 import InvestorCoinDetail from "./assets/InvestorSide/InvestorCoinDetail";
 import InvestorPortfolio from "./assets/InvestorSide/InvestorPortfolio";
+import InvestorPerformance from "./assets/InvestorSide/InvestorPerformance";
 import { CoinsProvider } from "./assets/UserSide/CoinsContext";
 const App = () => {
   const router = createBrowserRouter([
@@ -139,6 +140,7 @@ const App = () => {
         { path: "wallet", element: <Wallet /> },
         { path: "coin/:id", element: <InvestorCoinDetail /> },
         { path: "commission", element: <InvestorCommission /> },
+        { path: "performance", element: <InvestorPerformance /> },
       ],
     },
     {

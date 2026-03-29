@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../Images/logo.png";
 import ProfileImg from "../Images/profile.svg";
 import Settings from "./Settings"
@@ -22,22 +22,22 @@ const Navbar = () => {
         </div>
         <ul className="nav-links">
           <li>
-            <Link to="">Home</Link>
+            <NavLink  className={({ isActive }) => isActive ? "active" : ""} to="" end>Home</NavLink>
           </li>
           <li>
-            <Link to="portfolio">Portfolio</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="portfolio">Portfolio</NavLink>
           </li>
           <li>
-            <Link to="analytics">Analytics</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="analytics">Analytics</NavLink>
           </li>
           <li>
-            <Link to="watchlist">Watchlist</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="watchlist">Watchlist</NavLink>
           </li>
           <li>
-            <Link to="wallet">Wallet</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="wallet">Wallet</NavLink>
           </li>
           <li>
-            <Link to="feedback">Feedback</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="feedback">Feedback</NavLink>
           </li>
         </ul>
         <div className="profile">
@@ -56,16 +56,16 @@ const Navbar = () => {
         </div>
         <ul>
           <li>
-            <Link to="#">Market</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="#">Market</NavLink>
           </li>
           <li>
-            <Link to="#">Trade</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""}to="#">Trade</NavLink>
           </li>
           <li>
-            <Link to="#">Watchlist</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="#">Watchlist</NavLink>
           </li>
           <li>
-            <Link to="#">Feedback</Link>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="#">Feedback</NavLink>
           </li>
         </ul>
       </div>

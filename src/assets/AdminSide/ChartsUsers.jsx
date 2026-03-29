@@ -12,10 +12,9 @@ import {
 const ChartsUsers = ({ data }) => {
   if (!data || data.length === 0) return null;
   return (
-    <div>
-      <div>
+      <div  style={{ width: "100%", height: 250,padding:10, background: "#fff" }}>
         <h3>User Growth</h3>
-        <ResponsiveContainer width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={250} >
           <LineChart
             data={data}
           >
@@ -26,12 +25,27 @@ const ChartsUsers = ({ data }) => {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-            <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="#6b7280" />
+            <XAxis
+                       dataKey="date"
+                       tickFormatter={(value) =>
+                         new Date(value).toLocaleDateString("en-IN", {
+                           day: "2-digit",
+                           month: "short",
+                         })
+                       }
+                     />
             <YAxis tick={{ fontSize: 12 }} stroke="#6b7280" />
 
             <Tooltip
               contentStyle={{ borderRadius: "10px", border: "none" }}
               labelStyle={{ fontWeight: "bold" }}
+              labelFormatter={(value) =>
+              new Date(value).toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })
+            }
             />
             <Line
               type="monotone"
@@ -51,7 +65,7 @@ const ChartsUsers = ({ data }) => {
           </LineChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    
   );
 };
 

@@ -1,0 +1,130 @@
+.admin-footer {
+  width: 100%;
+  padding: 25px 40px;
+  background-color: #fffdf5;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* CONTAINER */
+.admin-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* ===== LEFT SECTION ===== */
+.footer-left {
+  max-width: 250px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.logo-section img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+
+}
+
+.logo-section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.tagline {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ===== CENTER ===== */
+.footer-center {
+  max-width: 420px;
+}
+
+.footer-center p {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.footer-center ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-center li {
+  font-size: 14px;
+  color: #111827;
+  margin-bottom: 6px;
+  transition: 0.3s;
+}
+
+/* Hover animation */
+.footer-center li:hover {
+  transform: translateX(5px);
+  color: #2563eb;
+}
+
+/* ===== RIGHT ===== */
+.footer-right {
+  text-align: right;
+  min-width: 200px;
+}
+
+.warning {
+  font-size: 13px;
+  color: #dc2626;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.version {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.status {
+  font-size: 14px;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* ===== HOVER EFFECT ===== */
+.admin-footer:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transition: 0.3s ease;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .admin-footer {
+    padding: 20px;
+  }
+
+  .admin-footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-right {
+    text-align: center;
+  }
+
+  .logo-section {
+    justify-content: center;
+  }
+}

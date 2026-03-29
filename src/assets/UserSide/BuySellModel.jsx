@@ -37,10 +37,18 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
     };
     getwalletData();
   }, []);
-  const setPercent = (p) => {
+const setPercent = (p) => {
+  if (type === "buy") {
     setMode("amount");
-    setValue(((balance * p) / 100).toFixed(2));
-  };
+    const target = (balance * p) / 100;
+    const amountWithoutFee = target / (1 + feePercent / 100);
+    setValue(amountWithoutFee.toFixed(2));
+  } else {
+    setMode("quantity");
+    const qty = (ownedQty * p) / 100;
+    setValue(qty.toFixed(10));
+  }
+};
 
   const confirmTrade = async () => {
     if ((type === "buy" && isBuyInvalid) || (type === "sell" && isSellInvalid))

@@ -2,8 +2,8 @@ import { usePortfolio } from "./PortfolioContext";
 import { useCoins } from "./CoinsContext";
 import BuySellModel from "./BuySellModel";
 import { useState,useMemo,useEffect } from "react";
-import AlertBox from "./AlertBox";
 import Pfimg from '../Images/Pfimg.svg'
+import LoaderToast from "./LoaderToast";
 import "./Portfolio.css";
 const Portfolio = () => {
   const { portfolio } = usePortfolio();
@@ -121,10 +121,11 @@ const Portfolio = () => {
         />
       )}{" "}
       {showAlert && (
-        <AlertBox
+        <LoaderToast
           message={showAlert.msg}
           type={showAlert.status}
           onClose={() => setShowAlert(null)}
+          
         />
       )}
     </div>

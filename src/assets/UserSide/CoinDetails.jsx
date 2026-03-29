@@ -9,6 +9,7 @@ import CoinDetailGraph from "./CoinDetailGraph";
 import BuySellModel from "./BuySellModel";
 import AlertBox from "./AlertBox";
 import axios from 'axios'
+import LoaderToast from "./LoaderToast";
 axios.defaults.withCredentials = true;
 const CoinDetails = ({}) => {
   const { id } = useParams();
@@ -159,12 +160,13 @@ const CoinDetails = ({}) => {
         />
       )}
       {showAlert && (  
-        <AlertBox
+        <LoaderToast
           message={alertData.message}
           type={alertData.type}
           onClose={() => setShowAlert(false)}
-        />
-      )}
+          shape={'lines'}
+          />
+        )}
     </>
   );
 };

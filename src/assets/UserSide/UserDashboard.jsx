@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import Coins from './Coins'
 import Market from './Market'
+import Hero from './Hero'
 import Footer from './Footer'
 import { Outlet, useLocation } from 'react-router-dom'
 const UserDashboard = () => {
@@ -12,8 +13,9 @@ const UserDashboard = () => {
     <Navbar />
       {isDashboardHome && (
         <>
+        <Hero/>
+          <Market/> 
           <Coins />
-          <Market/>
         </>
       )}
       <Outlet />   

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Logout = () => {
+const Logout = ({className}) => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -16,7 +16,7 @@ const Logout = () => {
     }
   };
   return (
-    <button className="sts-logout-btn" onClick={handleLogout}>
+    <button className={className} onClick={handleLogout}>
       Logout
     </button>
   );

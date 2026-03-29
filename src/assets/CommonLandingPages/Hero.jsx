@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Hero.css";
 
@@ -7,39 +6,32 @@ const Hero = () => {
 
   return (
     <section className="cl-h-hero">
-      <div className="cl-h-left">
-        <h1>Trade Crypto Securely with Real-Time Liquidity</h1>
+      <div className="cl-h-overlay"></div>
+
+      <div className="cl-h-content">
+        <h1>
+          Trade Crypto <span>Fast & Secure</span>
+        </h1>
+
         <p>
-          Buy, sell, and invest in top cryptocurrencies with speed,
-          transparency, and full control.
+          Buy, sell, and invest with real-time prices, instant transactions,
+          and institutional-grade security.
         </p>
 
         <div className="cl-h-actions">
-          <button
-            className="cl-h-primary"
-            onClick={() => navigate("/register/user")}
-          >
-            Get Started
+          <button onClick={() => navigate("/register/user")}>
+            Start Trading
           </button>
-          <button
-            className="cl-h-secondary"
-            onClick={() => navigate("/register/investor")}
-          >
+          <button className="secondary" onClick={() => navigate("/register/investor")}>
             Become an Investor
           </button>
         </div>
-
         <div className="cl-h-trust">
-          <span>🔒 Secure Wallets</span>
-          <span>⚡ Fast Trades</span>
-          <span>📊 Live Market Data</span>
-        </div>
-      </div>
-
-      <div className="cl-h-right">
-        <div className="cl-h-mock">
-          Market • Portfolio • Wallet
-        </div>
+      <span>🔐 Secure Wallets</span>
+      <span>⚡ Instant Trades</span>
+      <span>💱 Low Fees</span>
+      <span>📊 Live Prices</span>
+    </div>
       </div>
     </section>
   );

@@ -41,7 +41,7 @@ const Watchlist = () => {
     );
   }
   return (
-    <div>
+    <div className="watchlist-container">
       <h2 className="watchlist-title">My Watchlist</h2>
       {watchlistCoins.map((coin, i) => (
         <div className="watchlist-row">

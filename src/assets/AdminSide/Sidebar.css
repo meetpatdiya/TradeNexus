@@ -2,7 +2,7 @@
   width: 270px;
   min-width: 240px;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #fffdf5;
   border-right: 1px solid #e5e7eb;
   padding: 18px 12px;
   box-sizing: border-box;
@@ -23,7 +23,6 @@
   font-weight: 500;
   padding: 15px 14px;
   border-radius: 8px;
-
   transition: 
     background-color 0.2s ease,
     color 0.2s ease,
@@ -61,4 +60,8 @@
   height: 1px;
   background-color: #e5e7eb;
   margin: 10px 8px;
+}
+
+.page-content{
+        background-color: #FFFDF5;
 }

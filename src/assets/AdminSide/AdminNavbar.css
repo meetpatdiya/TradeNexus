@@ -1,5 +1,6 @@
 .ad-navbar{
     height: 60px;
+    background-color: #fffdf5;
     min-height: 60px;
     border-bottom: 2px solid #e5e7eb;
     display: flex;
@@ -8,7 +9,6 @@
     padding: 0 20px;
     box-sizing: border-box;
 }
-
 .nav-left{
     display: flex;
     align-items: center;
@@ -28,14 +28,6 @@
     flex:1;
     display: flex;
     justify-content: center;
-}
-
-.nav-search{
-    width: 40%;
-    padding: 8px 12px;
-    border-radius: 6px;
-    border: 1px solid #cfcfcf;
-    outline: none;
 }
 
 .nav-right{

@@ -97,7 +97,6 @@ const HomePage = () => {
             <th>Time</th>
           </tr>
         </thead>
-
         <tbody>
           {lastTrades.map((item, index) => (
             <tr key={index}>

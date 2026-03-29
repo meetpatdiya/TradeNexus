@@ -1,8 +1,10 @@
 import React from 'react'
 import InvestorNavbar from './InvestorNavbar'
-import Wallet from "../UserSide/Wallet"
 import InvestorCoins from './InvestorCoins'
 import { Outlet, useLocation } from 'react-router-dom'
+import InvestorFooter from './InvestorFooter'
+import InvestorGuide from './InvestorGuide'
+import InvestorHero from './InvestorHero'
 const InvestorDashboard = () => {
    const { pathname } = useLocation();
     const isDashboard = pathname === "/investordashboard";
@@ -11,10 +13,14 @@ const InvestorDashboard = () => {
     <InvestorNavbar/>
     {isDashboard && (
         <>
+        <InvestorGuide/>
+        <InvestorHero/>
           <InvestorCoins/>
+
         </>
       )}
-      <Outlet />   
+      <Outlet />  
+      <InvestorFooter/> 
     </>
   )
 }

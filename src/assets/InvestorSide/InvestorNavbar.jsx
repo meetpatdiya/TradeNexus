@@ -18,6 +18,7 @@ const InvestorNavbar = () => {
         <Link to={'portfolio'}>Portfolio</Link>
         <Link to={'transactions'}>Transactions</Link>
         <Link to={'commission'}>Commission</Link>
+        <Link to={'performance'}>Performance</Link>
       </div>
         <div className="profile">
           <img src={ProfileImg} alt="Profile" onClick={()=>setsettings(p=>!p)}  />

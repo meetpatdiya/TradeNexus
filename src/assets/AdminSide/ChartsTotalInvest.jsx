@@ -6,29 +6,52 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 const ChartsTotalInvest = ({ data }) => {
   const formattedData = data.map((item) => ({
     date: item.date,
-    total_investment: Number(item.total_investment)
+    total_investment: Number(item.total_investment),
   }));
-  
-  return (
-    <div style={{ width: "100%", height: 350, background: "#fff", padding: "20px", borderRadius: "10px" }}>
-      <h3 style={{ marginBottom: "20px" }}>Investor Total Investment Over Time</h3>
 
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: 350,
+        background: "#fff",
+        padding: "20px",
+        borderRadius: "10px",
+      }}
+    >
+      <h3 style={{ marginBottom: "20px" }}>
+        Investor Total Investment Over Time
+      </h3>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={formattedData}>
           <CartesianGrid strokeDasharray="3 3" />
 
-          <XAxis dataKey="date" />
-
+          <XAxis
+            dataKey="date"
+            tickFormatter={(value) =>
+              new Date(value).toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+              })
+            }
+          />
           <YAxis />
 
-          <Tooltip />
-
+          <Tooltip
+            labelFormatter={(value) =>
+              new Date(value).toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })
+            }
+          />
           <Area
             type="monotone"
             dataKey="total_investment"

@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import "./Wallet.css";
+import LoaderToast from "./LoaderToast";
 import { useWallet } from "./WalletContext";
 import { TiBackspace } from "react-icons/ti";
+import { GiWallet } from "react-icons/gi";
 import axios from "axios";
 const Wallet = () => {
   // add 20Rupees withdrawal fees on every withdrawal
@@ -14,11 +16,11 @@ const Wallet = () => {
   const [hasEnteredAccDigits, setHasEnteredAccDigits] = useState(true);
   const [wlMessage, setWlMessage] = useState("");
   const [wlMessageType, setWlMessageType] = useState("");
-  const [transactions, setTransactions] = useState([]);
-  // Check localStorage on load
+  const [showAlert, setshowAlert] = useState(false);
+  const [showAmount, setshowAmount] = useState(false);
+  const [wltDetail, setwltDetail] = useState({});
   const handleKey = (e) => {
     if (e.target.tagName === "INPUT") return;
-
     if (e.key >= "0" && e.key <= "9") {
       setWlValue((p) => p + e.key);
     }
@@ -34,28 +36,15 @@ const Wallet = () => {
       const { data } = await axios.get("http://localhost:5000/wallet", {
         withCredentials: true,
       });
-      setBalance(data.balance);
-      if (data.bank_last_4 === null) setHasEnteredAccDigits(false);
+      setwltDetail(data);
+      setBalance(data.balance[0].balance);
+      if (data.balance[0].bank_last_4 === null) setHasEnteredAccDigits(false);
     } catch (err) {
       console.log("Error fetching wallet:", err);
     }
   };
-  const getallTransaction = async () => {
-    try {
-      const { data } = await axios.get(
-        "http://localhost:5000/wallet/transactions",
-        {
-          withCredentials: true,
-        },
-      );
-      setTransactions(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     getwalletData();
-    getallTransaction();
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
@@ -119,7 +108,7 @@ const Wallet = () => {
         setWlMessage("Insufficient wallet balance for this withdrawal.");
         setWlMessageType("error");
       } else {
-         await axios.post(
+        await axios.post(
           "http://localhost:5000/wallet/withdraw",
           { wlValue: Number(wlValue) },
           { withCredentials: true },
@@ -133,132 +122,173 @@ const Wallet = () => {
     } else {
       alert("error");
     }
-    getallTransaction()
+    getwalletData();
+    setshowAlert(true);
+    setshowAmount(false);
+  };
+  const typeColors = {
+    deposit: "green",
+    withdraw: "red",
+    adjustment: "purple",
+    commission_withdraw: "yellow",
   };
   return (
-    <>
-      <div className="wl-link">
-        <div className="wl-header">
-          <h2 className="wl-title">Welcome to Your Wallet</h2>
-          <p className="wl-subtitle">Secure Wallet Section</p>
-          <p className="wl-info">
-            Track balances, manage inputs, and stay in control
-          </p>
-          <span className="wl-badge">Fast • Secure • Reliable</span>
+    <div className="wl-page">
+      {!hasEnteredAccDigits ? (
+        <div className="wl-center">
+          <div className="wl-card wl-main-card">
+              <div className="wl-icon">💼</div>
+            <h2>Add Bank Details</h2>
+            <p className="wl-sub">Enter last 4 digits</p>
+            <div className="wl-input-container">
+              {accNumberDigits.map((digit, idx) => (
+                <input
+                  key={idx}
+                  type="text"
+                  maxLength="1"
+                  value={digit}
+                  onChange={(e) => accNumberHandleChange(e, idx)}
+                  onKeyDown={(e) => accNumberHandleKeyDown(e, idx)}
+                  ref={(el) => (accNumberRefs.current[idx] = el)}
+                  className="wl-digit-input"
+                />
+              ))}
+            </div>
+            <button onClick={accNumberHandleSubmit} className="wl-submit-btn">
+              Submit
+            </button>
+          </div>
         </div>
-        {wlMessage && (
-          <div
-            className={`wl-message ${
-              wlMessageType === "error" ? "wl-error" : "wl-success"
-            }`}
-          >
-            {wlMessage}
-          </div>
-        )}
-        {!hasEnteredAccDigits && (
-          <>
-            <div className="wl-id">
-              Enter Last 4 digits of your Bank Account
-            </div>
-            <div className="wl-container">
-              <div className="wl-input-container">
-                {accNumberDigits.map((digit, idx) => (
-                  <input
-                    key={idx}
-                    type="text"
-                    maxLength="1"
-                    value={digit}
-                    onChange={(e) => accNumberHandleChange(e, idx)}
-                    onKeyDown={(e) => accNumberHandleKeyDown(e, idx)}
-                    ref={(el) => (accNumberRefs.current[idx] = el)}
-                    className="wl-digit-input"
-                  />
-                ))}
+      ) : (
+        <>
+          <div className="wl-center">
+            <div className="wl-card">
+              <div className="wl-icon-main"><GiWallet className="wl-icons"/></div>
+              <h2>Wallet</h2>
+              <p className="wl-sub">Secure Wallet Section</p>
+              <div className="wl-balance">
+                <h1>${Number(balance).toLocaleString()}</h1>
               </div>
-              <button onClick={accNumberHandleSubmit} className="wl-submit-btn">
-                Submit
-              </button>
-            </div>
-          </>
-        )}
-        {hasEnteredAccDigits && (
-          <>
-            <div className="wl-total">{Number(balance)}</div>
-            <div className="wl-toggle">
-              <button
-                className={`wl-toggle-btn ${
-                  wlMode === "deposit" ? "wl-active" : ""
-                }`}
-                onClick={() => {
-                  setWlMode("deposit");
-                  setWlMessage("");
-                }}
-              >
-                Deposit
-              </button>
-              <button
-                className={`wl-toggle-btn ${
-                  wlMode === "withdraw" ? "wl-active" : ""
-                }`}
-                onClick={() => {
-                  setWlMode("withdraw");
-                  setWlMessage("");
-                }}
-              >
-                Withdraw
-              </button>
-            </div>
-            <div className="wl-add-nums">
-              <div className="wl-ds-nums">{wlValue}</div>
-
-              <div className="wl-nums">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
-                  <button
-                    key={n}
-                    className="wl-num-btn"
-                    onClick={() => addDigit(n)}
-                  >
-                    {n}
-                  </button>
-                ))}
+              <div className="wl-toggle">
                 <button
-                  className="wl-num-btn wl-clear"
-                  onClick={() => setWlValue("")}
+                  className={wlMode === "deposit" ? "active deposit-btn" : "deposit-btn"}
+                  onClick={() => {
+                    setshowAmount(true);
+                    setWlMode("deposit");
+                    setWlMessage("");
+                  }}
                 >
-                  AC
+                  Deposit
                 </button>
 
-                <button className="wl-num-btn" onClick={() => addDigit(0)}>
-                  0
-                </button>
-
-                <button className="wl-num-btn wl-back" onClick={removeLast}>
-                  <TiBackspace />
+                <button
+                  className={wlMode === "withdraw" ? "active withdraw-btn" : "withdraw-btn"}
+                  onClick={() => {
+                    setshowAmount(true);
+                    setWlMode("withdraw");
+                    setWlMessage("");
+                  }}
+                >
+                  Withdraw
                 </button>
               </div>
-
-              <button className="wl-nums-btn" onClick={submit}>
-                Submit
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-      <div className="wl-trsns-titl">Your Transactions</div>
-      <div className="wl-trns">
-        {transactions.map((item, index) => (
-          <div className="wl-row" key={index}>
-            <div className={`wl-stype ${item.type.toLowerCase()}`}>
-              {item.type}
-            </div>
-            <div className="wl-samount">{item.amount}</div>
-            <div className={`wl-sstatus ${item.status.toLowerCase()}`}>
-              {item.status}
             </div>
           </div>
-        ))}
-      </div>
-    </>
+          <div className="wl-stats-wrapper">
+          <div className="wl-stats-row">
+            <div className="wl-stat-card wl-deposit">
+              <p>Total Deposited</p>
+              <h3>{wltDetail?.totalDeposited?.[0]?.totalDeposited || 0}</h3>
+            </div>
+
+            <div className="wl-stat-card wl-withdraw">
+              <p>Total Withdrawn</p>
+              <h3>{wltDetail?.totalWithdrawn?.[0]?.totalWithdrawn || 0}</h3>
+            </div>
+
+            <div className="wl-stat-card wl-pending">
+              <p>Pending Withdraw</p>
+              <h3>
+                {wltDetail?.totalWithdrawnPending?.[0]?.totalWithdrawnPending ||
+                  0}
+              </h3>
+            </div>
+
+            <div className="wl-stat-card wl-commission">
+              <p>Commission</p>
+              <h3>
+                {wltDetail?.totalCommissionGiven?.[0]?.totalCommissionGiven ||
+                  0}
+              </h3>
+            </div>
+          </div>
+          </div>
+          {showAmount && (
+            <div className="wl-overlay">
+              <div className="wl-modal">
+                <button
+                  className="wl-close"
+                  onClick={() => setshowAmount(false)}
+                >
+                  ✕
+                </button>
+                <div className="wl-ds-nums">{wlValue}</div>
+                <div className="wl-nums">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                    <button key={n} onClick={() => addDigit(n)}>
+                      {n}
+                    </button>
+                  ))}
+                  <button className="clear" onClick={() => setWlValue("")}>
+                    AC
+                  </button>
+                  <button onClick={() => addDigit(0)}>0</button>
+                  <button onClick={removeLast}>
+                    <TiBackspace />
+                  </button>
+                </div>
+                <button className="submit" onClick={submit}>
+                  Submit
+                </button>
+              </div>
+            </div>
+          )}
+
+          <div className="wl-transactions">
+            <div className="wl-trans-title">Recent Transactions</div>
+            <div className="wl-transaction header">
+              <p>#</p>
+              <p>Type</p>
+              <p>Amount</p>
+              <p>Status</p>
+              <p>Date</p>
+            </div>
+            {wltDetail?.lastTransactions?.map((item, index) => (
+              <div key={index} className="wl-transaction">
+                <p>{item.id}</p>
+                <strong className={typeColors[item.type] || "default"}>
+                  {item.type}
+                </strong>
+                <p>${item.amount}</p>
+                <span className={`status ${item.status}`}>{item.status}</span>
+                <small>
+                  {new Date(item.created_at).toLocaleString("en-IN")}
+                </small>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {showAlert && (
+        <LoaderToast
+          message={wlMessage}
+          type={wlMessageType}
+          shape={"circle"}
+          onClose={() => setshowAlert(false)}
+        />
+      )}
+    </div>
   );
 };
 

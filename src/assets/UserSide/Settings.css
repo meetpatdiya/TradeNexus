@@ -1,164 +1,178 @@
-/* Overlay blur background */
-
+/* Overlay */
 .sts-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   backdrop-filter: blur(6px);
-  background: rgba(0,0,0,0.15);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: flex-end;
   z-index: 1000;
 }
 
-
-/* Right side panel */
-
+/* Panel */
 .sts-panel {
-  width: 20%;
-  min-width: 320px;
-  height: 100vh;
-  background: white;
-  padding: 30px 25px;
-  box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+  width: 380px;
+  height: 100%;
+  background: #ffffff;
+  padding: 24px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
   animation: sts-slide 0.3s ease;
 }
 
-
-/* Slide animation */
-
+/* Animation */
 @keyframes sts-slide {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
 
-
 /* Header */
-
 .sts-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .sts-title {
   font-size: 20px;
   font-weight: 600;
+  color: #111;
 }
 
 .sts-close {
   border: none;
   background: transparent;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
+  color: #666;
 }
 
 
-/* Buttons */
-
 .sts-actions {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-bottom: 25px;
+}
+
+.sts-btn.active {
+  background: #111827;
+  color: #fff;
+  border-color: none;
+}
+.sts-btn.active:hover {
+  background: #111;
+  color: #fff;
+  border-color: none;
+}
+
+.sts-old-pass-box {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #d1d5db;
+}
+
+.sts-input.sts-old-pass {
+  border: 1px solid #f59e0b;
+  background: #fff7ed;
+  width: 100%;
 }
 
 .sts-btn {
   flex: 1;
   padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background: #f7f7f7;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
 .sts-btn:hover {
-  background: #ececec;
+  background: #f1f5f9;
+  border-color: #d1d5db;
 }
 
-
 /* Form */
-
 .sts-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background: #f8fafc;
+  padding: 14px;
+  border-radius: 12px;
 }
 
-
 /* Inputs */
-
 .sts-input {
   padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
   font-size: 14px;
+  background: #fff;
 }
 
 .sts-input:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: #111;
 }
 
-
-/* Submit button */
-
+/* Submit */
 .sts-submit {
-  padding: 10px;
+  padding: 11px;
   border: none;
-  border-radius: 6px;
-  background: #4f46e5;
+  border-radius: 10px;
+  background: #2563eb;
   color: white;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.25s;
 }
 
 .sts-submit:hover {
-  background: #4338ca;
+  background: #1442a7;
 }
 
+/* Message */
 .sts-message {
-  font-size: 13px;
+  font-size: 12px;
   color: #e11d48;
 }
 
+/* Divider */
 .sts-divider {
   margin: 25px 0;
   height: 1px;
   background: #eee;
 }
 
+/* Logout */
 .sts-logout {
   margin-top: auto;
 }
+
 .sts-logout-btn {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   background: #ef4444;
-  color: white;
+  color: #fff;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.25s;
 }
 
 .sts-logout-btn:hover {
-  background: #dc2626;
-  transform: translateY(-1px);
-}
-
-.sts-logout-btn:active {
-  transform: translateY(0);
+  background: #c02b2b;
 }

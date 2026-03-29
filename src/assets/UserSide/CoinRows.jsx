@@ -10,9 +10,8 @@ const CoinRows = ({coin , search}) => {
   return (
     <div>
        <div  className={`coin-row ${isMatched ? "highlight-row" : ""}`} onClick={() =>{ navigate(`/userdashboard/coin/${coin.id}`)}} key={coin.id}>
-      
             <div className="coin-rank">{coin.market_cap_rank}</div>
-      
+
             <div className="coin-info">
               <img src={coin.image} alt={coin.name} />
               <span className="coin-name">

@@ -1,64 +1,61 @@
-/* PAGE LAYOUT */
 .mk-container {
-  max-width: 1200px;
+  /* max-width: 100%; */
   margin: auto;
-  padding: 20px;
+  padding: 30px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr); 
   gap: 20px;
-  box-sizing: border-box;
+  background-color: #f8f9fb;
 }
 
-/* CARD */
 .mk-card {
-  background: #0b1220;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
 }
 
-/* TITLES */
+.mk-card:hover {
+  transform: translateY(-4px);
+}
+
 .mk-card-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #e5e7eb;
+  color: #111827;
   margin-bottom: 12px;
 }
 
-/* LIST */
+.mk-name {
+  color: #1f2937;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 .mk-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* ROW */
 .mk-row {
   display: grid;
   grid-template-columns: 30px 1fr auto;
   align-items: center;
-  padding: 10px 12px;
+  padding: 10px;
   border-radius: 10px;
-  background: #020617;
+  background: #f9fafb;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.2s;
 }
 
 .mk-row:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: #f1f5f9;
 }
 
-/* TEXT */
 .mk-rank {
-  color: #64748b;
-  font-size: 0.85rem;
-}
-
-.mk-name {
-  color: #f1f5f9;
-  font-size: 0.9rem;
-  font-weight: 500;
+  color: #9ca3af;
 }
 
 .mk-value {
@@ -66,8 +63,21 @@
   font-weight: 600;
 }
 
-/* COLOR THEMES */
-.mk-gainers .mk-value {
+.mk-gainers {
+  border-top: 4px solid #22c55e;
+}
+
+.mk-losers {
+  border-top: 4px solid #ef4444;
+}
+
+.mk-volume {
+  border-top: 4px solid #3b82f6;
+}
+
+.mk-volatile {
+  border-top: 4px solid #f59e0b;
+}.mk-gainers .mk-value {
   color: #22c55e;
 }
 
@@ -82,7 +92,21 @@
 .mk-volatile .mk-value {
   color: #facc15;
 }
+.mk-gainers:hover {
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.15);
+}
 
+.mk-losers:hover {
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.15);
+}
+
+.mk-volume:hover {
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}
+
+.mk-volatile:hover {
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.15);
+}
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .mk-container {

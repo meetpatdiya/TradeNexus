@@ -12,7 +12,9 @@
   padding:18px 20px;
   border:1px solid #e6ecf5;
 }
-
+.admin-withdraws table{
+  background-color: #fff;
+}
 .ah-recentTrades-header{
   display:flex;
   justify-content:space-between;
@@ -86,4 +88,127 @@
 .ah-sell{
   background:#fee2e2;
   color:#dc2626;
+}
+.ad-wtl-container {
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  gap: 24px;
+}
+
+/* Card */
+.ad-wtl-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  width: 100%; /* full width so no side-by-side */
+}
+
+/* Header */
+.ad-wtl-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Table */
+.ad-wtl-table-wrapper {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.ad-wtl-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ad-wtl-table thead {
+  background: #f9fafb;
+}
+
+.ad-wtl-table th {
+  text-align: left;
+  padding: 12px;
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.ad-wtl-table td {
+  padding: 14px 12px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #111827;
+}
+
+.ad-wtl-table tr:hover {
+  background: #f9fafb;
+}
+
+/* Amount */
+.ad-wtl-amount {
+  font-weight: 600;
+  color: #059669;
+}
+
+/* Buttons */
+.ad-wtl-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.ad-wtl-approve {
+  background: #10b981;
+  color: white;
+}
+
+.ad-wtl-approve:hover {
+  background: #059669;
+}
+
+.ad-wtl-reject {
+  background: #ef4444;
+  color: white;
+}
+
+.ad-wtl-reject:hover {
+  background: #dc2626;
+}
+
+/* Commission */
+.ad-wtl-commission-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.ad-wtl-commission-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 14px;
+  border-radius: 12px;
+}
+
+/* Empty */
+.ad-wtl-empty {
+  margin-top: 15px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+.ad-wtl-table td:last-child {
+  text-align: center;
+}
+
+.ad-wtl-table td:nth-child(3) {
+  font-weight: 500;
 }

@@ -13,14 +13,14 @@ function ChartsProfitable({ data }) {
   const chartData = data.map((d) => ({
     coin: d.symbol.toUpperCase(),
     profit: Number(d.profit)
-  }));
+  }));  
 
   return (
-    <div style={{ width: "100%", height: 250, }}>
+    <div style={{ width: "100%", height: 250,padding:10, background: "#fff" }}>
       <h3 >Most Profitable Coins</h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={chartData}>
- 
+
           <CartesianGrid strokeDasharray="3 3" />
 
           <XAxis dataKey="coin" />

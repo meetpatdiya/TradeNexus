@@ -33,12 +33,16 @@ const sortedCoins = useMemo(() => {
 
   return (
     <>
-    Search a coin
+    <div className="search-cont">
       <input
         type="text"
         value={search}
-        onChange={(e) => setsearch(e.target.value)}
+         placeholder="Search coins (e.g. Bitcoin, ETH...)"
+        className="coins-search"
+        onChange={(e) => setsearch(e.target.value)
+        }
       />
+    </div>
       <div className="coins-container">
         <div className="coin-header">
           <span>#</span>

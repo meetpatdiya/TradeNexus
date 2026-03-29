@@ -18,7 +18,7 @@ const AdminUsers = () => {
   };
   const handleShowDetail = (id) => {
     navigate(`/admindashboard/users/${id}`);
-  };
+  };  
   const filteredUsers = userData.filter(
     (user) =>
       user.email.toLowerCase().includes(search.toLowerCase()) ||
