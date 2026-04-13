@@ -67,7 +67,6 @@ const Registration = () => {
       }
       console.error(err);
     }
-    // console.log(formData);
   };
   const formDataChange = (e) => {
     const { name, value } = e.target;

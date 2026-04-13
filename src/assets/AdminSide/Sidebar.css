@@ -2,7 +2,7 @@
   width: 270px;
   min-width: 240px;
   height: 100vh;
-  background-color: #fffdf5;
+background: linear-gradient(135deg, #fff8e6, #fffdf7);
   border-right: 1px solid #e5e7eb;
   padding: 18px 12px;
   box-sizing: border-box;
@@ -63,5 +63,5 @@
 }
 
 .page-content{
-        background-color: #FFFDF5;
+background: linear-gradient(135deg, #fff8e6, #fffdf7);
 }

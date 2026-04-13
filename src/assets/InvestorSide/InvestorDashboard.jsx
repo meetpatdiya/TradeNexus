@@ -5,6 +5,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import InvestorFooter from './InvestorFooter'
 import InvestorGuide from './InvestorGuide'
 import InvestorHero from './InvestorHero'
+import Extra from "../CommonLandingPages/Extra"
 const InvestorDashboard = () => {
    const { pathname } = useLocation();
     const isDashboard = pathname === "/investordashboard";
@@ -15,6 +16,7 @@ const InvestorDashboard = () => {
         <>
         <InvestorGuide/>
         <InvestorHero/>
+        <Extra/>
           <InvestorCoins/>
 
         </>

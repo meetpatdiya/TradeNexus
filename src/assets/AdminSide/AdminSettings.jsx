@@ -6,7 +6,7 @@ const AdminSettings = ({onClose}) => {
     const [adminData, setadminData] = useState({})
     const getAdminData = async () =>{
         try {  
-            const {data} =await axios.get("http://localhost:5000/admin/getadmindata",{withCredentials:true});
+            const {data} =await axios.get("http://localhost:5000/getYourData",{withCredentials:true});
             console.log(data);
             setadminData(data)
         } catch (error) {

@@ -20,7 +20,7 @@ const chartData = trades.map((item) => ({
          <h3>
       Trades Data
     </h3>
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height={350}>
         <LineChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date"  

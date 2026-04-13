@@ -1,21 +1,20 @@
-.cl-h-hero {
+.cl-container {
   height: 100vh;
-
-  /* Background image */
   background-image: url("../Images/hero-bg2.avif");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: left center;
-
   position: relative;
+  background-position: left center;
+}
+.cl-h-hero {
+  height: 90%;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* text on right */
+  justify-content: flex-end; 
   padding: 0 90px;
   color: #ffffff;
 }
 
-/* Gradient overlay (darkens RIGHT side only) */
 .cl-h-overlay {
   position: absolute;
   inset: 0;

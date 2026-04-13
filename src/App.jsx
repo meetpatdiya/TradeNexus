@@ -18,6 +18,7 @@ import { WalletProvider } from "./assets/UserSide/WalletContext";
 import { PortfolioProvider } from "./assets/UserSide/PortfolioContext";
 import AdminTrades from "./assets/AdminSide/AdminTrades";
 import Login from "./assets/CommonLandingPages/Login";
+import Forgot from "./assets/CommonLandingPages/Forgot";
 import CoinDetails from "./assets/UserSide/CoinDetails";
 import News from "./assets/CommonLandingPages/News";
 import Home from "./assets/CommonLandingPages/Home";
@@ -33,10 +34,9 @@ import HomePage from "./assets/AdminSide/HomePage";
 import Anaylytics from "./assets/UserSide/Analytics"
 import AdminFiatWallet from "./assets/AdminSide/AdminFiatWallet";
 import InvestorCommission from "./assets/InvestorSide/InvestorCommission";
-import InvestorTransaction from "./assets/InvestorSide/InvestorTransaction";
+import InvestorAnalytics from "./assets/InvestorSide/InvestorAnalytics";
 import InvestorCoinDetail from "./assets/InvestorSide/InvestorCoinDetail";
 import InvestorPortfolio from "./assets/InvestorSide/InvestorPortfolio";
-import InvestorPerformance from "./assets/InvestorSide/InvestorPerformance";
 import { CoinsProvider } from "./assets/UserSide/CoinsContext";
 const App = () => {
   const router = createBrowserRouter([
@@ -55,6 +55,7 @@ const App = () => {
       ),
       children: [
         { path: "portfolio", element: <Portfolio /> },
+        { path: "news", element: <News /> },
         { path: "watchlist", element: <Watchlist /> },
         { path: "wallet", element: <Wallet /> },
         { path: "feedback", element: <Feedback /> },
@@ -136,16 +137,12 @@ const App = () => {
       ),
       children: [
         { path: "portfolio", element: <InvestorPortfolio /> },
-        { path: "transactions", element: <InvestorTransaction /> },
+        { path: "news", element: <News /> },
+        { path: "analytics", element: <InvestorAnalytics /> },
         { path: "wallet", element: <Wallet /> },
         { path: "coin/:id", element: <InvestorCoinDetail /> },
         { path: "commission", element: <InvestorCommission /> },
-        { path: "performance", element: <InvestorPerformance /> },
       ],
-    },
-    {
-      path: "/news",
-      element: <News />,
     },
     {
       path: "/register/:role",
@@ -154,6 +151,10 @@ const App = () => {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/forgotpassword",
+      element: <Forgot />,
     },
   ]);
   return (

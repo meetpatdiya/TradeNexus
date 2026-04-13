@@ -19,20 +19,12 @@ const AdminFooter = () => {
             This dashboard is intended for administrative use only. All actions
             directly impact platform performance, security, and user experience.
           </p>
-
-          <ul>
-            <li>✔ Monitor transactions</li>
-            <li>✔ Review system data</li>
-            <li>✔ Manage platform resources</li>
-          </ul>
         </div>
 
         <div className="footer-right">
           <p className="warning">
             ⚠️ Unauthorized or incorrect actions may affect system stability.
           </p>
-
-          <p className="version">Version 1.0.0</p>
           <p className="status">Secure & Operational ✅</p>
         </div>
       </div>

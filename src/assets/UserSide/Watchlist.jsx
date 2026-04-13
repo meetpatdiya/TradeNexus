@@ -1,7 +1,7 @@
 import { useCoins } from "./CoinsContext";
 import CoinRows from "./CoinRows";
 import { FiX } from "react-icons/fi";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import "./Watchlist.css";
 import { useEffect } from "react";
 import EmptyList from "../Images/EmptyList.svg";
@@ -9,7 +9,7 @@ import axios from "axios";
 import { useState } from "react";
 const Watchlist = () => {
   const [watchlistCoin, setwatchlistCoin] = useState([]);
-  const { coins, watchlist, toggleWatchlist } = useCoins();
+  const { coins, watchlist } = useCoins();
   useEffect(() => {
     const getWatchlistData = async () => {
       const { data } = await axios.get("http://localhost:5000/watchlist");

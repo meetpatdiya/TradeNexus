@@ -139,3 +139,14 @@ input::placeholder {
   font-weight: 600;
   text-decoration: none;
 }
+.forgot{
+  display: block;
+  margin-top: 6px;
+  text-align: center;
+}
+.forgot a{
+  font-size: 14px;
+  color: #eab308;
+  font-weight: 600;
+  text-decoration: none;
+}

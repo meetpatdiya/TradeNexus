@@ -8,7 +8,7 @@
 .in-navbar {
   height: 70px;
   width: 100%;
-  background: #f4fbf6;
+background: linear-gradient(135deg, #e6f9f0, #f5fffb);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,23 +24,43 @@
   align-items: center;
 }
 
-.logo {
+.in-navbar .logo {
   height: 55px;
+}
+
+.in-navbar {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* better than margin */  
 }
 
 .in-navbar a {
   text-decoration: none;
-  color: #334155;
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 500;
-  margin: 0 14px;
-  transition: 0.3s ease;
+  color: #555; /* neutral default */
+  padding: 8px 14px;
+  border-radius: 10px;
+  margin: 0 5px;
+  transition: all 0.25s ease;
 }
 
+/* Hover */
 .in-navbar a:hover {
-  color: #2563eb;
+  color: #16a34a;
+  background: #ffffff;
 }
 
+.in-navbar a.active-link {
+  color: #16a34a;
+  font-weight: 600;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* subtle depth */
+}
+
+.in-navbar a:active {
+  transform: scale(0.96);
+}
 .profile img {
   height: 36px;
   width: 36px;

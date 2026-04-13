@@ -8,10 +8,9 @@ body {
 .cd-container {
   display: grid;
   grid-template-columns: 300px 1fr;
-  height: 100vh;
+  height: 800px;
 }
 
-/*LEFT COIN LIST*/
 .cd-coin-names {
   background-color: #ffffff;
   overflow-y: auto;

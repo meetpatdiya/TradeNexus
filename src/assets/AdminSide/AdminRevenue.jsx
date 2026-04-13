@@ -2,6 +2,15 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "./AdminRevenue.css";
 
+import {
+  FaChartBar,
+  FaExchangeAlt,
+  FaWallet,
+  FaArrowUp,
+  FaArrowDown,
+  FaCoins
+} from "react-icons/fa";
+
 const AdminRevenue = () => {
   const [adminWithdrawn, setadminWithdrawn] = useState(0);
   const [adminAvailableCommission, setadminAvailableCommission] = useState(0);
@@ -70,13 +79,16 @@ const AdminRevenue = () => {
 
   const handleAdminCollect = async () => {
     try {
-      await axios.post(
+     const {data} = await axios.post(
         "http://localhost:5000/admin/collectCommission",
         {},
         { withCredentials: true }
       );
+      console.log(data);
+      
       getRevenueData();
     } catch (error) {
+      console.log(error);
       console.log(error.response);
     }
   };
@@ -96,61 +108,93 @@ const AdminRevenue = () => {
 
   return (
     <div className="ad-r-container">
-      <h1 className="ad-r-title">Platform Revenue Monitor</h1>
+
+      <h1 className="ad-r-title">Revenue Dashboard</h1>
       <div className="ad-r-stats">
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Platform Commission</span>
+          <div className="ad-r-stat-top">
+            <FaChartBar className="ad-r-icon blue" />
+            <span className="ad-r-label">Platform Commission</span>
+          </div>
           <span className="ad-r-value">{totalPlatfromCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Trade Commission</span>
+          <div className="ad-r-stat-top">
+            <FaExchangeAlt className="ad-r-icon purple" />
+            <span className="ad-r-label">Total Trade Commission</span>
+          </div>
           <span className="ad-r-value">{totalTradeCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Withdraw Commission</span>
+          <div className="ad-r-stat-top">
+            <FaWallet className="ad-r-icon green" />
+            <span className="ad-r-label">Withdraw Commission</span>
+          </div>
           <span className="ad-r-value">{withdrawCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Buy Commission</span>
+          <div className="ad-r-stat-top">
+            <FaArrowUp className="ad-r-icon green" />
+            <span className="ad-r-label">Buy Commission</span>
+          </div>
           <span className="ad-r-value">{buyTradeCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Sell Commission</span>
+          <div className="ad-r-stat-top">
+            <FaArrowDown className="ad-r-icon red" />
+            <span className="ad-r-label">Sell Commission</span>
+          </div>
           <span className="ad-r-value">{sellTradeCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Admin Trade Share</span>
+          <div className="ad-r-stat-top">
+            <FaCoins className="ad-r-icon orange" />
+            <span className="ad-r-label">Admin Trade Share</span>
+          </div>
           <span className="ad-r-value">{adminTradeShare.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Admin Withdrawn</span>
+          <div className="ad-r-stat-top">
+            <FaWallet className="ad-r-icon blue" />
+            <span className="ad-r-label">Admin Withdrawn</span>
+          </div>
           <span className="ad-r-value">{adminWithdrawn.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Admin Available</span>
+          <div className="ad-r-stat-top">
+            <FaWallet className="ad-r-icon purple" />
+            <span className="ad-r-label">Admin Available</span>
+          </div>
           <span className="ad-r-value">{adminAvailableCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Total Admin Commission</span>
+          <div className="ad-r-stat-top">
+            <FaCoins className="ad-r-icon green" />
+            <span className="ad-r-label">Total Admin Commission</span>
+          </div>
           <span className="ad-r-value">{totalAdminCommission.toFixed(2)}</span>
         </div>
 
         <div className="ad-r-stat">
-          <span className="ad-r-label">Investor Total Share</span>
+          <div className="ad-r-stat-top">
+            <FaCoins className="ad-r-icon purple" />
+            <span className="ad-r-label">Investor Total Share</span>
+          </div>
           <span className="ad-r-value">{investorTotalShare.toFixed(2)}</span>
         </div>
 
       </div>
 
+      {/* ===== ACTIONS ===== */}
       <div className="ad-r-actions">
         <button className="ad-r-btn collect" onClick={handleAdminCollect}>
           Collect Revenue
@@ -161,26 +205,40 @@ const AdminRevenue = () => {
         </button>
       </div>
 
-      <h2 className="ad-r-subtitle">Investor Commission Distribution</h2>
+      {/* ===== BOTTOM SECTION ===== */}
+      <div className="ad-r-bottom">
 
-      <div className="ad-r-investor-list">
-        {investorCommission.map((item, index) => (
-          <div key={index} className="ad-r-investor-row">
+        <div className="ad-r-investor-box">
+          <h2 className="ad-r-subtitle">Investor Commission</h2>
 
-            <span className="ad-r-investor-id">
-              #{item.user_id}
-            </span>
+          <div className="ad-r-investor-list">
+            {investorCommission.map((item, index) => (
+              <div key={index} className="ad-r-investor-row">
 
-            <span className="ad-r-investor-name">
-              {item.name}
-            </span>
+                <span className="ad-r-investor-id">
+                  #{item.user_id}
+                </span>
 
-            <span className="ad-r-investor-amount">
-              {parseFloat(item.total_commission).toFixed(2)}
-            </span>
+                <span className="ad-r-investor-name">
+                  {item.name}
+                </span>
 
+                <span className="ad-r-investor-amount">
+                  {parseFloat(item.total_commission).toFixed(2)}
+                </span>
+
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* <div className="ad-r-chart-box">
+          <h2 className="ad-r-subtitle">Commission Growth</h2>
+          <div className="ad-r-chart-placeholder">
+            Chart Coming
+          </div>
+        </div> */}
+
       </div>
 
     </div>

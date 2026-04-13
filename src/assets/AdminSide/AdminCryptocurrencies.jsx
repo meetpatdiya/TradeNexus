@@ -33,8 +33,9 @@ const AdminCryptocurrencies = () => {
     }, 300);
     return () => clearTimeout(timer);
   }, [coinSearch]);
+const top50 = useMemo(() => coins.slice(0, 50), [coins]);
 
-  const mergedCoins = coins.map((coin) => {
+  const mergedCoins = top50.map((coin) => {
     const dbCoin = dbCoins.find((c) => c.gecko_id === coin.id);
     return {
       ...coin,

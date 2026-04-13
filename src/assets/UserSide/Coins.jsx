@@ -6,7 +6,6 @@ const Coins = () => {
   const [search, setsearch] = useState("");
   const { coins } = useCoins();
   const [debouncedSearch, setDebouncedSearch] = useState("");
-
 useEffect(() => {
   const timer = setTimeout(() => {
     setDebouncedSearch(search);
@@ -14,24 +13,17 @@ useEffect(() => {
 
   return () => clearTimeout(timer);
 }, [search]);
+const top50 = useMemo(() => coins.slice(0, 50), [coins]);
 
-const sortedCoins = useMemo(() => {
-  if (!debouncedSearch) return coins;
+const displayedCoins = useMemo(() => {
+  if (!debouncedSearch) return top50;
+
   const lower = debouncedSearch.toLowerCase();
-  const matched = [];
-  const others = [];
-  for (let coin of coins) {
-    if (coin.name.toLowerCase().includes(lower)) {
-      matched.push(coin);
-    } else {
-      others.push(coin);
-    }
-  }
-
-  return [...matched, ...others];
-}, [coins, debouncedSearch]);
-
-  return (
+  return top50.filter((coin) =>
+    coin.name.toLowerCase().includes(lower)
+  );
+}, [top50, debouncedSearch]);
+   return (
     <>
     <div className="search-cont">
       <input
@@ -55,7 +47,7 @@ const sortedCoins = useMemo(() => {
           <span>Market Cap</span>
           <span>Last 7 Days</span>
         </div>
-        {sortedCoins.map((coin) => (
+        {displayedCoins.map((coin) => (
           <CoinRows key={coin.id} coin={coin} search={debouncedSearch} />
         ))}
       </div>

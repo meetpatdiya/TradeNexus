@@ -63,6 +63,12 @@ const InvestorPortfolio = () => {
               ${totalEarnings.toFixed(2)}
             </h3>
           </div>
+          <div>
+            <p>Return of Investment</p>
+            <h3 className={totalEarnings >= 0 ? "in-pl-profit" : "in-pl-loss"}>
+              ${Number(totalEarnings / totalInvestment * 100).toFixed(2)}%
+            </h3>
+          </div>
         </div>
       </div>
 
@@ -86,7 +92,7 @@ const InvestorPortfolio = () => {
                 <span>Avg Price</span>
                 <span>${item.avg_price}</span>
               </div>
-
+  
               <div className="in-pl-row">
                 <span>Invested</span>
                 <span>${Number(item.net_invested).toFixed(2)}</span>

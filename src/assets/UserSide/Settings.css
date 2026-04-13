@@ -57,7 +57,7 @@
 
 .sts-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
 }
 
@@ -85,8 +85,8 @@
 }
 
 .sts-btn {
-  flex: 1;
   padding: 10px;
+  width: 100px;
   border-radius: 10px;
   border: 1px solid #e5e7eb;
   background: #f9fafb;
@@ -101,6 +101,25 @@
   border-color: #d1d5db;
 }
 
+.s-st-row {
+  margin-bottom: 20px;
+}
+
+.s-st-row span {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.s-st-row p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+}
 /* Form */
 .sts-form {
   display: flex;
@@ -109,9 +128,9 @@
   background: #f8fafc;
   padding: 14px;
   border-radius: 12px;
+  /* height: 95px; */
 }
 
-/* Inputs */
 .sts-input {
   padding: 10px;
   border-radius: 8px;
@@ -146,13 +165,6 @@
 .sts-message {
   font-size: 12px;
   color: #e11d48;
-}
-
-/* Divider */
-.sts-divider {
-  margin: 25px 0;
-  height: 1px;
-  background: #eee;
 }
 
 /* Logout */

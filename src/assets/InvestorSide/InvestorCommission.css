@@ -1,7 +1,6 @@
 .inv-cms-container {
   padding: 40px;
-  background: #F4fbf6;
-  min-height: 100vh;
+background: linear-gradient(135deg, #e6f9f0, #f5fffb);  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
 }
 

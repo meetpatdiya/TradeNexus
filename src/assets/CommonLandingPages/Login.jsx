@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-const Registration = () => {
+const Login = () => {
   const [formCheck, setformCheck] = useState({
     email: "",
     password: "",
@@ -39,7 +39,7 @@ const Registration = () => {
       const roles = res.data.role;
       if (roles === "user") {
         try {
-           await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
+          await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
           navigate("/userdashboard");
         } catch (err) {
           console.log("Wallet creation failed", err);
@@ -124,10 +124,11 @@ const Registration = () => {
             <p class="signup">
               Don't have an account? <Link to="/register/user">Register</Link>
             </p>
+               <p className="forgot"><Link to="/forgotpassword">Forgot Password?</Link></p>
           </div>
         </div>
       </div>
     </>
   );
 };
-export default Registration;
+export default Login;

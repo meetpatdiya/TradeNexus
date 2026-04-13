@@ -68,7 +68,7 @@ const Wallet = () => {
   };
   const accNumberHandleSubmit = async () => {
     try {
-      const data = await axios.post(
+       await axios.post(
         "http://localhost:5000/wallet/bank",
         { bank_last_4: Number(accNumberDigits.join("")) },
         { withCredentials: true },
@@ -76,6 +76,9 @@ const Wallet = () => {
     } catch (error) {
       console.log(error);
     }
+    setWlMessage(`Your Bank Account No.${Number(accNumberDigits.join(""))} is Connected to TradeNexus `)
+    setWlMessageType("success")
+    setshowAlert(true)
     setAccNumberDigits(["", "", "", ""]);
     setHasEnteredAccDigits(true);
   };
@@ -228,11 +231,11 @@ const Wallet = () => {
               <div className="wl-modal">
                 <button
                   className="wl-close"
-                  onClick={() => setshowAmount(false)}
+                  onClick={() => {setshowAmount(false);setWlValue("")}}
                 >
                   ✕
                 </button>
-                <div className="wl-ds-nums">{wlValue}</div>
+                <div className="wl-ds-nums">{wlValue || "0"}</div>
                 <div className="wl-nums">
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
                     <button key={n} onClick={() => addDigit(n)}>

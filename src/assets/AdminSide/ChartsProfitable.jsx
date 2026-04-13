@@ -16,7 +16,7 @@ function ChartsProfitable({ data }) {
   }));  
 
   return (
-    <div style={{ width: "100%", height: 250,padding:10, background: "#fff" }}>
+    <div style={{ width: "100%", height: 350,padding:10, background: "#fff" }}>
       <h3 >Most Profitable Coins</h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={chartData}>

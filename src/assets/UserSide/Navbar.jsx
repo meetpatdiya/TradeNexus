@@ -17,7 +17,6 @@ const Navbar = () => {
           <div className="menu-btn" onClick={() => setOpen(true)}>
             ☰
           </div>
-
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <ul className="nav-links">
@@ -38,6 +37,9 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink className={({ isActive }) => isActive ? "active" : ""} to="feedback">Feedback</NavLink>
+          </li>
+          <li>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="news">News</NavLink>
           </li>
         </ul>
         <div className="profile">

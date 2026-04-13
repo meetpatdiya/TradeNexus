@@ -1,84 +1,91 @@
 .ad-r-container{
 padding:45px;
 min-height:100vh;
-font-family:Segoe UI, Helvetica, Arial, sans-serif;
-color:#1e293b;
+font-family:Segoe UI, sans-serif;
 }
 
 .ad-r-title{
-font-size:36px;
+font-size:34px;
 font-weight:700;
-margin-bottom:40px;
+margin-bottom:35px;
 color:#0f172a;
 }
 
-/* ===== STATS GRID ===== */
+/* ===== GRID ===== */
 
 .ad-r-stats{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:28px;
-margin-bottom:45px;
+gap:25px;
+margin-bottom:40px;
 }
 
 .ad-r-stat{
 background:white;
-padding:24px 26px;
-border-radius:10px;
-display:flex;
-flex-direction:column;
-gap:10px;
-border:1px solid #e5e7eb;
+padding:20px;
+border-radius:12px;
+border:1px solid #e2e8f0;
 transition:0.2s;
 }
 
 .ad-r-stat:hover{
-box-shadow:0 6px 20px rgba(0,0,0,0.05);
-transform:translateY(-3px);
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,0,0,0.05);
 }
 
-/* label */
+/* TOP ROW */
+
+.ad-r-stat-top{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+/* ICON */
+
+.ad-r-icon{
+font-size:18px;
+}
+
+.ad-r-icon.blue{color:#2563eb;}
+.ad-r-icon.green{color:#16a34a;}
+.ad-r-icon.orange{color:#f59e0b;}
+.ad-r-icon.red{color:#ef4444;}
+.ad-r-icon.purple{color:#7c3aed;}
+
+/* TEXT */
 
 .ad-r-label{
-font-size:14px;
-font-weight:600;
+font-size:13px;
 color:#64748b;
-letter-spacing:0.5px;
+font-weight:600;
 }
 
-/* value */
-
 .ad-r-value{
-font-size:30px;
+font-size:26px;
 font-weight:700;
 color:#111827;
 }
 
-/* highlight major numbers */
+/* HIGHLIGHTS */
 
-.ad-r-stat:nth-child(1) .ad-r-value{
-color:#2563eb;
-}
+.ad-r-stat:nth-child(1) .ad-r-value{color:#2563eb;}
+.ad-r-stat:nth-child(9) .ad-r-value{color:#16a34a;}
+.ad-r-stat:nth-child(10) .ad-r-value{color:#7c3aed;}
 
-.ad-r-stat:nth-child(9) .ad-r-value{
-color:#059669;
-}
-
-.ad-r-stat:nth-child(10) .ad-r-value{
-color:#7c3aed;
-}
-
-/* ===== ACTION BUTTONS ===== */
+/* ===== BUTTONS ===== */
 
 .ad-r-actions{
 display:flex;
-gap:18px;
-margin-bottom:45px;
+justify-content:center; /* FIX CENTER */
+gap:20px;
+margin-bottom:40px;
 }
 
 .ad-r-btn{
-padding:14px 28px;
-font-size:16px;
+padding:14px 30px;
+font-size:15px;
 font-weight:600;
 border-radius:8px;
 border:none;
@@ -98,51 +105,55 @@ color:white;
 
 .ad-r-btn:hover{
 transform:translateY(-2px);
-box-shadow:0 4px 12px rgba(0,0,0,0.15);
+box-shadow:0 6px 18px rgba(0,0,0,0.15);
 }
 
-/* ===== INVESTOR SECTION ===== */
+/* ===== BOTTOM SECTION ===== */
 
-.ad-r-subtitle{
-font-size:24px;
-font-weight:700;
-margin-bottom:20px;
-color:#0f172a;
+.ad-r-bottom{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
 }
 
-/* compact list */
+/* INVESTOR BOX */
+
+.ad-r-investor-box{
+background:white;
+padding:20px;
+border-radius:12px;
+border:1px solid #e2e8f0;
+}
+
+/* TABLE FIX (LESS STRETCH) */
 
 .ad-r-investor-list{
-max-height:300px;
+max-height:260px;
 overflow-y:auto;
 display:flex;
 flex-direction:column;
-gap:10px;
-padding-right:6px;
+gap:8px;
 }
 
-/* row */
+/* ROW */
 
 .ad-r-investor-row{
 display:grid;
-grid-template-columns:80px 1fr 150px;
-align-items:center;
-background:white;
-padding:10px 14px;
+grid-template-columns:60px 1fr 120px; /* FIX WIDTH */
+padding:10px 12px;
+font-size:14px;
 border-radius:6px;
-border:1px solid #e5e7eb;
-font-size:15px;
 }
 
 .ad-r-investor-row:hover{
 background:#f1f5f9;
 }
 
-/* investor fields */
+/* TEXT */
 
 .ad-r-investor-id{
-font-weight:600;
 color:#64748b;
+font-weight:600;
 }
 
 .ad-r-investor-name{
@@ -150,17 +161,38 @@ font-weight:600;
 }
 
 .ad-r-investor-amount{
+text-align:right;
 font-weight:700;
 color:#16a34a;
-text-align:right;
 }
 
+/* ===== CHART BOX ===== */
 
-.ad-r-investor-list::-webkit-scrollbar{
-width:6px;
+.ad-r-chart-box{
+background:white;
+padding:20px;
+border-radius:12px;
+border:1px solid #e2e8f0;
 }
 
-.ad-r-investor-list::-webkit-scrollbar-thumb{
-background:#cbd5f5;
-border-radius:10px;
+/* FAKE CHART */
+
+.ad-r-chart-placeholder{
+height:220px;
+border-radius:8px;
+background:linear-gradient(to top, #dbeafe, #eff6ff);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
+color:#2563eb;
+}
+
+/* SUBTITLE */
+
+.ad-r-subtitle{
+font-size:18px;
+font-weight:700;
+margin-bottom:15px;
+color:#0f172a;
 }

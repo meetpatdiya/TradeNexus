@@ -2,8 +2,7 @@
   width: 100%;
   overflow: hidden;
   position: relative;
-  background: #f4fbf6;
-  border-radius: 12px;
+background: linear-gradient(135deg, #e6f9f0, #f5fffb);  border-radius: 12px;
   padding: 10px 0;
 }
 

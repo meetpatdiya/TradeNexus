@@ -1,6 +1,6 @@
 .us-an-container{
 padding:40px;
-background:#f6f8fb;
+background: linear-gradient(135deg, #eaf1ff, #f8fbff);
 min-height:100vh;
 font-family:Arial;
 }
@@ -88,4 +88,73 @@ justify-content:space-between;
 width:1px;
 height:250px;
 background:#e2e8f0;
+}
+.us-an-transaction {
+  margin-top: 20px;
+}
+
+.us-an-transaction .toggle-btn {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: white;
+  border: none;
+  display: block;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  margin:0px auto 15px;
+  transition: 0.3s;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Table */
+.us-an-trans {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.us-an-trans thead {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
+}
+
+.us-an-trans th {
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.us-an-trans td {
+  padding: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+.us-an-trans tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.us-an-trans tbody tr:hover {
+  background: #e0f2fe;
+  transition: 0.2s;
+}
+
+.us-an-trans .buy {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.us-an-trans .sell {
+  color: #dc2626;
+  font-weight: 600;
 }

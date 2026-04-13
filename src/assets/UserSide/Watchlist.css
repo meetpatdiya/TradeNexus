@@ -8,7 +8,8 @@
   color: #111;
 }
 .watchlist-container{
-  background-color: #f8f9fb;
+background: linear-gradient(135deg, #eaf1ff, #f8fbff);
+min-height: 700px;
 }
 .watchlist-row {
   display: flex;

@@ -7,7 +7,6 @@ import { FaBookmark } from "react-icons/fa";
 import { usePortfolio } from "./PortfolioContext";
 import CoinDetailGraph from "./CoinDetailGraph";
 import BuySellModel from "./BuySellModel";
-import AlertBox from "./AlertBox";
 import axios from 'axios'
 import LoaderToast from "./LoaderToast";
 axios.defaults.withCredentials = true;
@@ -67,7 +66,7 @@ const CoinDetails = ({}) => {
     <>
       <div className="cd-container">
         <div className="cd-coin-names">
-          {coins.map((item) => {
+          {coins.slice(0,50).map((item) => {
             return (
               <div
                 key={item.id}

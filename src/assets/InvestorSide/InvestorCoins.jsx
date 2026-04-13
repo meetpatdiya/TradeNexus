@@ -8,24 +8,25 @@ const InvestorCoins = () => {
   const [showAll, setShowAll] = useState(false);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+const top50 = useMemo(() => coins.slice(0, 50), [coins]);
 
   const filteredCoins = useMemo(() => {
-    if (!search) return coins;
+    if (!search) return top50;
 
     const lower = search.toLowerCase();
 
-    const matched = coins.filter(
+    const matched = top50.filter(
       (coin) =>
         coin.name.toLowerCase().includes(lower)
     );
 
-    const others = coins.filter(
+    const others = top50.filter(
       (coin) =>
         !coin.name.toLowerCase().includes(lower) 
     );
 
     return [...matched, ...others];
-  }, [coins, search]);
+  }, [top50, search]);
 
   const visibleCoins = showAll ? filteredCoins : filteredCoins.slice(0, 20);
 

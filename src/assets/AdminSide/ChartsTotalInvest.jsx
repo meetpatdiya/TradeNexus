@@ -19,10 +19,10 @@ const ChartsTotalInvest = ({ data }) => {
     <div
       style={{
         width: "100%",
-        height: 350,
+        height: 450,
         background: "#fff",
-        padding: "20px",
-        borderRadius: "10px",
+        padding: "20px 50px 40px",
+          borderRadius: "10px",
       }}
     >
       <h3 style={{ marginBottom: "20px" }}>
@@ -31,9 +31,9 @@ const ChartsTotalInvest = ({ data }) => {
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={formattedData}>
           <CartesianGrid strokeDasharray="3 3" />
-
           <XAxis
             dataKey="date"
+            style={{fontSize:"14px"}}
             tickFormatter={(value) =>
               new Date(value).toLocaleDateString("en-IN", {
                 day: "2-digit",

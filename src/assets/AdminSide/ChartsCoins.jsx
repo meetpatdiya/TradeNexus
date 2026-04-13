@@ -22,7 +22,7 @@ const ChartsCoins = ({ data }) => {
   return (
     <div style={{ background: "#fff" }}>
       <h3>Most Traded Coin:</h3>
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height={350}>
         <BarChart data={formattedData}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="crypto_id" />

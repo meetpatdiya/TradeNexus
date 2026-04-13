@@ -1,0 +1,122 @@
+/* Background */
+.frgt-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+background: linear-gradient(135deg, #e0f2fe, #f0fdf4, #fef9c3);
+background-size: 200% 200%;
+animation: gradientMove 6s ease infinite;  font-family: "Segoe UI", sans-serif;
+}
+
+/* Card */
+.frgt-card {
+  width: 380px;
+  padding: 30px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.frgt-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0f172a;
+}
+
+/* Group */
+.frgt-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+/* Inputs */
+.frgt-group input {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+  background: #f8fafc;
+  color: #0f172a;
+  outline: none;
+  transition: 0.3s;
+}
+
+.frgt-group input:focus {
+  border: 1px solid #6366f1;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+}
+
+/* Buttons */
+.frgt-group button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #22c55e);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.frgt-group button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.success {
+  color: #22c55e;
+  font-size: 13px;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* Primary button (you can reuse) */
+.primary-btn {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #22c55e);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.login-link {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+
+  transition: 0.3s;
+}
+
+.login-link:hover {
+  background: #6366f1;
+  color: white;
+  transform: scale(1.03);
+}

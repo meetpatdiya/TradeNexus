@@ -1,11 +1,10 @@
 .mk-container {
-  /* max-width: 100%; */
   margin: auto;
   padding: 30px;
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
   gap: 20px;
-  background-color: #f8f9fb;
+background: linear-gradient(135deg, #eaf1ff, #f8fbff);
 }
 
 .mk-card {

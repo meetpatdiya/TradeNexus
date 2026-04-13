@@ -7,7 +7,6 @@ export const CoinsProvider = ({ children }) => {
   const [coins, setCoins] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
   console.log("it is rendering");
-  
   const lastFetchRef = useRef(0);
   useEffect(() => {
     const now = Date.now();
@@ -15,7 +14,7 @@ export const CoinsProvider = ({ children }) => {
     const fetchCoins = async () => {
       try {
         const res = await fetch(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h,24h,7d",
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h,24h,7d",
         );
         const data = await res.json();
         setCoins(data);
@@ -26,7 +25,6 @@ export const CoinsProvider = ({ children }) => {
     };
     fetchCoins();
      const interval = setInterval(fetchCoins, 60_000); 
-
   return () => clearInterval(interval); 
   }, []);
 

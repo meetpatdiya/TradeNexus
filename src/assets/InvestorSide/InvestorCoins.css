@@ -1,7 +1,6 @@
 .in-cn-wrapper {
   padding: 20px;
-  background-color: #f4fbf6;
-}
+background: linear-gradient(135deg, #e6f9f0, #f5fffb);}
 
 .in-cn-grid {
   display: grid;

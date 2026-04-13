@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Settings.css";
 import Logout from "./Logout";
 import axios from "axios";
@@ -10,6 +10,16 @@ const Settings = ({ onClose }) => {
   const [message, setmessage] = useState("");
   const [oldPassword, setoldPassword] = useState("");
   const [showAlert, setshowAlert] = useState(false);
+  const [yourInfo, setyourInfo] = useState([])
+  const getYourData = async()=>{
+    try {
+      const {data} = await axios.get("http://localhost:5000/getYourData",{withCredentials:true});
+      console.log(data);
+      setyourInfo(data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const updateCredentials = async (getData, oldpass) => {
     try {
       const { data } = await axios.put(
@@ -25,6 +35,9 @@ const Settings = ({ onClose }) => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    getYourData()
+  }, [])
 
   const handleSubmit = () => {
     if (!value || !confirmValue) {
@@ -69,7 +82,22 @@ const Settings = ({ onClose }) => {
             ✕
           </button>
         </div>
+      <div className="s-st-content">
+        <div className="s-st-row">
+          <span>Name</span>
+          <p>{yourInfo?.name}</p>
+        </div>
 
+        <div className="s-st-row">
+          <span>Email</span>
+          <p>{yourInfo?.email}</p>
+        </div>
+
+        <div className="s-st-row">
+          <span>Joined</span>
+          <p>{new Date(yourInfo?.created_at).toLocaleString("en-IN")}</p>
+        </div>
+      </div>
         <div className="sts-actions">
           <button
             className={`sts-btn ${change === "name" ? "active" : ""}`}
@@ -108,7 +136,6 @@ const Settings = ({ onClose }) => {
               onChange={(e) => setConfirmValue(e.target.value)}
             />
             {message && <p className="sts-message">{message}</p>}
-
             {change == "password" && (
               <div className="sts-old-pass-box">
                 <input
@@ -119,14 +146,11 @@ const Settings = ({ onClose }) => {
                 />
               </div>
             )}
-
             <button className="sts-submit" onClick={handleSubmit}>
               Update
             </button>
           </div>
         )}
-        <div className="sts-divider"></div>
-
         <div className="sts-logout">
           <Logout className={"sts-logout-btn"} />
         </div>

@@ -12,9 +12,9 @@ import {
 const ChartsUsers = ({ data }) => {
   if (!data || data.length === 0) return null;
   return (
-      <div  style={{ width: "100%", height: 250,padding:10, background: "#fff" }}>
+      <div  style={{ width: "100%",height:"350px",padding:10, background: "#fff" }}>
         <h3>User Growth</h3>
-        <ResponsiveContainer width="100%" height={250} >
+        <ResponsiveContainer width="100%" height="100%" >
           <LineChart
             data={data}
           >

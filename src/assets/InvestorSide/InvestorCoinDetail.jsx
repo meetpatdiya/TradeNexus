@@ -28,7 +28,7 @@ const InvestorCoinDetail = () => {
   const { balance } = useWallet();
 
   const coin = coins.find((c) => c.id === id);
-  const coinNames = coins.map((c) => c.id);
+  const coinNames = coins.map((c) => c.id).slice(0,50);
 
   const prices = coin?.sparkline_in_7d?.price || [];
 

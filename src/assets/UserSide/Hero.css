@@ -1,7 +1,7 @@
 .hero-container {
   width: 100%;
   padding: 60px 80px;
-  background: #f8f9fb;
+background: linear-gradient(135deg, #eaf1ff, #f8fbff);
   font-family: "Poppins", sans-serif;
 }
 .hero-top {

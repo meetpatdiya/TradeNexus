@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useWallet } from "../UserSide/WalletContext";
 import "./InvestorCoinDetail.css";
-import AlertBox from "../UserSide/AlertBox"
 const InvestWithdraw = ({ onClose, type, coin ,onSuccess}) => {
   const { balance } = useWallet();
   const [amount, setAmount] = useState("");
@@ -68,7 +67,13 @@ const InvestWithdraw = ({ onClose, type, coin ,onSuccess}) => {
           </div>
 
         </div>
-
+        <div className="in-invst-btns">
+          {[25, 50, 75, 100].map((p) => (
+            <button key={p} className="in-invst-b" onClick={() => setAmount(balance *(p /100))}>
+              {p}%
+            </button>
+          ))}
+        </div>
         <div className="in-invst-input">
 
           <label>Investment Amount ($)</label>

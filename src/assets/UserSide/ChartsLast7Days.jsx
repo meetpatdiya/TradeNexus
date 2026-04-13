@@ -1,36 +1,36 @@
-import React from "react"
-import {BarChart,Bar,XAxis,YAxis,Tooltip,CartesianGrid} from "recharts"
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 
-const ChartsLast7Days = ({data}) => {
-const weekDays = [
-"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
-]
+const ChartsWeekly = ({ data }) => {
+  const formattedData = data.map((d) => ({
+    week: d.week_start,
+    total_trades: d.total_trades,
+  }));
 
-const formattedData = weekDays.map(day=>{
-  const found = data.find(d=>d.day === day)
-  return {
-    day,
-    total_trades: found ? found.total_trades : 0
-  }
-})
-return(
+  return (
+    <BarChart width={650} height={350} data={formattedData}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis
+        dataKey="week"
+        tickFormatter={(value) => {
+          const start = new Date(value);
+          const end = new Date(start);
+          end.setDate(start.getDate() + 6);
+          return `${start.getDate()}-${end.getDate()} ${start.toLocaleString("en-US", { month: "short" })}`;
+        }}
+      />
+      <YAxis allowDecimals={false} />
+      <Tooltip
+        formatter={(value) => [`${value} trades`, "Trades"]}
+        labelFormatter={(label) => {
+          const start = new Date(label);
+          const end = new Date(start);
+          end.setDate(start.getDate() + 6);
+          return `Week: ${start.toLocaleDateString("en-US", { month: "short", day: "numeric" })} - ${end.toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+        }}
+      />
+      <Bar dataKey="total_trades" fill="#3b82f6" />
+    </BarChart>
+  );
+};
 
-<BarChart width={600} height={350} data={formattedData}>
-
-<CartesianGrid strokeDasharray=" 3 3"/>
-
-<XAxis dataKey="day" interval={0} />
-
-<YAxis allowDecimals={false}/>
-
-<Tooltip/>
-
-<Bar dataKey="total_trades" fill="#3b82f6"/>
-
-</BarChart>
-
-)
-
-}
-
-export default ChartsLast7Days
+export default ChartsWeekly;

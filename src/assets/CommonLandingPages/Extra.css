@@ -3,11 +3,11 @@
   justify-content: center;
   gap: 40px;
   padding: 60px 40px;
-  background: #f5f7fa;
+background: linear-gradient(135deg, #e6f9f0, #f5fffb);
 }
 
 .ext-card{
-  background: #f1f3f6;
+  background: #ffffff;
   width: 330px;
   padding: 40px 30px;
   border-radius: 30px;

@@ -1,11 +1,10 @@
 .in-pl-container {
   padding: 40px;
-  background: #f4fbf6;
+background: linear-gradient(135deg, #e6f9f0, #f5fffb);
   min-height: 100vh;
   font-family: "Inter", sans-serif;
 }
-
-
+  
 .in-pl-header {
   display: flex;
   flex-direction: column;
@@ -18,9 +17,6 @@
   font-size: 30px;
   font-weight: 600;
 }
-
-
-/* SUMMARY CENTER */
 
 .in-pl-summary {
   display: flex;
@@ -44,9 +40,6 @@
   text-align: center;
 }
 
-
-/* GRID -> MAX 3 CARDS */
-
 .in-pl-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -55,8 +48,6 @@
   margin: auto;
 }
 
-
-/* CARD BIGGER */
 
 .in-pl-card {
   background: white;

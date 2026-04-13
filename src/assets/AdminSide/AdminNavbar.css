@@ -1,6 +1,6 @@
 .ad-navbar{
     height: 60px;
-    background-color: #fffdf5;
+    background: linear-gradient(135deg, #fff8e6, #fffdf7);
     min-height: 60px;
     border-bottom: 2px solid #e5e7eb;
     display: flex;

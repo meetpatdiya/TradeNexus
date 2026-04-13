@@ -82,7 +82,13 @@ const WithdrawPage = ({ onClose, coin, onSuccess }) => {
             <span>{avlblqnty.platform_quantity}</span>
           </div>
         </div>
-
+      <div className="in-withd-btns">
+        {[25, 50, 75, 100].map((p) => (
+            <button key={p} className="in-invst-b" onClick={() => setAmount(Number(avlblqnty.investor_quantity) * Number(coin.current_price) * p /100)}>
+              {p}%
+            </button>
+          ))}
+      </div>
         <p className="in-withd-lock">
           Withdraw allowed after 30 day lock period
         </p>

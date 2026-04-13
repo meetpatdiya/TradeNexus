@@ -1,12 +1,11 @@
 import React from 'react'
-import investorHero from "../Images/investorHero.png"
 import "./InvestorHero.css"
+import invImg from "../Images/invImg.png"
 const InvestorHero = () => {
   return (
    <div className="in-cn-hero">
         <div className="in-cn-hero-left">
           <h1>Invest Smart.<br />Earn Together.</h1>
-
           <p>
             A seamless crypto ecosystem connecting investors, admins, and users —
             enabling secure transactions and shared growth opportunities.
@@ -28,7 +27,7 @@ const InvestorHero = () => {
           </div>
         </div>
         <div className="in-cn-hero-right">
-          <img src={investorHero} alt="crypto" />
+          <img src={invImg}   alt="crypto" />
         </div>
       </div>
   )

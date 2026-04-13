@@ -13,7 +13,9 @@ const News = () => {
     getNews();
   }, []);
 
-  if (!data.length) return <div className="news-loader">Loading...</div>;
+  if (!data.length) return ( <div className="news-loader-wrapper">
+      <div className="news-loader"></div>
+    </div>);
 
   const featured = data[0];
   const rest = data.slice(1);

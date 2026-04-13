@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AdminFiatWallet.css";
-
+import LoaderToast from "../UserSide/LoaderToast";
 const AdminFiatWallet = () => {
   const [fiatWalletData, setfiatWalletData] = useState([]);
   const [type, setType] = useState("");
@@ -14,13 +14,17 @@ const AdminFiatWallet = () => {
   const [typeMessage, settypeMessage] = useState("");
   const [walletTransactionsData, setwalletTransactionsData] = useState(null);
   const [showAdjustment, setshowAdjustment] = useState(false);
-
+  const [showAlert, setshowAlert] = useState(false);
+  const [alertData, setAlertData] = useState({
+    amount: "",
+    type: "",
+  });
   const getWalletData = async () => {
     try {
       const { data } = await axios.get(
         "http://localhost:5000/admin/getfiatwallet",
       );
-      setfiatWalletData(data);      
+      setfiatWalletData(data);
     } catch (error) {
       console.log(error);
     }
@@ -90,6 +94,8 @@ const AdminFiatWallet = () => {
         { userId, type, amount },
         { withCredentials: true },
       );
+      setAlertData({ amount, type });
+      setshowAlert(true);
       handleAdjustmentCancel();
       getWalletData();
     } catch (error) {
@@ -126,11 +132,9 @@ const AdminFiatWallet = () => {
                   className="ad-wlt-btn ad-wlt-view-btn"
                   onClick={() => {
                     const uId = item.user_id;
-
                     setSelectedUserId(uId);
                     setTransactionType("");
                     setStatus("");
-
                     handleViewTransactions(uId, "", "");
                   }}
                 >
@@ -262,6 +266,14 @@ const AdminFiatWallet = () => {
         <div className="ad-wlt-transaction-box">
           <h2>No transactions Available for this user</h2>
         </div>
+      )}
+      {showAlert && (
+        <LoaderToast
+          message={` ${alertData.amount}$ is ${alertData.type}ed to id ${userId}`}
+          type={"success"}
+          shape={"lines"}
+          onClose={() => setshowAlert(false)}
+        />
       )}
     </div>
   );
