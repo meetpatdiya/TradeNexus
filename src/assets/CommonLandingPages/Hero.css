@@ -42,10 +42,9 @@
 }
 
 .cl-h-content h1 span {
-  color: #f5c542; /* Bitcoin gold */
+  color: #f5c542; 
 }
 
-/* Paragraph */
 .cl-h-content p {
   margin-top: 18px;
   font-size: 16px;
@@ -53,7 +52,6 @@
   color: #d1d5db;
 }
 
-/* Buttons */
 .cl-h-actions {
   margin-top: 30px;
 }
@@ -72,14 +70,23 @@
   background: #f5c542;
   color: #000;
 }
-
+.cl-h-actions button:first-child:hover {
+  background: #febf11;
+}
+.cl-h-actions button:active {
+  transform: scale(1.02);
+}
 .cl-h-actions .secondary {
   background: transparent;
   border: 1px solid #f5c542;
   color: #f5c542;
 }
+.cl-h-actions .secondary:hover {
+  color: #febf11;
+  border: 1px solid #febf11;
 
-/* Trust indicators */
+}
+
 .cl-h-trust {
   margin-top: 34px;
   display: grid;
@@ -89,7 +96,6 @@
   color: #e5e7eb;
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .cl-h-hero {
     justify-content: center;

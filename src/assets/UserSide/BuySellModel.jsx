@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
-import axios from "axios";
 import "./BuySellModel.css";
 import { useWallet } from "./WalletContext";
 import { usePortfolio } from "./PortfolioContext";
-
+import api from "../ApiServices/Api";
 const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
   const price = coin.current_price;
   const { balance, setBalance } = useWallet();
@@ -25,11 +24,8 @@ const BuySellModal = ({ coin, type, onClose, onSuccess }) => {
   useEffect(() => {
     const getwalletData = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/wallet", {
-          withCredentials: true,
-        });
-        // console.log(data);
-        setBalance(Number(data.balance));
+        const {data} = await api.get("/wallet");
+        setBalance(Number(data.balance[0].balance));
         if (data.bank_last_4 === null) setHasEnteredAccDigits(false);
       } catch (err) {
         console.log("Error fetching wallet:", err);
@@ -55,17 +51,7 @@ const setPercent = (p) => {
       return;
 
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/trade",
-        {
-          coin_id: coin.id,
-          quantity,
-          price,
-          total,
-          type,
-        },
-        { withCredentials: true },
-      );
+      const {data} = await api.post("/trade",{coin_id:coin.id,quantity,price,total,type})
       setBalance(data.newBalance);
       await fetchPortfolio();
       onSuccess(data.message, "success");

@@ -1,15 +1,11 @@
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { useNavigate } from "react-router-dom";
 
 const Logout = ({className}) => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/logout",
-        {},
-        { withCredentials: true },
-      );
+      await api.post("/logout");
       navigate("/");
     } catch (err) {
       console.error("Logout failed");

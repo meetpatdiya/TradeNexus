@@ -1,21 +1,29 @@
-import { createContext, useContext, useState,useEffect } from "react";
-import axios from "axios";
+import { createContext, useContext, useState, useEffect } from "react";
 const WalletContext = createContext();
+import api from "../ApiServices/Api";
 export const WalletProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
   useEffect(() => {
     const fetchWallet = async () => {
       try {
-        const {data} = await axios.get("http://localhost:5000/wallet", { withCredentials: true });
+        const { data } = await api.get("/wallet")
         console.log(data);
         setBalance(data.balance[0].balance);
       } catch (err) {
         console.error(err);
-      }  
+      }
     };
     fetchWallet();
-  }, [balance]);
-   const deposit = (amount) => {
+  }, []);
+  const fetchWallet = async () => {
+    try {
+      const {data} = await api.get("/wallet");
+      setBalance(data.balance[0].balance);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const deposit = (amount) => {
     setBalance((prev) => prev + amount);
   };
 
@@ -24,7 +32,7 @@ export const WalletProvider = ({ children }) => {
   };
 
   return (
-    <WalletContext.Provider value={{ balance,setBalance , deposit , withdraw }}>
+    <WalletContext.Provider value={{ balance,fetchWallet, setBalance, deposit, withdraw }}>
       {children}
     </WalletContext.Provider>
   );

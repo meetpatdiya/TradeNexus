@@ -6,6 +6,7 @@ import { useWallet } from "./WalletContext";
 import { TiBackspace } from "react-icons/ti";
 import { GiWallet } from "react-icons/gi";
 import axios from "axios";
+import api from "../ApiServices/Api";
 const Wallet = () => {
   // add 20Rupees withdrawal fees on every withdrawal
   const { balance, setBalance } = useWallet();
@@ -33,9 +34,7 @@ const Wallet = () => {
   };
   const getwalletData = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/wallet", {
-        withCredentials: true,
-      });
+      const { data } =await api.get("/wallet");
       setwltDetail(data);
       setBalance(data.balance[0].balance);
       if (data.balance[0].bank_last_4 === null) setHasEnteredAccDigits(false);
@@ -68,11 +67,7 @@ const Wallet = () => {
   };
   const accNumberHandleSubmit = async () => {
     try {
-       await axios.post(
-        "http://localhost:5000/wallet/bank",
-        { bank_last_4: Number(accNumberDigits.join("")) },
-        { withCredentials: true },
-      );
+            await api.get("/wallet/bank",{bank_last_4:Number(accNumberDigits.join(""))})
     } catch (error) {
       console.log(error);
     }
@@ -91,11 +86,8 @@ const Wallet = () => {
         setWlMessage("Deposit amount must be between $10 and $10,00,000.");
         setWlMessageType("error");
       } else {
-        const { data } = await axios.post(
-          "http://localhost:5000/wallet/deposit",
-          { wlValue: Number(wlValue) },
-          { withCredentials: true },
-        );
+              const {data} = await api.post("/wallet/deposit",{wlValue:Number(wlValue)})
+
         setBalance(Number(data.balance));
         setWlMessage(
           `$${wlValue} has been successfully deposited to your wallet.`,
@@ -111,11 +103,7 @@ const Wallet = () => {
         setWlMessage("Insufficient wallet balance for this withdrawal.");
         setWlMessageType("error");
       } else {
-        await axios.post(
-          "http://localhost:5000/wallet/withdraw",
-          { wlValue: Number(wlValue) },
-          { withCredentials: true },
-        );
+               const {data} = await api.post("/wallet/withdraw",{wlValue:Number(wlValue)})
         setWlMessage(
           `₹${wlValue} withdrawal request submitted. Awaiting admin approval.`,
         );

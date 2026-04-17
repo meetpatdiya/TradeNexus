@@ -7,9 +7,8 @@ import { FaBookmark } from "react-icons/fa";
 import { usePortfolio } from "./PortfolioContext";
 import CoinDetailGraph from "./CoinDetailGraph";
 import BuySellModel from "./BuySellModel";
-import axios from 'axios'
 import LoaderToast from "./LoaderToast";
-axios.defaults.withCredentials = true;
+import api from "../ApiServices/Api"
 const CoinDetails = ({}) => {
   const { id } = useParams();
   const { portfolio } = usePortfolio();
@@ -37,9 +36,8 @@ const CoinDetails = ({}) => {
 
   const addToWatchList = async (coinId) => {
   try {
-     await axios.post("http://localhost:5000/watchlist", {
-      coin_gecko_id: coinId});
-     toggleWatchlist(coin.id);
+    await api.post("/watchlist",{coin_gecko_id:coinId})
+    toggleWatchlist(coin.id);
   } catch (err) {
     console.error("Watchlist error:", err.response?.data || err.message);
   }

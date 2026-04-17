@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import "./AdminRevenue.css";
 
 import {
@@ -21,9 +21,8 @@ const AdminRevenue = () => {
 
   const getRevenueData = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getrevenue",
-        { withCredentials: true }
+      const { data } = await api.get(
+        "/admin/getrevenue",
       );
 
       setadminAvailableCommission(
@@ -79,11 +78,8 @@ const AdminRevenue = () => {
 
   const handleAdminCollect = async () => {
     try {
-     const {data} = await axios.post(
-        "http://localhost:5000/admin/collectCommission",
-        {},
-        { withCredentials: true }
-      );
+     const {data} = await api.post(
+        "/admin/collectCommission",);
       console.log(data);
       
       getRevenueData();
@@ -95,10 +91,8 @@ const AdminRevenue = () => {
 
   const handleAdminWithdraw = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/admin/withdrawCommission",
-        {},
-        { withCredentials: true }
+      await api.post(
+        "/admin/withdrawCommission",
       );
       getRevenueData();
     } catch (error) {

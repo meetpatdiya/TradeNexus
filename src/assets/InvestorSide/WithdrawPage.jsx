@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api"
 import "./InvestorCoinDetail.css";
 
 const WithdrawPage = ({ onClose, coin, onSuccess }) => {
@@ -8,13 +8,7 @@ const WithdrawPage = ({ onClose, coin, onSuccess }) => {
   useEffect(() => {
     const coinCheck = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/invest/withdrawcoincheck",
-          {
-            withCredentials: true,
-            params: { gecko_id: coin.id },
-          },
-        );
+        const {data} = await api.get("/invest/withdrawcoincheck",{params:{gecko_id:coin.id}})
         setavlblqnty(data);
       } catch (err) {
         console.log(err);
@@ -36,16 +30,7 @@ const WithdrawPage = ({ onClose, coin, onSuccess }) => {
 
   const handleWithdraw = async () => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/withdrawcoin",
-        {
-          coin: coin.id,
-          quantity: withdrawQty,
-          amount,
-          price: coin.current_price,
-        },
-        { withCredentials: true },
-      );
+      const {data} = await api.post("/withdrawcoin",{coin:coin.id,quantity:withdrawQty,amount,price:coin.current_price})
       onSuccess(data.message, "success");
       onClose();
     } catch (error) {

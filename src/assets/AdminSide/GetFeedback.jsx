@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import "./Feedback.css";
-import axios from "axios";
+import api from "../ApiServices/Api";
 
 function Feedback() {
   const [Feedbackdata, setFeedbackdata] = useState([]);
   useEffect(() => {
     const getFeedbackData = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/admin/getfeedback",
+        const { data } = await api.get(
+          "/admin/getfeedback",
         );
         console.log(data);
         setFeedbackdata(data);
@@ -20,10 +20,9 @@ function Feedback() {
   }, []);
   const deleteFeedback = async (id) => {
     try {
-      await axios.put(
-        "http://localhost:5000/admin/resolvefeedback",
+      await api.put(
+        "/admin/resolvefeedback",
         { feedback_id: id },
-        { withCredentials: true },
       );
       setFeedbackdata((prev) => prev.filter((item) => item.feedback_id !== id));
     } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "./AdminCryptocurrencies.css";
 import { useCoins } from "../UserSide/CoinsContext";
-import axios from "axios";
+import api from "../ApiServices/Api"
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 const AdminCryptocurrencies = () => {
@@ -13,10 +13,7 @@ const AdminCryptocurrencies = () => {
   const navigate = useNavigate();
   const fetchDB = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getcryptocurrencies",
-        { withCredentials: true }
-      );
+      const {data} = await api.get("/admin/getcryptocurrencies");
       setDbCoins(data);      
     } catch (error) {
       console.log(error?.response);
@@ -56,11 +53,7 @@ const top50 = useMemo(() => coins.slice(0, 50), [coins]);
 
   const toggleStatus = async (coinId, status) => {
     try {
-      await axios.put(
-        "http://localhost:5000/admin/disablecoin",
-        { coinId, status },
-        { withCredentials: true }
-      );
+      await api.put("/admin/disablecoin",{coinId,status})
       fetchDB();
     } catch (error) {
       console.log(error?.response?.message);

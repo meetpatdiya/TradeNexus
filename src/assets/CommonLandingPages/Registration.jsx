@@ -25,8 +25,8 @@ const Registration = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     let isValid = true;
-    if (formData.name.length < 6) {
-      setNameError("Name should be greater than 6 characters");
+    if (formData.name.length < 3) {
+      setNameError("Name should be greater than 3 characters");
       isValid = false;
     } else setNameError("");
 

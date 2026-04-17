@@ -1,6 +1,6 @@
 import React, { useState, useEffect ,useRef} from "react";
 import {useNavigate} from "react-router-dom"
-import axios from "axios";
+import api from "../ApiServices/Api";
 import "./InvestorGuide.css"
 import { useCoins } from "../UserSide/CoinsContext";
 const InvestorGuide = () => {
@@ -8,9 +8,7 @@ const InvestorGuide = () => {
   const navigate = useNavigate()
   const { coins } = useCoins();
   const getImgData = async () => {
-    const { data } = await axios.get("http://localhost:5000/charts/coins", {
-      withCredentials: true,
-    });
+    const {data} = await api.get("/charts/coins");
     console.log(data);
     setcoinData(data);
   };

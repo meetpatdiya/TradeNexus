@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api"
 import "./AdminFiatWallet.css";
 import LoaderToast from "../UserSide/LoaderToast";
 const AdminFiatWallet = () => {
@@ -21,9 +21,7 @@ const AdminFiatWallet = () => {
   });
   const getWalletData = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getfiatwallet",
-      );
+      const { data } = await api.get("/admin/getfiatwallet");
       setfiatWalletData(data);
     } catch (error) {
       console.log(error);
@@ -37,8 +35,7 @@ const AdminFiatWallet = () => {
     if (!uId) return;
 
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/wallettransaction",
+      const { data } = await api.get("/admin/wallettransaction",
         {
           params: {
             user_id: uId,
@@ -89,10 +86,9 @@ const AdminFiatWallet = () => {
     if (!isValid) return;
 
     try {
-      await axios.post(
-        "http://localhost:5000/admin/adjustwallet",
+      await api.post(
+        "/admin/adjustwallet",
         { userId, type, amount },
-        { withCredentials: true },
       );
       setAlertData({ amount, type });
       setshowAlert(true);

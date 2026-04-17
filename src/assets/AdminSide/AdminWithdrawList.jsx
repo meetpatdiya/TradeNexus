@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import LoaderToast from "../UserSide/LoaderToast";
 const AdminWithdrawList = () => {
   const [withdraws, setWithdraws] = useState([]);
@@ -7,11 +7,12 @@ const AdminWithdrawList = () => {
   const [approving, setApproving] = useState([]);
   const [commission, setcommission] = useState([]);
   const [isLoading, setisLoading] = useState(false);
+  const [isError, setisError] = useState(false)
   const [loaderMessage, setloaderMessage] = useState("")
   const fetchWithdraws = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/wallet/trans/pending",
+      const { data } = await api.get(
+        "/wallet/trans/pending",
         { withCredentials: true },
       );
       console.log(data);
@@ -25,8 +26,8 @@ const AdminWithdrawList = () => {
   };
   const fetchCommissionWithdraws = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getcommissionpending",
+      const { data } = await api.get(
+        "/admin/getcommissionpending",
         { withCredentials: true },
       );
       console.log(data);
@@ -43,27 +44,26 @@ const AdminWithdrawList = () => {
   const approveWithdraw = async (transactionId) => {
     try {
       setApproving((prev) => [...prev, transactionId]);
-      const res = await axios.post(
-        "http://localhost:5000/admin/withdraw/approve",
+      const res = await api.post(
+        "/admin/withdraw/approve",
         { transactionId },
-        { withCredentials: true },
       );
       setloaderMessage("Withdrawal request approved successfully.")
       setisLoading(true);
       fetchWithdraws();
     } catch (err) {
+      setloaderMessage("Approval failed because the user does not have enough balance.")
+      setisError(true)
       console.error(err);
-      alert("Approval failed");
     } finally {
       setApproving((prev) => prev.filter((id) => id !== transactionId));
     }
   };
   const approveCommission = async (id) => {
     try {
-      const { data } = await axios.put(
-        "http://localhost:5000/admin/approvecommission",
+      const { data } = await api.put(
+        "/admin/approvecommission",
         { transactionId: id },
-        { withCredentials: true },
       );
       console.log(data);
        setloaderMessage("Investor commission withdrawal approved successfully.")
@@ -75,10 +75,9 @@ const AdminWithdrawList = () => {
   };
   const rejectWithdraw = async (id) => {
     try {
-      await axios.post(
-        "http://localhost:5000/admin/withdraw/reject",
+      await api.post(
+        "/admin/withdraw/reject",
         { transactionId: id },
-        { withCredentials: true },
       );
       setloaderMessage("Withdrawal request rejected successfully.")
       setisLoading(true);
@@ -192,6 +191,14 @@ const AdminWithdrawList = () => {
           message={loaderMessage}
           type={"success"}
           onClose={() => setisLoading(false)}
+          shape={"dots"}
+        />
+      )}
+      {isError && (
+        <LoaderToast
+          message={loaderMessage}
+          type={"error"}
+          onClose={() => setisError(false)}
           shape={"dots"}
         />
       )}

@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import Logout from '../UserSide/Logout'
-import axios from 'axios'
+import api from '../ApiServices/Api'
 import "./AdminSettings.css"
 const AdminSettings = ({onClose}) => {
     const [adminData, setadminData] = useState({})
     const getAdminData = async () =>{
         try {  
-            const {data} =await axios.get("http://localhost:5000/getYourData",{withCredentials:true});
+            const {data} =await api.get("/getYourData",{withCredentials:true});
             console.log(data);
             setadminData(data)
         } catch (error) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import "./InvestorPortfolio.css";
 import { useCoins } from "../UserSide/CoinsContext";
 
@@ -9,10 +9,7 @@ const InvestorPortfolio = () => {
 
   useEffect(() => {
     const getpldata = async () => {
-      const { data } = await axios.get(
-        "http://localhost:5000/investor/viewprofitloss",
-        { withCredentials: true }
-      );
+      const {data} = await api.get("/investor/viewprofitloss");
       const result = data.map((d) => {
         const coin = coins.find((c) => c.id === d.crypto_name);
         const currentValue = coin ? d.quantity * coin.current_price : 0;

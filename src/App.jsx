@@ -1,11 +1,11 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./App.css";
 import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
 } from "react-router-dom";
-
+import api,{setToken} from "./assets/ApiServices/Api";
 import AdminUsers from "./assets/AdminSide/AdminUsers";
 import AdminUserDetail from "./assets/AdminSide/AdminUserDetail";
 import AdminInvestor from "./assets/AdminSide/AdminInvestor";
@@ -39,6 +39,18 @@ import InvestorCoinDetail from "./assets/InvestorSide/InvestorCoinDetail";
 import InvestorPortfolio from "./assets/InvestorSide/InvestorPortfolio";
 import { CoinsProvider } from "./assets/UserSide/CoinsContext";
 const App = () => {
+  useEffect(() => {
+  const init = async () => {
+    try {
+      const res = await api.post("/refresh");
+      setToken(res.data.accessToken);
+    } catch (e) {
+      console.log("Not logged in");
+    }
+  };
+
+  init();
+}, []);
   const router = createBrowserRouter([
     {
       path: "/",

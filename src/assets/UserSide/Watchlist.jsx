@@ -7,12 +7,14 @@ import { useEffect } from "react";
 import EmptyList from "../Images/EmptyList.svg";
 import axios from "axios";
 import { useState } from "react";
+import api from "../ApiServices/Api";
 const Watchlist = () => {
   const [watchlistCoin, setwatchlistCoin] = useState([]);
   const { coins, watchlist } = useCoins();
   useEffect(() => {
     const getWatchlistData = async () => {
-      const { data } = await axios.get("http://localhost:5000/watchlist");
+      // const { data } = await axios.get("http://localhost:5000/watchlist");
+      const {data} = await api.get("/watchlist")
       setwatchlistCoin(data);
     };
     getWatchlistData();
@@ -20,9 +22,10 @@ const Watchlist = () => {
   const navigate = useNavigate();
   const watchlistCoins = coins.filter((c) => watchlistCoin.includes(c.id));
   const removeCoin = async (coinId) => {
-    await axios.post("http://localhost:5000/watchlist", {
-      coin_gecko_id: coinId,
-    });
+    // await axios.post("http://localhost:5000/watchlist", {
+    //   coin_gecko_id: coinId,
+    // });
+    await api.post('/watchlist',{coin_gecko_id:coinId})
     setwatchlistCoin((prev) => prev.filter((id) => id !== coinId));
   };
   if (watchlistCoin.length === 0) {

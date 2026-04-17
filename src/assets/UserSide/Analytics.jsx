@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Analytics.css";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import ChartsBuySell from "./ChartsBuySell";
 import ChartsLast7Days from "./ChartsLast7Days";
 
@@ -10,10 +10,7 @@ const Analytics = () => {
   useEffect(() => {
     const getAnalyticsData = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/useranalytics",
-          { withCredentials: true },
-        );
+        const {data} = await api.get("/useranalytics");
         setAnalytics(data);
       } catch (error) {
         console.log(error?.response);

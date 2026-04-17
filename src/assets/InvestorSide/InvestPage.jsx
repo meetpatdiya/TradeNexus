@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { useWallet } from "../UserSide/WalletContext";
 import "./InvestorCoinDetail.css";
 const InvestWithdraw = ({ onClose, type, coin ,onSuccess}) => {
-  const { balance } = useWallet();
+  const { balance,fetchWallet } = useWallet();
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const minInvestment = 100;
@@ -17,17 +17,8 @@ const InvestWithdraw = ({ onClose, type, coin ,onSuccess}) => {
   const handleInvest = async () => {
     try {
       setLoading(true);
-      const {data} = await axios.post(
-        "http://localhost:5000/investCoin",
-        {
-          type,
-          coin: coin.id,
-          quantity: qty.toFixed(8),
-          amount,
-          price: coin.current_price,
-        },
-        { withCredentials: true }
-      );
+      const {data} = await api.post("/investcoin",{type,coin:coin.id,quantity:qty.toFixed(8),amount,price:coin.current_price})
+      await fetchWallet();
       onSuccess(data.message, "success")
       onClose()
     } catch (err) {

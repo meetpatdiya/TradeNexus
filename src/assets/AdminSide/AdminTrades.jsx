@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { useSearchParams } from "react-router-dom";
 import "./AdminTrades.css";
 
@@ -14,8 +14,8 @@ const AdminTrades = () => {
   useEffect(() => {
     const fetchCoins = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/admin/gettrades/coinlist",
+        const { data } = await api.get(
+          "/admin/gettrades/coinlist",
         );
         setCoins(data);
       } catch (err) {
@@ -34,8 +34,8 @@ const AdminTrades = () => {
 
         setSearchParams(params);
 
-        const { data } = await axios.get(
-          "http://localhost:5000/admin/gettrades",
+        const { data } = await api.get(
+          "/admin/gettrades",
           { params },
         );
         if (!tradeType && !cryptoId && !userId) {

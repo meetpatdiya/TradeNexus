@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AdminUserDetail.css";
 
@@ -9,9 +9,9 @@ const AdminUserDetail = () => {
   const [userData, setuserData] = useState({});
   const getusersData = async (id) => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getuserdata",
-        { params: { id }, withCredentials: true }
+      const { data } = await api.get(
+        "/admin/getuserdata",
+        { params: { id } }
       );
       setuserData(data);
     } catch (error) {

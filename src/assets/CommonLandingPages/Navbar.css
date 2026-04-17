@@ -18,8 +18,7 @@
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
   text-decoration: none;
 }
-.cl-n-links a,
-.cl-n-login {
+.cl-n-links a {
   color: #ffffff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
@@ -33,18 +32,31 @@
 .cl-n-login {
   text-decoration: none;
   font-weight: 500;
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .cl-n-login:hover {
-  color: #2563eb;
+  background-color: white;
+  color: #1e1e1e; 
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
 }
+
+.cl-n-login:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.15);
+}
+
 
 .cl-n-register {
   position: relative;
   color: #2563eb;
   font-weight: 500;
   cursor: pointer;
-  padding-bottom: 10px; /* 🔥 hover bridge */
+  padding-bottom: 10px; 
 }
 
 .cl-n-register span {

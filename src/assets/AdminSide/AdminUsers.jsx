@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 import "./AdminUsers.css";
 
@@ -10,7 +10,7 @@ const AdminUsers = () => {
   const { id } = useParams();
   const handledata = async () => {
     try {
-      const { data } = await axios.get("http://localhost:5000/admin/getusers");
+      const { data } = await api.get("/admin/getusers");
       setuserData(data);
     } catch (err) {
       console.log(err);
@@ -26,8 +26,8 @@ const AdminUsers = () => {
   );
   const toggleFreeze = async (userId, status) => {
     try {
-      const { data } = await axios.put(
-        "http://localhost:5000/admin/suspenduser",
+      const { data } = await api.put(
+        "/admin/suspenduser",
         { userId, status },
         { withCredentials: true },
       );

@@ -1,6 +1,4 @@
-// context/CoinsContext.jsx
 import { createContext, useContext, useEffect, useState,useRef } from "react";
-import axios from "axios";
 const CoinsContext = createContext();
 
 export const CoinsProvider = ({ children }) => {

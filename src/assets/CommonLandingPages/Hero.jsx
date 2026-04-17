@@ -3,7 +3,6 @@ import "./Hero.css";
 import Navbar from "./Navbar"
 const Hero = () => {
   const navigate = useNavigate();
-
   return (
     <div className="cl-container">
     <Navbar/>

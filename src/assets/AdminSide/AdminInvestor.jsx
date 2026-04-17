@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import ChartsInvestorPortfolio from "./ChartsInvestorPortfolio";
 import { useNavigate, Outlet, useParams } from "react-router-dom";
 import ChartInvestorComm from "./ChartInvestorComm";
@@ -12,25 +12,17 @@ const AdminInvestor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const getInvestorPortfolioData = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/charts/investorportfolio",
-      { withCredentials: true },
-    );
+    const { data } = await api.get("/charts/investorportfolio");
     setinvestorPortfolio(data);
   };
   const getInvestorCommission = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/charts/investorcomm",
-      { withCredentials: true },
-    );
+    const { data } = await api.get("/charts/investorcomm");
     setinvestorComm(data);
     console.log(data);
   };
   const handledata = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getinvestors",
-      );
+      const { data } = await api.get("/admin/getinvestors");
       setinvestorsData(data);
       console.log(data);
     } catch (err) {
@@ -42,11 +34,8 @@ const AdminInvestor = () => {
   };
   const toggleFreeze = async (userId, status) => {
     try {
-      const { data } = await axios.put(
-        "http://localhost:5000/admin/suspenduser",
-        { userId, status },
-        { withCredentials: true },
-      );
+      const { data } = await api.put(
+        "/admin/suspenduser",{ userId, status });
       handledata();
     } catch (error) {
       console.log(error);

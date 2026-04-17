@@ -6,7 +6,7 @@ import InvestPage from "./InvestPage";
 import WithdrawPage from "./WithdrawPage";
 import "./InvestorCoinDetail.css";
 import CoinDetailGraph from "../UserSide/CoinDetailGraph";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import LoaderToast from "../UserSide/LoaderToast";
   
 const InvestorCoinDetail = () => {
@@ -23,7 +23,6 @@ const InvestorCoinDetail = () => {
   const [alertData, setAlertData] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
-
   const { coins } = useCoins();
   const { balance } = useWallet();
 
@@ -41,13 +40,7 @@ const InvestorCoinDetail = () => {
 
     const withdrawCheck = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/invest/withdrawcoincheck",
-          {
-            withCredentials: true,
-            params: { gecko_id: coin.id },
-          },
-        ); 
+        const {data} = await api.get("/invest/withdrawcoincheck",{params:{gecko_id:coin.id}})
         setcoinQuantity({
           investor_quantity: data.investor_quantity,
           platform_quantity: data.platform_quantity,
@@ -62,8 +55,7 @@ const InvestorCoinDetail = () => {
     };
 
     withdrawCheck();
-  }, [coin]);
-
+  }, [coin,showModel]);  
   useEffect(() => {
     if (prices.length) setGraphTime(prices.slice(-24));
   }, [prices]);
@@ -79,7 +71,7 @@ const InvestorCoinDetail = () => {
   };
   const handleTradeSuccess = (msg, type) => {
     setAlertData({ message: msg, type });
-    setShowAlert(true);
+    setShowAlert(true);    
   };
   if (!coin) return null;
 

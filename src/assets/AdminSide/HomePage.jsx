@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminWithdrawList from "./AdminWithdrawList";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import ChartsUsers from "./ChartsUsers";
 import ChartsTrades from "./ChartsTrades";
 import ChartsCoins from "./ChartsCoins";
@@ -17,45 +17,33 @@ const HomePage = () => {
   const [profitablecoins, setprofitablecoins] = useState([]);
   const [totalinvestment, settotalinvestment] = useState([]);
   const getSystemInfo = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/admin/getsysteminfo",
-      {
-        withCredentials: true,
-      },
-    );
+    const { data } = await api.get(
+      "/admin/getsysteminfo",)
     console.log(data);
     setsystemData(data);
   };
   const getUsersCharts = async () => {
-    const { data } = await axios.get("http://localhost:5000/charts/users", {
-      withCredentials: true,
-    });
+    const { data } = await api.get("/charts/users");
     setusersData(data);
   };
   const getTradesCharts = async () => {
-    const { data } = await axios.get("http://localhost:5000/charts/trades", {
-      withCredentials: true,
-    });
+    const { data } = await api.get("/charts/trades");
     settradesData(data.volume);
     setlastTrades(data.lastTrades);
   };
   const getCoinsCharts = async () => {
-    const { data } = await axios.get("http://localhost:5000/charts/coins", {
-      withCredentials: true,
-    });
+    const { data } = await api.get("/charts/coins", );
     setcoinsData(data);
   };
   const getMostProfitableCoin = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/charts/profitablecoin",
-      { withCredentials: true },
+    const { data } = await api.get(
+      "/charts/profitablecoin",
     );
     setprofitablecoins(data);
   };
   const getTotalInvestments = async () => {
-    const { data } = await axios.get(
-      "http://localhost:5000/charts/totalinvestments",
-      { withCredentials: true },
+    const { data } = await api.get(
+      "/charts/totalinvestments",
     );
     console.log(data);
     settotalinvestment(data);

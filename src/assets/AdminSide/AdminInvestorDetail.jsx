@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { useCoins } from "../UserSide/CoinsContext";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AdminInvestorDetail.css"
@@ -11,8 +11,8 @@ const AdminInvestorDetail = () => {
 
   const getInvestorData = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/admin/getinvestordata",
+      const { data } = await api.get(
+        "/admin/getinvestordata",
         { params: { id }, withCredentials: true },
       );
       setinvestorData(data);

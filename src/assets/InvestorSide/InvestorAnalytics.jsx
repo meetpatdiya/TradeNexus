@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api"
 import "./InvestorAnalytics.css";
 import InvestmentLine from "./InvestmentLine";
 import InvestmentPie from "./InvestmentPie";
@@ -12,10 +12,7 @@ const InvestorAnalytics = () => {
   useEffect(() => {
     const getTransactionData = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/invest/transactions",
-          { withCredentials: true },
-        );
+        const {data} = await api.get("/invest/transactions");
         console.log(data);
         setInvestorData(data);
         settransactionData(data.rows);

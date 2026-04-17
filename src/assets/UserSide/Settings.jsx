@@ -3,6 +3,7 @@ import "./Settings.css";
 import Logout from "./Logout";
 import axios from "axios";
 import LoaderToast from "./LoaderToast";
+import api from "../ApiServices/Api";
 const Settings = ({ onClose }) => {
   const [change, setchange] = useState("");
   const [value, setValue] = useState("");
@@ -13,7 +14,7 @@ const Settings = ({ onClose }) => {
   const [yourInfo, setyourInfo] = useState([])
   const getYourData = async()=>{
     try {
-      const {data} = await axios.get("http://localhost:5000/getYourData",{withCredentials:true});
+      const {data} = await api.get("/getYourData");
       console.log(data);
       setyourInfo(data)
     } catch (error) {
@@ -22,11 +23,7 @@ const Settings = ({ onClose }) => {
   }
   const updateCredentials = async (getData, oldpass) => {
     try {
-      const { data } = await axios.put(
-        "http://localhost:5000/updatecredentials",
-        { type: change, data: getData, oldPassword: oldpass },
-        { withCredentials: true },
-      );
+      const {data} = await api.put("/updatecredentials",{type:change,data:getData,oldPassword:oldpass})
       console.log(data);
       setshowAlert(true);
       setValue("");

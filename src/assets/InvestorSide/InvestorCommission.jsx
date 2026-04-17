@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import "./InvestorCommission.css";
 import LoaderToast from "../UserSide/LoaderToast";
 const InvestorCommission = () => {
@@ -13,10 +13,7 @@ const InvestorCommission = () => {
   const [alertMessage, setalertMessage] = useState("")
   const fetchCommission = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/investor/getcommission",
-        { withCredentials: true }
-      );
+      const res = await api.get("/investor/getcommission");
       setHistory(res.data.history);
       setSummary({
         total_commission: res.data.total_commission,
@@ -35,11 +32,7 @@ const InvestorCommission = () => {
 
   const withdrawCommission = async () => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/investor/withdrawcommission",
-        { amount: summary.available_commission },
-        { withCredentials: true }
-      );
+      const {data} = await api.post("/investor/withdrawcommission",{amount:summary.available_commission})
       setalertMessage(data.message);
     } catch (error) {
       console.log(error.response);

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import api,{setToken} from "../ApiServices/Api";
 const Login = () => {
   const [formCheck, setformCheck] = useState({
     email: "",
@@ -35,23 +36,26 @@ const Login = () => {
     if (!isValid) return;
 
     try {
-      const res = await axios.post("http://localhost:5000/login", formCheck);
+      const res = await api.post("/login", formCheck);
+      setToken(res.data.accessToken);
       const roles = res.data.role;
       if (roles === "user") {
         try {
-          await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
+         await api.post("/wallet");
           navigate("/userdashboard");
         } catch (err) {
           console.log("Wallet creation failed", err);
         }
         navigate("/userdashboard");
-      } 
-      else if (roles === "admin"){
-         navigate("/admindashboard")
-      }
-      else if (roles === "investor") {
+      } else if (roles === "admin") {
+        navigate("/admindashboard");
+      } else if (roles === "investor") {
         try {
-           await axios.post("http://localhost:5000/wallet",{},{withCredentials: true,});
+          await axios.post(
+            "http://localhost:5000/wallet",
+            {},
+            { withCredentials: true },
+          );
           navigate("/investordashboard");
         } catch (err) {
           console.log("Wallet creation failed", err);
@@ -70,8 +74,7 @@ const Login = () => {
           setEmailError(error.response.data.message);
         } else if (error.response.status === 401) {
           setPasswordError(error.response.data.message);
-        }
-        else if(error.response.status === 403){
+        } else if (error.response.status === 403) {
           setPasswordError(error.response.data.message);
         }
       } else {
@@ -82,7 +85,7 @@ const Login = () => {
   };
   return (
     <>
-      <div className="login"> 
+      <div className="login">
         <div class="login-content">
           <div class="card">
             <h1>Welcome Back</h1>
@@ -124,7 +127,9 @@ const Login = () => {
             <p class="signup">
               Don't have an account? <Link to="/register/user">Register</Link>
             </p>
-               <p className="forgot"><Link to="/forgotpassword">Forgot Password?</Link></p>
+            <p className="forgot">
+              <Link to="/forgotpassword">Forgot Password?</Link>
+            </p>
           </div>
         </div>
       </div>
