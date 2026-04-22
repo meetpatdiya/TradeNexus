@@ -6,6 +6,7 @@ import InvestorFooter from './InvestorFooter'
 import InvestorGuide from './InvestorGuide'
 import InvestorHero from './InvestorHero'
 import Extra from "../CommonLandingPages/Extra"
+import SubFooter from "../CommonLandingPages/SubFooter"
 const InvestorDashboard = () => {
    const { pathname } = useLocation();
     const isDashboard = pathname === "/investordashboard";
@@ -22,7 +23,8 @@ const InvestorDashboard = () => {
         </>
       )}
       <Outlet />  
-      <InvestorFooter/> 
+      <InvestorFooter/>
+      <SubFooter/> 
     </>
   )
 }

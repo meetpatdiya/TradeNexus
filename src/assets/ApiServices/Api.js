@@ -1,4 +1,5 @@
 import axios from "axios";
+
 let accessToken = null;
 
 export const setToken = (token) => {
@@ -10,6 +11,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// Attach access token
 api.interceptors.request.use((config) => {
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
@@ -17,18 +19,31 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Handle 401
 api.interceptors.response.use(
   (res) => res,
   async (err) => {
     const original = err.config;
 
-    if (err.response?.status === 401 && !original._retry) {
+    // ❗ prevent infinite loop + skip refresh endpoint itself
+    if (
+      err.response?.status === 401 &&
+      !original._retry &&
+      original.url !== "/refresh"
+    ) {
       original._retry = true;
 
-      const res = await api.post("/refresh");
- setToken(res.data.accessToken); 
-      original.headers.Authorization = `Bearer ${accessToken}`;
-      return api(original);
+      try {
+        const res = await api.post("/refresh"); // uses cookie
+        setToken(res.data.accessToken);
+
+        original.headers.Authorization = `Bearer ${res.data.accessToken}`;
+        return api(original);
+      } catch (refreshError) {
+        accessToken = null;
+        window.location.href = "/login";
+        return Promise.reject(refreshError);
+      }
     }
 
     return Promise.reject(err);

@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import AdminNavbar from "./AdminNavbar";
 import "./Dashboard.css";
 import AdminFooter from "./AdminFooter";
+import SubFooter from "../CommonLandingPages/SubFooter";
 const HomePage = () => {
   return (
     <>
@@ -18,6 +19,7 @@ const HomePage = () => {
       </div>
     </div>
             <AdminFooter/>
+            <SubFooter/>
             </>
   );
 };

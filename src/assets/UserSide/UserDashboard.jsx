@@ -4,6 +4,7 @@ import Coins from './Coins'
 import Market from './Market'
 import Hero from './Hero'
 import Footer from './Footer'
+import SubFooter from '../CommonLandingPages/SubFooter'
 import { Outlet, useLocation } from 'react-router-dom'
 const UserDashboard = () => {
    const { pathname } = useLocation();
@@ -20,6 +21,7 @@ const UserDashboard = () => {
       )}
       <Outlet />   
       <Footer/>
+      <SubFooter/>
       </>
   )
 }

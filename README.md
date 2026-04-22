@@ -6,8 +6,6 @@ The goal of this project is to understand real-world trading systems, wallets, a
 
 ## 👨‍💻 Developed By
 - **Meet Patadiya**
-- **Jatin Prajapati**
-- **Sunil Kantariya**
 
 ## 🛠️ Tech Stack
 - **Frontend:** React.js  

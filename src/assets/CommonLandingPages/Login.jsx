@@ -46,15 +46,12 @@ const Login = () => {
         } catch (err) {
           console.log("Wallet creation failed", err);
         }
-        navigate("/userdashboard");
       } else if (roles === "admin") {
         navigate("/admindashboard");
       } else if (roles === "investor") {
         try {
-          await axios.post(
-            "http://localhost:5000/wallet",
-            {},
-            { withCredentials: true },
+          await api.post(
+            "/wallet",
           );
           navigate("/investordashboard");
         } catch (err) {

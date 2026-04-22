@@ -1,0 +1,29 @@
+.sub-footer {
+  width: 100%;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 13px;
+  color: #444;
+  position: relative;
+}
+
+.sub-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+}
+
+.sub-footer p {
+  margin: 0;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.sub-footer p:hover {
+  color: #000;
+}
