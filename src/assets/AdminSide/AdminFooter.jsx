@@ -1,5 +1,5 @@
 import "./AdminFooter.css";
-import logo from "../Images/Logo.png";
+import logo from "../Images/logo.png";
 
 const AdminFooter = () => {
   return (
