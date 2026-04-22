@@ -1,6 +1,6 @@
 import "./InvestorFooter.css";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../Images/Logo.png"
+import logo from "../Images/logo.png"
 const InvestorFooter = () => {
   return (
     <footer className="in-footer">

@@ -5,7 +5,7 @@ const AdminFooter = () => {
   return (
     <footer className="admin-footer">
       <div className="admin-footer-container">
-        
+      
         <div className="footer-left">
           <div className="logo-section">
             <img src={logo} alt="TradeNexus Logo" />
