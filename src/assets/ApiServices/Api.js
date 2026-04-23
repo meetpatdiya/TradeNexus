@@ -7,7 +7,7 @@ export const setToken = (token) => {
 };
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://tradenexus-backend.onrender.com",
   withCredentials: true,
 });
 
