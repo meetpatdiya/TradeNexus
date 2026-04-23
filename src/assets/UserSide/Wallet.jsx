@@ -67,7 +67,7 @@ const Wallet = () => {
   };
   const accNumberHandleSubmit = async () => {
     try {
-            await api.get("/wallet/bank",{bank_last_4:Number(accNumberDigits.join(""))})
+        await api.post("/wallet/bank",{bank_last_4:Number(accNumberDigits.join(""))})
     } catch (error) {
       console.log(error);
     }
