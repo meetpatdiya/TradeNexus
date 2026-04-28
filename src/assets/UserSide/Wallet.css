@@ -5,20 +5,17 @@ background: linear-gradient(135deg, #eaf1ff, #f8fbff);
   min-height: 100vh;
 }
 
-/* WRAPPER */
 .wl-stats-wrapper {
   max-width: 1200px;
   margin: 30px auto 40px;
 }
 
-/* GRID */
 .wl-stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 22px;
 }
 
-/* CARD BASE */
 .wl-stat-card {
   position: relative;
   padding: 22px 24px;
@@ -35,7 +32,6 @@ background: linear-gradient(135deg, #eaf1ff, #f8fbff);
   box-shadow: 0 18px 40px rgba(0,0,0,0.18);
 }
 
-/* TEXT */
 .wl-stat-card p {
   font-size: 14px;
   opacity: 0.9;
@@ -286,4 +282,84 @@ background: linear-gradient(135deg, #eaf1ff, #f8fbff);
 .status.rejected {
   background: #fee2e2; 
   color: #991b1b;
+}
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .wl-page {
+    padding: 15px;
+  }
+
+  .wl-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .wl-stat-card {
+    height: auto;
+    padding: 15px;
+  }
+
+  .wl-card {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .wl-input-container {
+    gap: 6px;
+  }
+
+  .wl-digit-input {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .wl-toggle {
+    margin: 0;
+  }
+
+  .wl-modal {
+    width: 90%;
+  }
+
+  .wl-nums {
+    height: auto;
+  }
+
+  .wl-ds-nums {
+    margin: 10px;
+    font-size: 22px;
+  }
+
+  .wl-transaction {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    text-align: left;
+  }
+
+  .wl-transaction.header {
+    display: none;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .wl-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .wl-card h2 {
+    font-size: 24px;
+  }
+
+  .wl-balance h1 {
+    font-size: 22px;
+  }
+
+  .wl-submit-btn {
+    width: 100%;
+  }
 }

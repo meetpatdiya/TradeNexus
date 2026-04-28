@@ -53,3 +53,46 @@ background: linear-gradient(135deg, #e6f9f0, #f5fffb);
 .ext-btn:hover{
   background: #222;
 }
+/* ================= TABLET ================= */
+@media (max-width: 1024px){
+
+  .ext-container{
+    gap: 20px;
+    padding: 40px 20px;
+  }
+
+  .ext-card{
+    width: 280px;
+    padding: 30px 20px;
+  }
+
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  .ext-container{
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .ext-card{
+    width: 100%;
+    max-width: 350px;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .ext-title{
+    font-size: 18px;
+  }
+
+  .ext-text{
+    font-size: 14px;
+  }
+
+}

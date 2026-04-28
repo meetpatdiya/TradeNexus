@@ -196,3 +196,11 @@ font-weight:700;
 margin-bottom:15px;
 color:#0f172a;
 }
+@media (max-width: 480px){
+.ad-r-container{
+    padding: 20px 0;
+}
+.ad-r-stats{
+    grid-template-columns: repeat(2,1fr);
+}
+}

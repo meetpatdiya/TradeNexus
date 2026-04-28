@@ -3,8 +3,6 @@ import ReactECharts from "echarts-for-react";
 
 const CoinDetailGraph = ({ prices }) => {
   if (!prices || prices.length === 0) return <div>Loading chart...</div>;
-  console.log(prices);
-
   const time = prices.map((_, idx) => idx + 1);
   const values = prices;
   const isUp = values[values.length - 1] >= values[0];

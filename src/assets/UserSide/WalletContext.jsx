@@ -1,20 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
-const WalletContext = createContext();
 import api from "../ApiServices/Api";
+const WalletContext = createContext();
 export const WalletProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
-  useEffect(() => {
-    const fetchWallet = async () => {
-      try {
-        const { data } = await api.get("/wallet")
-        console.log(data);
-        setBalance(data.balance[0].balance);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchWallet();
-  }, []);
   const fetchWallet = async () => {
     try {
       const {data} = await api.get("/wallet");
@@ -23,6 +11,9 @@ export const WalletProvider = ({ children }) => {
       console.error(err);
     }
   };
+  useEffect(() => {
+    fetchWallet();
+  }, []);
   const deposit = (amount) => {
     setBalance((prev) => prev + amount);
   };

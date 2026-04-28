@@ -1,13 +1,14 @@
 import React from "react"
-import {PieChart,Pie,Cell,Tooltip,Legend} from "recharts"
+import {PieChart,Pie,Cell,Tooltip,Legend,ResponsiveContainer} from "recharts"
 
 const ChartsBuySell = ({data}) => {
 
 const COLORS = ["#22c55e","#ef4444"]
 
 return(
-
-<PieChart width={300} height={350}>
+    <div style={{ width: "100%", height: 350 }}>
+<ResponsiveContainer>
+<PieChart >
 
 <Pie
 data={data}
@@ -29,7 +30,8 @@ label
 <Legend/>
 
 </PieChart>
-
+</ResponsiveContainer>
+</div>
 )
 
 }

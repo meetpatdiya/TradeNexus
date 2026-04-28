@@ -146,3 +146,15 @@
     font-size: 13px;
   }
 }
+@media (max-width: 768px){
+
+}
+@media (max-width: 480px){
+ .admin-tradeinfo-container{
+  display: flex;
+  flex-direction: column;
+ }
+ .trade-filters select , .trade-filters input{
+  width: 300px;
+ }
+}

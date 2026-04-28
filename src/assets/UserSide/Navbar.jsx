@@ -58,16 +58,25 @@ const Navbar = () => {
         </div>
         <ul>
           <li>
-            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="#">Market</NavLink>
+            <NavLink className={({ isActive }) => isActive ? "active" : "" } to="" end onClick={() => setOpen(false)}>Home</NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => isActive ? "active" : ""}to="#">Trade</NavLink>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="portfolio" onClick={() => setOpen(false)}>Portfolio</NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="#">Watchlist</NavLink>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="analytics" onClick={() => setOpen(false)}>Analytics</NavLink>
           </li>
           <li>
-            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="#">Feedback</NavLink>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="watchlist" onClick={() => setOpen(false)}>Watchlist</NavLink>
+          </li>
+          <li>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="wallet" onClick={() => setOpen(false)}>Wallet</NavLink>
+          </li>
+          <li>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""}to="feedback" onClick={() => setOpen(false)}>Feedback</NavLink>
+          </li>
+          <li>
+            <NavLink className={({ isActive }) => isActive ? "active" : ""} to="news" onClick={() => setOpen(false)}>News</NavLink>
           </li>
         </ul>
       </div>

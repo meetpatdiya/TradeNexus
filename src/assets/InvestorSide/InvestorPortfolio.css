@@ -147,3 +147,64 @@ background: linear-gradient(135deg, #e6f9f0, #f5fffb);
   padding: 4px 10px;
   border-radius: 6px;
 }
+/* ================= TABLET ================= */
+@media (max-width: 1024px){
+
+  .in-pl-container{
+    padding: 25px;
+  }
+
+  .in-pl-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .in-pl-summary{
+    gap: 30px;
+    padding: 15px 20px;
+  }
+
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  .in-pl-container{
+    padding: 20px;
+  }
+
+  .in-pl-header h2{
+    font-size: 22px;
+  }
+
+  .in-pl-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .in-pl-summary{
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .in-pl-card{
+    padding: 18px;
+  }
+
+  .in-pl-row{
+    font-size: 14px;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .in-pl-header h2{
+    font-size: 18px;
+  }
+
+  .in-pl-summary h3{
+    font-size: 18px;
+  }
+
+}

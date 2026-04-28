@@ -396,3 +396,16 @@
 .ad-wtl-table td:nth-child(3) {
   font-weight: 500;
 }
+@media (max-width: 768px){
+.ah-gc{
+  display: block;
+}
+}
+@media (max-width: 480px){
+  .ah-st-hero{
+    width: 100%;
+  }
+  .ah-st-tables{
+    flex-direction: column;
+  }
+}

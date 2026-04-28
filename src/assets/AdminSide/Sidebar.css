@@ -1,8 +1,8 @@
 .sd-container {
   width: 270px;
   min-width: 240px;
-  height: 100vh;
-background: linear-gradient(135deg, #fff8e6, #fffdf7);
+  height: calc(100vh - 60px);   
+  background: linear-gradient(135deg, #fff8e6, #fffdf7);
   border-right: 1px solid #e5e7eb;
   padding: 18px 12px;
   box-sizing: border-box;
@@ -10,7 +10,7 @@ background: linear-gradient(135deg, #fff8e6, #fffdf7);
   flex-direction: column;
   gap: 10px;
   position: sticky;
-  top: 0;
+  top: 60px;
 }
 
 .sd-container a {
@@ -64,4 +64,52 @@ background: linear-gradient(135deg, #fff8e6, #fffdf7);
 
 .page-content{
 background: linear-gradient(135deg, #fff8e6, #fffdf7);
+}
+@media (max-width: 768px){
+
+  .sd-container{
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    overflow-x: auto;      
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    gap: 10px;
+    padding: 10px;
+
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1000;
+  }
+
+  .sd-container a{
+    flex: 0 0 auto;        
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+    padding: 6px 10px;
+    min-width: 80px;       
+    text-align: center;
+  }
+
+  .sd-container a svg{
+    font-size: 18px;
+  }
+
+  .sd-divider{
+    display: none;
+  }
+
+  .page-content{
+    padding-top: 60px;
+    margin-top: 110px;
+  }
 }

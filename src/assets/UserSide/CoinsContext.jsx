@@ -4,7 +4,7 @@ const CoinsContext = createContext();
 export const CoinsProvider = ({ children }) => {
   const [coins, setCoins] = useState([]);
   const [watchlist, setWatchlist] = useState([]);
-  console.log("it is rendering");
+  // console.log("it is rendering");
   const lastFetchRef = useRef(0);
   useEffect(() => {
     const now = Date.now();

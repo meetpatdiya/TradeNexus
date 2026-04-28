@@ -8,27 +8,26 @@ import EmptyList from "../Images/EmptyList.svg";
 import axios from "axios";
 import { useState } from "react";
 import api from "../ApiServices/Api";
+import Loader from "./Loader";
 const Watchlist = () => {
   const [watchlistCoin, setwatchlistCoin] = useState([]);
   const { coins, watchlist } = useCoins();
+  const [loading, setloading] = useState(true)
   useEffect(() => {
     const getWatchlistData = async () => {
-      // const { data } = await axios.get("http://localhost:5000/watchlist");
       const {data} = await api.get("/watchlist")
       setwatchlistCoin(data);
+      setloading(false)
     };
     getWatchlistData();
   }, [watchlist]);
   const navigate = useNavigate();
   const watchlistCoins = coins.filter((c) => watchlistCoin.includes(c.id));
   const removeCoin = async (coinId) => {
-    // await axios.post("http://localhost:5000/watchlist", {
-    //   coin_gecko_id: coinId,
-    // });
     await api.post('/watchlist',{coin_gecko_id:coinId})
     setwatchlistCoin((prev) => prev.filter((id) => id !== coinId));
   };
-  if (watchlistCoin.length === 0) {
+  if (!loading && watchlistCoin.length === 0) {
     return (
       <div className="empty-state">
         <img src={EmptyList} alt="" className="empty-svg" />
@@ -45,7 +44,9 @@ const Watchlist = () => {
   }
   return (
     <div className="watchlist-container">
+      {loading ? <Loader/>:<>
       <h2 className="watchlist-title">My Watchlist</h2>
+      <div className="coins-container">
       {watchlistCoins.map((coin, i) => (
         <div className="watchlist-row">
           <CoinRows key={i} coin={coin} />
@@ -54,6 +55,9 @@ const Watchlist = () => {
           </button>
         </div>
       ))}
+      </div>
+      </>
+}
     </div>
   );
 };

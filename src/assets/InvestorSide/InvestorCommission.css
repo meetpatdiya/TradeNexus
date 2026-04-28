@@ -151,3 +151,60 @@ background: linear-gradient(135deg, #e6f9f0, #f5fffb);  min-height: 100vh;
 .inv-cms-table tr:hover {
   background: #f7f9fd;
 }
+/* ================= TABLET ================= */
+@media (max-width: 1024px){
+
+  .inv-cms-container{
+    padding: 25px;
+  }
+
+  .inv-cms-summary{
+    grid-template-columns: repeat(2,1fr);
+  }
+
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  .inv-cms-container{
+    padding: 20px 15px;
+  }
+
+  .inv-cms-header h1{
+    font-size: 22px;
+  }
+
+  .inv-cms-action{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .inv-cms-summary{
+    grid-template-columns: 1fr;
+  }
+
+  .inv-cms-card{
+    padding: 20px;
+  }
+
+  /* table scroll fix */
+  .inv-cms-table-wrapper{
+    overflow-x: auto;
+  }
+
+  .inv-cms-table{
+    min-width: 600px;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .inv-cms-card p{
+    font-size: 20px;
+  }
+
+}

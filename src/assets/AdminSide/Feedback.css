@@ -91,3 +91,8 @@
 .af-resolve-btn:hover {
   background: #059669;
 }
+@media (max-width: 480px){
+.af-container{
+    padding: 20px 0;
+}
+}

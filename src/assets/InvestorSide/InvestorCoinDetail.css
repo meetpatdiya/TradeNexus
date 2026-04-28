@@ -383,3 +383,133 @@ margin-bottom:10px;
 .in-withd-btn {
   transition: all 0.2s ease;
 }
+@media (max-width: 1024px){
+
+  .in-cd-container{
+    flex-direction: column;
+  }
+  .in-invst-overlay , .in-withd-overlay{
+    width: 100vw;
+  }
+
+  .in-cd-sidebar{
+    width: 100%;
+    height: auto;
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+  }
+
+  .in-cd-coin-item{
+    flex: 0 0 auto;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  .in-cd-stats{
+    grid-template-columns: repeat(3,1fr);
+  }
+
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  .in-cd-container{
+    padding: 15px;
+  }
+
+  .in-cd-main{
+    padding: 15px;
+  }
+
+  .in-cd-stats{
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+  }
+
+  .in-cd-actions{
+    flex-direction: column;
+  }
+
+  .in-cd-actions button{
+    width: 100%;
+  }
+
+  .in-cd-graph-box{
+    padding: 15px;
+  }
+
+  .in-invst-card,
+  .in-withd-card{
+    width: 90%;
+  }
+
+  .in-invst-info,
+  .in-withd-info{
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .in-cd-stats{
+    grid-template-columns: 1fr;
+  }
+
+  .in-cd-header img{
+    width: 40px;
+    height: 40px;
+  }
+
+}
+/* ================= MOBILE FIX ================= */
+@media (max-width: 768px){
+
+  .in-invst-card,
+  .in-withd-card{
+    width: 95%;
+    max-width: 400px;
+    padding: 15px;
+  }
+
+  .in-invst-info,
+  .in-withd-info{
+    grid-template-columns: 1fr; /* stack */
+  }
+
+  .in-invst-input input,
+  .in-withd-input input{
+    width: 100%;
+    box-sizing: border-box; /* 🔥 important */
+  }
+
+  .in-withd-btns,
+  .in-invst-btns{
+    flex-wrap: wrap;
+  }
+
+  .in-withd-btns .in-invst-b,
+  .in-invst-btns .in-invst-b{
+    flex: 1 1 45%;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .in-invst-card,
+  .in-withd-card{
+    width: 92%;
+    padding: 12px;
+  }
+
+  .in-withd-btns .in-invst-b,
+  .in-invst-btns .in-invst-b{
+    flex: 1 1 100%;
+  }
+
+}

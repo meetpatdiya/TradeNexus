@@ -134,3 +134,14 @@ background:#cc3c40;
 .ad-coin-btn-enable:hover{
 background:#13995b;
 }
+@media (max-width: 480px){
+.ad-coin-container{
+    padding: 20px 0;
+}
+.ad-coin-header{
+    flex-direction: column;
+}
+.ad-coin-header h2{
+    margin-bottom: 10px;
+}
+}

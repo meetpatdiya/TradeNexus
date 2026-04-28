@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid,ResponsiveContainer } from "recharts";
 
 const ChartsWeekly = ({ data }) => {
   const formattedData = data.map((d) => ({
@@ -7,7 +7,9 @@ const ChartsWeekly = ({ data }) => {
   }));
 
   return (
-    <BarChart width={650} height={350} data={formattedData}>
+    <div style={{ width: "100%", height: 350 }}>
+      <ResponsiveContainer>
+    <BarChart  data={formattedData}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis
         dataKey="week"
@@ -30,6 +32,8 @@ const ChartsWeekly = ({ data }) => {
       />
       <Bar dataKey="total_trades" fill="#3b82f6" />
     </BarChart>
+    </ResponsiveContainer>
+    </div>
   );
 };
 

@@ -87,7 +87,6 @@ const Wallet = () => {
         setWlMessageType("error");
       } else {
               const {data} = await api.post("/wallet/deposit",{wlValue:Number(wlValue)})
-
         setBalance(Number(data.balance));
         setWlMessage(
           `$${wlValue} has been successfully deposited to your wallet.`,
@@ -103,7 +102,7 @@ const Wallet = () => {
         setWlMessage("Insufficient wallet balance for this withdrawal.");
         setWlMessageType("error");
       } else {
-               const {data} = await api.post("/wallet/withdraw",{wlValue:Number(wlValue)})
+        const {data} = await api.post("/wallet/withdraw",{wlValue:Number(wlValue)})
         setWlMessage(
           `₹${wlValue} withdrawal request submitted. Awaiting admin approval.`,
         );

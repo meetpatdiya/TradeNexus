@@ -142,3 +142,53 @@ background: linear-gradient(135deg, #e6f9f0, #f5fffb);}
     transparent
   );
 }
+/* ================= TABLET ================= */
+@media (max-width: 1024px){
+
+  .in-cn-grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  .in-cn-wrapper{
+    padding: 15px;
+  }
+
+  .in-cn-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .in-cn-img{
+    width: 55px;
+    height: 55px;
+  }
+
+  .in-cn-name{
+    font-size: 12px;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .in-cn-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .in-cn-search{
+    max-width: 100%;
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .in-cn-btn{
+    width: 100%;
+  }
+
+}

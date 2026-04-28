@@ -94,3 +94,70 @@ background: linear-gradient(135deg, #e6f9f0, #f5fffb);
     margin: 0 auto 20px;
   }
 }
+/* ================= TABLET ================= */
+@media (max-width: 1024px){
+
+  .in-cn-hero{
+    padding: 30px 20px;
+    height: auto;
+  }
+
+  .in-cn-hero-left{
+    padding-left: 20px; /* reduce huge gap */
+  }
+
+  .in-cn-hero-left h1{
+    font-size: 32px;
+  }
+
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  .in-cn-hero{
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .in-cn-hero-left{
+    padding-left: 0; /* 🔥 important fix */
+  }
+
+  .in-cn-hero-left h1{
+    font-size: 26px;
+  }
+
+  .in-cn-hero-left p{
+    margin: 0 auto 20px;
+  }
+
+  .hero-stats{
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .in-cn-hero-right img{
+    max-width: 280px;
+  }
+
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px){
+
+  .in-cn-hero-left h1{
+    font-size: 22px;
+  }
+
+  .hero-stats div h3{
+    font-size: 14px;
+  }
+
+  .hero-stats div p{
+    font-size: 12px;
+  }
+
+} 

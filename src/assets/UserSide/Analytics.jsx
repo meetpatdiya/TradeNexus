@@ -3,15 +3,18 @@ import "./Analytics.css";
 import api from "../ApiServices/Api";
 import ChartsBuySell from "./ChartsBuySell";
 import ChartsLast7Days from "./ChartsLast7Days";
+import Loader from "./Loader";
 
 const Analytics = () => {
   const [analytics, setAnalytics] = useState(null);
   const [showtransactions, setshowtransactions] = useState(false)
+  const [loading, setloading] = useState(true)
   useEffect(() => {
     const getAnalyticsData = async () => {
       try {
         const {data} = await api.get("/useranalytics");
         setAnalytics(data);
+        setloading(false)
       } catch (error) {
         console.log(error?.response);
       }
@@ -20,10 +23,10 @@ const Analytics = () => {
     getAnalyticsData();
   }, []);
 
-  if (!analytics) return null;
-
   return (
     <div className="us-an-container">
+    {loading ? <Loader/> :
+    <>
       <h1 className="us-an-heading">Trading Analytics</h1>
 
       <div className="us-an-topcards">
@@ -71,9 +74,7 @@ const Analytics = () => {
 
         <div className="us-an-charts">
           <ChartsLast7Days data={analytics.tradesPerDay} />
-
           <div className="us-an-divider"></div>
-
           <ChartsBuySell data={analytics.buySellDistributon} />
         </div>
       </div>
@@ -81,7 +82,7 @@ const Analytics = () => {
   <button onClick={() => setshowtransactions(p => !p)} className="toggle-btn">
     {showtransactions ? "Hide" : "Show"} Transactions
   </button>
-
+        
   {showtransactions && (
     <table className="us-an-trans">
       <thead>
@@ -114,6 +115,8 @@ const Analytics = () => {
     </table>
   )}
 </div>
+    </>
+}
     </div>
   );
 };

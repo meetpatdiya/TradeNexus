@@ -17,9 +17,9 @@ min-height: 700px;
   align-items: center;
 }
 
-.watchlist-row .coin-row {
-  flex: 1; /* keeps full width look */
-}
+/* .watchlist-row .coin-row {
+  flex: 1; 
+} */
 
 .watchlist-btn {
   margin-left: 12px;
@@ -82,3 +82,31 @@ min-height: 700px;
   background-color: #cfcfcf;
   transform: translateY(-2px);
 }
+/* @media (max-width: 768px) {
+
+  .coins-container {
+    overflow-x: auto;
+    position: relative;
+  }
+
+  .coin-header span:nth-child(1),
+  .coin-row .coin-rank {
+    position: sticky;
+    left: 0;
+    background: white;
+    z-index: 5;
+  }
+
+  .coin-header span:nth-child(2),
+  .coin-row .coin-info {
+    position: sticky;
+    left: 40px; 
+    background: white;
+    z-index: 5;
+    max-width: 150px;
+  }
+  .coin-row,
+  .coin-header {
+    min-width: 1100px;
+  } */
+/* } */
