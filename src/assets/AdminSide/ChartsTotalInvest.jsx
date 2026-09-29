@@ -7,7 +7,7 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
-} from "recharts";
+} from "recharts"; 
 
 const ChartsTotalInvest = ({ data }) => {
   const formattedData = data.map((item) => ({

@@ -47,7 +47,6 @@ const App = () => {
       console.log("Not logged in");
     }
   };
-
   init();
 }, []);
   const router = createBrowserRouter([

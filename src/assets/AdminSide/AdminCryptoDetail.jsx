@@ -33,9 +33,6 @@ const AdminCryptoDetail = () => {
       ← Back
       </button>
 
-
-      {/* HEADER */}
-
       <div className="ad-coindetail-header">
 
         <div className="ad-coindetail-title">
@@ -123,10 +120,6 @@ const AdminCryptoDetail = () => {
 
           </div>
 
-
-
-          {/* SUPPLY */}
-
           <div className="ad-coindetail-card">
 
             <h3>Supply</h3>
@@ -154,10 +147,6 @@ const AdminCryptoDetail = () => {
 
 
         </div>
-
-
-
-        {/* RIGHT SECTION */}
 
         <div className="ad-coindetail-right">
 
@@ -197,7 +186,6 @@ const AdminCryptoDetail = () => {
             </div>
 
           </div>
-
 
         </div>
 

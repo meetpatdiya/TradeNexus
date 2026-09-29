@@ -7,7 +7,7 @@ import {
   ResponsiveContainer,
   CartesianGrid
 } from "recharts";
-
+ 
 function ChartsProfitable({ data }) {
 
   const chartData = data.map((d) => ({

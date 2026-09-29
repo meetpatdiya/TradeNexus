@@ -3,7 +3,7 @@ import "./Registration.css";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ const Registration = () => {
     if (!isValid) return;
 
     try {
-      await axios.post("http://localhost:5000/register", {
+      await api.post("/register", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
