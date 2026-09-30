@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../ApiServices/Api";
 import "./Forgot.css";
 import { Link } from "react-router-dom";
 import LoaderToast from "../UserSide/LoaderToast";
@@ -29,7 +29,7 @@ const Forgot = () => {
     }
     if (!isvalid) return;
     try {
-      const { data } = await axios.post("http://localhost:5000/checkemail", {
+      const { data } = await api.post("/checkemail", {
         email: email,
       });
       console.log(data);
@@ -44,7 +44,7 @@ const Forgot = () => {
   };
   const submitOPT = async () => {
     try {
-      const { data } = await axios.post("http://localhost:5000/checkotp", {
+      const { data } = await api.post("/checkotp", {
         email: email,
         otp: OTP,
       });
@@ -74,7 +74,7 @@ const Forgot = () => {
     } else setpassworderror("");
     if (!isvalid) return;
     try {
-      const res = await axios.post("http://localhost:5000/changepassword", {
+      const res = await api.post("/changepassword", {
         newPassword: password,
         email: email,
       });

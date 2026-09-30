@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState,useRef } from "react";
+import api from "../ApiServices/Api";
 const CoinsContext = createContext();
 
 export const CoinsProvider = ({ children }) => {
@@ -11,14 +12,24 @@ export const CoinsProvider = ({ children }) => {
     if (coins.length && now - lastFetchRef.current < 60_000) return;
     const fetchCoins = async () => {
       try {
-        const res = await fetch(
-          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h,24h,7d",
-        );
-        const data = await res.json();
+        const cached = sessionStorage.getItem("coingecko_cache");
+        const cacheTime = sessionStorage.getItem("coingecko_cache_time");
+        if (cached && cacheTime && now - parseInt(cacheTime) < 60000) {
+          setCoins(JSON.parse(cached));
+          lastFetchRef.current = Date.now();
+          return;
+        }
+
+        const res = await api.get("/proxy/coins");
+        const data = res.data;
         setCoins(data);
+        sessionStorage.setItem("coingecko_cache", JSON.stringify(data));
+        sessionStorage.setItem("coingecko_cache_time", Date.now().toString());
         lastFetchRef.current = Date.now();
       } catch (e) {
-        console.error(e);
+        console.error("CoinGecko API Error:", e);
+        const cached = sessionStorage.getItem("coingecko_cache");
+        if (cached) setCoins(JSON.parse(cached));
       }
     };
     fetchCoins();
